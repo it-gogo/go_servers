@@ -42,7 +42,7 @@
 		<property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"></property>
 		<property name="mapperLocations">
 				<array>
-					<value>classpath*:com/hczd/download/**/*Mapper.xml</value>
+					<value>classpath*:com/go/**/*Mapper.xml</value>
 				</array>
 		</property>
 		<property name="dataSource" ref="dataSource"></property>
@@ -51,7 +51,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	<!-- end mybatis配置 -->
-	<context:component-scan base-package="com.hczd.download.">
+	<context:component-scan base-package="com.go.">
 	    <context:exclude-filter type="regex" expression=".*.*Controller$" />
 	</context:component-scan>
 	
