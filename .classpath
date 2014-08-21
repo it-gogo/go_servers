@@ -325,7 +325,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/tomcat/apache-tomcat-6.0.28/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Java/jdk1.6.0_10/jre/lib/rt.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
