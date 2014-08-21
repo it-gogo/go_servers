@@ -121,14 +121,6 @@ public class Go_SQL_ParamsUtil {
 	}
 	
 	
-	public static void main(String[] args) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("mobile", "18620306152");
-		params.put("or_name", "zhangjf");
-		System.out.println(tran2sql(params));
-	}
-	
-	
 	/**将字符串转为in可查询的字符串
 	 * @author: it_gogo
 	 * @version 2.0
