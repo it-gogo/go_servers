@@ -8,6 +8,7 @@ import com.go.base.module.Go_PageData;
 /**
  * (项目基本框架类)
  * @author it_gogo 
+ * 
  */
 public interface IGo_BaseService<T,K> {
 	public T save(T entity);
