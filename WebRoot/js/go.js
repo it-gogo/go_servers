@@ -72,7 +72,7 @@ function setActiveStyleSheet(title){
  * 改良自定义控件
  * **/
 
-var hczd_sys = {
+var go = {
 		loader:{
 			show:function(){
 				var msg = arguments[0] ? arguments[0] : '正在处理，请稍候。。。';
@@ -91,7 +91,7 @@ var hczd_sys = {
 				var url = arguments[1] ? arguments[1] : '#'; 
 				var width = arguments[2] ? arguments[2] : 600; 
 				var height = arguments[3] ? arguments[3] : 400; 
-				var id = arguments[4] ? arguments[4] : 'hczd_sys_win_edit';
+				var id = arguments[4] ? arguments[4] : 'go_win_edit';
 				$('body').append('<div id="' + id +'" data-options="iconCls:' + "'icon-edit'" +'"></div>');
 				$('#' + id).window({
 					title:title,
@@ -107,7 +107,7 @@ var hczd_sys = {
 				var url = arguments[1] ? arguments[1] : '#'; 
 				var width = arguments[2] ? arguments[2] : 600; 
 				var height = arguments[3] ? arguments[3] : 400; 
-				var id = arguments[4] ? arguments[4] : 'hczd_sys_win_detail'; 
+				var id = arguments[4] ? arguments[4] : 'go_win_detail'; 
 				$('body').append('<div id="' + id +'" data-options="iconCls:' + "'icon-tip'" +'"></div>');
 				$('#' + id).window({
 					title:title,
@@ -123,8 +123,8 @@ var hczd_sys = {
 				var url = arguments[1] ? arguments[1] : '#'; 
 				var width = arguments[2] ? arguments[2] : 600; 
 				var height = arguments[3] ? arguments[3] : 400; 
-				var id = arguments[4] ? arguments[4] : 'hczd_sys_win_detail'; 
-				$('body').append('<div id="' + id +'" data-options="iconCls:' + "'icon-tip'" +'">'+hczd_sys.window.createFrame(url)+'</div>');
+				var id = arguments[4] ? arguments[4] : 'go_win_detail'; 
+				$('body').append('<div id="' + id +'" data-options="iconCls:' + "'icon-tip'" +'">'+go.window.createFrame(url)+'</div>');
 				$('#' + id).window({
 					title:title,
 				    width:width,  
