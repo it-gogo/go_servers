@@ -142,9 +142,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div title="套餐管理" style="overflow:auto;padding:10px;">
 			 		<p>  
 				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item1" rel="www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a>
-				        <a id="item1" rel="www.baidu.com" href="javascript:void(0);" name="null" title="百度2">百度2</a>
-				        <a id="item1" rel="www.baidu.com" href="javascript:void(0);" name="null" title="百度3">百度3</a>
+				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
+			        </p>
+				 </div>
+				 <div title="套餐管理2" style="overflow:auto;padding:10px;">
+			 		<p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
+			        </p>
+				 </div>
+				  <div title="套餐管理2" style="overflow:auto;padding:10px;">
+			 		<p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
+			        </p>
+				 </div>
+				  <div title="套餐管理2" style="overflow:auto;padding:10px;">
+			 		<p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
 			        </p>
 				 </div>
 			</div> 
@@ -152,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		<div id="tabs_content" data-options="region:'center'">
 			<div title="欢迎页面">  
-				<iframe id='sd' border='0' frameborder='no' name='inner-frame' height='100%'  width='100%' src='authority/index/welcome.htm'></iframe>
+				<iframe id='sd' border='0' frameborder='no' name='inner-frame' height='100%'  width='100%' src='http://www.baidu.com'></iframe>
 		    </div> 
 		</div>
 	</body>
