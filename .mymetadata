@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="base_project"
+  name="go_servers"
   id="myeclipse.1397697577365"
-  context-root="/base_project"
+  context-root="/go_servers"
   j2ee-spec="6.0"
-  archive="base_project.war">
+  archive="go_servers.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

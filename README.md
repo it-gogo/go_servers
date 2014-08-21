@@ -1,4 +1,4 @@
-base_project
+go_servers
 ============
 
-项目基本框架
+服务器租借项目
