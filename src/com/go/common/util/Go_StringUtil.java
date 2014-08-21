@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import org.apache.commons.lang3.StringUtils;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 /**
  * 字符串工具类
  * @author zhangjf
@@ -126,7 +128,7 @@ public class Go_StringUtil {
 			int size = password.length()/2;
 			md.update((password+(size!=0?password.substring(size-1,size):"")).getBytes());
 
-			//return Base64.encode(md.digest());
+			return Base64.encode(md.digest());
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
