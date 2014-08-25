@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.sys.authority.mapper.IGo_Department_InfoMapper">
+    <insert id="insert" parameterType="Go_Department_Info">
+	    insert into Go_Department_Info(parentid,telephone,name,description,isactives)
+	    values(#{parentid},#{telephone},#{name},#{description},#{isactives})
+	</insert>
+	<update id="update">
+	    update Go_Department_Info 
+		    set parentid = #{parentid},
+		    telephone = #{telephone},
+		    name = #{name},
+		    description = #{description},
+		    isactives = #{isactives}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Department_Info where id= #{id}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Department_Info
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Department_Info 
+	    ${where}
+	    limit 1 , 0
+	</select>
+	<select id="select" resultType="Go_Department_Info">
+	    select * from Go_Department_Info
+	</select>
+	<select id="selectByParams" resultType="Go_Department_Info" parameterType="map">
+	    select * from Go_Department_Info ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Department_Info">
+	    select * from Go_Department_Info 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Department_Info">
+	    select Go_Department_Info.* from Go_Department_Info 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Department_Info.id) from Go_Department_Info
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Department_Info">
+	    select * from Go_Department_Info where id = #{id}
+	</select>
+	
+</mapper>
