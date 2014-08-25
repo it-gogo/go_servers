@@ -1,7 +1,7 @@
 package com.go.sys.authority.dao;
 
 import com.go.base.dao.IGo_BaseDao;
-import com.go.sys.authority.module.Go_Department_Info;
+import com.go.sys.authority.model.Go_Department_Info;
 
 /**
  * 用户部门信息数据层接口

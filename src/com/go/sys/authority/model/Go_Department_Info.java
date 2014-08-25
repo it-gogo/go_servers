@@ -1,4 +1,4 @@
-package com.go.sys.authority.module;
+package com.go.sys.authority.model;
 
 import org.apache.ibatis.type.Alias;
 

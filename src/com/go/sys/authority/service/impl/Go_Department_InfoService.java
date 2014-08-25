@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.authority.dao.impl.Go_Department_InfoDao;
-import com.go.sys.authority.module.Go_Department_Info;
+import com.go.sys.authority.model.Go_Department_Info;
 import com.go.sys.authority.service.IGo_Department_InfoService;
 
 /**

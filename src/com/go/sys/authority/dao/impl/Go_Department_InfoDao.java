@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.go.base.dao.impl.Go_BaseDao;
 import com.go.sys.authority.dao.IGo_Department_InfoDao;
 import com.go.sys.authority.mapper.IGo_Department_InfoMapper;
-import com.go.sys.authority.module.Go_Department_Info;
+import com.go.sys.authority.model.Go_Department_Info;
 
 /**
  * 用户部门信息 数据层实现类

@@ -2,7 +2,7 @@ package com.go.sys.authority.mapper;
 
 
 import com.go.base.mapper.IGo_BaseMapper;
-import com.go.sys.authority.module.Go_Department_Info;
+import com.go.sys.authority.model.Go_Department_Info;
 
 
 /**

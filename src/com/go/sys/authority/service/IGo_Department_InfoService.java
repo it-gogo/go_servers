@@ -2,7 +2,7 @@ package com.go.sys.authority.service;
 
 
 import com.go.base.service.IGo_BaseService;
-import com.go.sys.authority.module.Go_Department_Info;
+import com.go.sys.authority.model.Go_Department_Info;
 
 /**
  * 用户部门信息 逻辑层接口

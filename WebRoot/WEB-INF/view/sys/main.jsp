@@ -138,7 +138,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	</c:forEach>
 					 </div>
 				</c:forEach> --%>
-				
+				<div title="系统管理" style="overflow:auto;padding:10px;">
+			 		<p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_1" rel="<%=basePath%>sys/authority/user/list.htm" href="javascript:void(0);" name="null" title="用户管理">用户管理</a> 
+			        </p>
+			        <p>  
+				    	<span class="icon-16-category">&nbsp;</span>
+				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
+			        </p>
+				 </div>
 				<div title="套餐管理" style="overflow:auto;padding:10px;">
 			 		<p>  
 				    	<span class="icon-16-category">&nbsp;</span>
