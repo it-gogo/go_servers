@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author it_gogo
  *
  */
-@Controller
-@RequestMapping(value="/test/*")
+
 public class Go_BaseController {
 	protected Map<String, Object> sys_params;	// 查询参数
 	protected String show_msg;					// 提示信息
@@ -23,13 +22,19 @@ public class Go_BaseController {
 	protected List<String> show_msg_list;		// 多条提示信息
 	protected List<String> error_msg_list;		// 多条错误信息
 	protected HttpServletRequest request; 		// request请求
-	
-	/**
-	 * 项目框架测试能否运行
-	 * @return
-	 */
-	@RequestMapping(value="test.htm")
-	public String index(){
-		return "/index/index";
+	public String getShow_msg() {
+		return show_msg;
 	}
+	public void setShow_msg(String show_msg) {
+		this.show_msg = show_msg;
+	}
+	public String getError_msg() {
+		return error_msg;
+	}
+	public void setError_msg(String error_msg) {
+		this.error_msg = error_msg;
+	}
+	
+	
+	
 }
