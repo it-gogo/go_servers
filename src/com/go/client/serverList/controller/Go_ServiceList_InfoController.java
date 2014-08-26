@@ -26,8 +26,78 @@ public class Go_ServiceList_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="public.htm")
-	public String publicCloudServerList(Go_PageData pageData){
-		return "client/main/publicCloudServerList";
+	public String publicCloudServer(Go_PageData pageData){
+		return "client/main/publicCloudServer";
+	}
+	
+	/**
+	 * 私有云服务器列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="private.htm")
+	public String privateCloudServer(Go_PageData pageData){
+		return "client/main/privateCloudServer";
+	}
+	
+	/**
+	 * 独立服务器列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="independence.htm")
+	public String independenceServer(Go_PageData pageData){
+		return "client/main/independenceServer";
+	}
+	
+	/**
+	 * 群站服务器列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="stations.htm")
+	public String stationsGroupServer(Go_PageData pageData){
+		return "client/main/stationsGroupServer";
+	}
+	
+	/**
+	 * linux/windows VPS列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="linuxWindows.htm")
+	public String linuxWindowsVPS(Go_PageData pageData){
+		return "client/main/linuxWindowsVPS";
+	}
+	
+	/**
+	 * 每周特价列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="specialOffer.htm")
+	public String specialOffer(Go_PageData pageData){
+		return "client/main/specialOffer";
+	}
+	
+	/**
+	 * 云解决方案列表查询
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="cloudSolutions.htm")
+	public String cloudSolutions(Go_PageData pageData){
+		return "client/main/cloudSolutions";
+	}
+	
+	/**
+	 * 支持中心
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="supportCenter.htm")
+	public String supportCenter(Go_PageData pageData){
+		return "client/main/supportCenter";
 	}
 	
 }

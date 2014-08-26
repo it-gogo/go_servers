@@ -1,29 +1,49 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
-
+<%
+	String name=request.getParameter("name");
+	request.setAttribute("name", name);
+ %>
 <div class="header">
   <div class="box"> <a class="logo" href="http://cn.raksmart.com/">
-    <h1>RAKsmart美国公有云服务器_优质云服务器租用商</h1>
+    <h1>RAKsmart美国公有云服务器_${name }</h1>
     </a>
     <ul class="menu">
-      <li><a href="/cloud">云服务器</a>
+      <li><a href="public.htm">云服务器</a>
          <ul>
             <li class="menuTop"></li>
-            <li><a href="/cloud">公有云服务器</a></li><li><a href="/privat">私有云服务器</a></li><li><a href="/special#cloud">每周特价</a></li>         </ul>
+            <li><a href="public.htm">公有云服务器</a></li>
+            <li><a href="private.htm">私有云服务器</a></li>
+            <li><a href="specialOffer.htm">每周特价</a></li>         
+           </ul>
       </li>
-      <li><a href="/dedicate">独立服务器</a>
+      <li><a href="independence.htm">独立服务器</a>
          <ul>
             <li class="menuTop"></li>
-            <li><a href="/dedicate">独立服务器</a></li><li><a href="/zhanqun">站群服务器</a></li><li><a href="/vps#windows">Windows VPS</a></li><li><a href="/vps#linux">Linux VPS</a></li><li><a href="/special#dedicated">每周特价</a></li><li><a href="/HK#VPS">HK VPS</a></li>         </ul>      
+            <li><a href="independence.htm">独立服务器</a></li>
+            <li><a href="stations.htm">站群服务器</a></li>
+            <li><a href="linuxWindows.htm">Windows VPS</a></li>
+            <li><a href="linuxWindows.htm">Linux VPS</a></li>
+            <li><a href="specialOffer.htm">每周特价</a></li>
+            <li><a href="HK#VPS">HK VPS</a></li>         
+           </ul>      
       </li>
-      <li><a href="/solutions">解决方案</a>
+      <li><a href="cloudSolutions.htm">解决方案</a>
           <ul>
             <li class="menuTop"></li>
-            <li><a href="/solutions">云站点</a></li><li><a href="/solutions">云托管</a></li><li><a href="/solutions">服务器托管</a></li><li><a href="/solutions">服务托管</a></li>         </ul>      
+            <li><a href="cloudSolutions.htm">云站点</a></li>
+            <li><a href="cloudSolutions.htm">云托管</a></li>
+            <li><a href="cloudSolutions.htm">服务器托管</a></li>
+            <li><a href="cloudSolutions.htm">服务托管</a></li>         
+           </ul>      
 	  </li>
-      <li><a href="/support">技术支持</a>
+      <li><a href="support">技术支持</a>
          <ul>
             <li class="menuTop"></li>
-            <li><a href="/support">支持中心</a></li><li><a href="/support#5">API文档</a></li><li><a href="http://cn.raksmart.com/legal.html">法律信息</a></li><li><a href="http://cn.raksmart.com/faq.html">FAQs</a></li>         </ul>      
+            <li><a href="support">支持中心</a></li>
+            <li><a href="support#5">API文档</a></li>
+            <li><a href="http://cn.raksmart.com/legal.html">法律信息</a></li>
+            <li><a href="http://cn.raksmart.com/faq.html">FAQs</a></li>         
+           </ul>      
       </li>
       <li><a href="/company">关于我们</a>
          <ul>
