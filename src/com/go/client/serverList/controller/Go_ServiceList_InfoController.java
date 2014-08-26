@@ -2,6 +2,7 @@ package com.go.client.serverList.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
 import com.go.client.serverList.service.IGo_ServerList_InfoService;
@@ -13,6 +14,7 @@ import com.go.controller.base.Go_BaseController;
  *
  */
 @Controller
+@RequestMapping(value="/client/serverList/*")
 public class Go_ServiceList_InfoController extends Go_BaseController{
 	
 	@Autowired
@@ -23,8 +25,9 @@ public class Go_ServiceList_InfoController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
+	@RequestMapping(value="public.htm")
 	public String publicCloudServerList(Go_PageData pageData){
-		return "client/main/commonCloudServerList";
+		return "client/main/publicCloudServerList";
 	}
 	
 }

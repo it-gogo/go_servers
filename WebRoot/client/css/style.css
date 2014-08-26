@@ -917,3 +917,11 @@ a.logo {
 	float:left;
 	width:430px;
 	}	
+
+.float_right{
+	position:fixed;  
+    right:0px;  
+    bottom:0;  
+    _position:absolute;  
+    _top:expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight); 
+}
