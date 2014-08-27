@@ -1,4 +1,4 @@
-package com.go.client.serverList.service;
+package com.go.client.main.service;
 
 import com.go.base.service.IGo_BaseService;
 import com.go.sys.authority.model.Go_Department_Info;

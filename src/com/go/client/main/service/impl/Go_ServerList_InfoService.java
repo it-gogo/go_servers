@@ -1,11 +1,11 @@
-package com.go.client.serverList.service.impl;
+package com.go.client.main.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.go.base.service.impl.Go_BaseService;
-import com.go.client.serverList.dao.impl.Go_ServerList_InfoDao;
-import com.go.client.serverList.service.IGo_ServerList_InfoService;
+import com.go.client.main.dao.impl.Go_ServerList_InfoDao;
+import com.go.client.main.service.IGo_ServerList_InfoService;
 import com.go.sys.authority.model.Go_Department_Info;
 
 /**
