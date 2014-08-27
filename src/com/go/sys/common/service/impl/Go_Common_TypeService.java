@@ -1,10 +1,11 @@
-package com.go.sys.common.service;
+package com.go.sys.common.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.common.dao.impl.Go_Common_TypeDao;
 import com.go.sys.common.model.Go_Common_Type;
+import com.go.sys.common.service.IGo_Common_TypeService;
 
 /**
  * 数据字典类型逻辑层实现类

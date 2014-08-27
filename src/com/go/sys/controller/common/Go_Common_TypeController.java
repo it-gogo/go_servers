@@ -52,6 +52,7 @@ public class Go_Common_TypeController extends Go_BaseController {
 	@RequestMapping("ajax_list.htm")
 	public @ResponseBody Map ajax_list(HttpServletRequest request,ModelMap model,String name,Go_PageData pageData){
 		Map<String,Object> params=new HashMap<String, Object>();
+		params.put("status", Go_Common_Type.STATUS_NORMAL);
 		if(StringUtils.isNotBlank(name)){
 			params.put("name_like", name);
 		}
@@ -72,7 +73,37 @@ public class Go_Common_TypeController extends Go_BaseController {
 		return "sys/common/dict_type/editnew";
 	}
 	
+	/**
+	 * 数据字典类型修改操作
+	 * @author zhangjf
+	 * @create_time 2014-8-27 下午10:04:08
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("edit.htm")
+	public String edit(ModelMap model,Integer id){
+		if(id != null)
+			model.addAttribute("common_type", go_common_typeService.get(id));
+		return "sys/common/dict_type/editnew";
+	}
 	
+	@RequestMapping("delete.htm")
+	public String delete(ModelMap model,Integer id){
+		Map<String,Object> params=new HashMap<String, Object>();
+		if(id != null){
+			params.put("update_status", Go_Common_Type.STATUS_DEL);
+			params.put("where_id", id);
+			try {
+				go_common_typeService.updateField(params);
+				setShow_msg("200");
+			} catch (Exception e) {
+				setShow_msg("系统异常,删除失败");
+			}
+		}
+		model.addAttribute("show_msg", show_msg);
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
 	
 	/**
 	 * 数据字典类型编辑功能
