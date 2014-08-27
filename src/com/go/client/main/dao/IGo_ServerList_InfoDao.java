@@ -1,4 +1,4 @@
-package com.go.client.serverList.dao;
+package com.go.client.main.dao;
 
 import com.go.base.dao.IGo_BaseDao;
 import com.go.sys.authority.model.Go_Department_Info;

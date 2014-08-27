@@ -1,9 +1,13 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/view/client/main/aboutCompany.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/cloudSolutions.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/main/faq.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/independenceServer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/main/legalInfo.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/linuxWindowsVPS.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/privateCloudServer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/specialOffer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/stationsGroupServer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/supportCenter.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/main/technologyPartners.jsp=UTF-8
 encoding/<project>=UTF-8

@@ -36,19 +36,21 @@
             <li><a href="cloudSolutions.htm">服务托管</a></li>         
            </ul>      
 	  </li>
-      <li><a href="support">技术支持</a>
+      <li><a href="support.htm">技术支持</a>
          <ul>
             <li class="menuTop"></li>
-            <li><a href="support">支持中心</a></li>
+            <li><a href="support.htm">支持中心</a></li>
             <li><a href="support#5">API文档</a></li>
-            <li><a href="http://cn.raksmart.com/legal.html">法律信息</a></li>
-            <li><a href="http://cn.raksmart.com/faq.html">FAQs</a></li>         
+            <li><a href="legal.htm">法律信息</a></li>
+            <li><a href="faq.htm">FAQs</a></li>         
            </ul>      
       </li>
-      <li><a href="/company">关于我们</a>
+      <li><a href="company.htm">关于我们</a>
          <ul>
             <li class="menuTop"></li>
-            <li><a href="/company">公司简介</a></li><li><a href="/technology">技术伙伴</a></li>         </ul>      
+            <li><a href="company.htm">公司简介</a></li>
+            <li><a href="technology.htm">技术伙伴</a></li>         
+         </ul>      
       </li>
       <li class="memBtn"> 
           <a href="http://cn.raksmart.com/whmcs/clientarea.php" class="btnLogin">登录</a> 

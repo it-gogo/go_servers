@@ -1,11 +1,11 @@
-package com.go.client.serverList.controller;
+package com.go.client.controller.main;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
-import com.go.client.serverList.service.IGo_ServerList_InfoService;
+import com.go.client.main.service.IGo_ServerList_InfoService;
 import com.go.controller.base.Go_BaseController;
 
 /**
@@ -95,9 +95,49 @@ public class Go_ServiceList_InfoController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="supportCenter.htm")
+	@RequestMapping(value="support.htm")
 	public String supportCenter(Go_PageData pageData){
 		return "client/main/supportCenter";
+	}
+	
+	/**
+	 * 法律信息
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="legal.htm")
+	public String legal(Go_PageData pageData){
+		return "client/main/legalInfo";
+	}
+	
+	/**
+	 * FAQs信息
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="faq.htm")
+	public String faq(Go_PageData pageData){
+		return "client/main/faq";
+	}
+	
+	/**
+	 * 关于公司信息
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="company.htm")
+	public String aboutCompany(Go_PageData pageData){
+		return "client/main/aboutCompany";
+	}
+	
+	/**
+	 * 技术伙伴信息
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="technology.htm")
+	public String technologyPartners(Go_PageData pageData){
+		return "client/main/technologyPartners";
 	}
 	
 }
