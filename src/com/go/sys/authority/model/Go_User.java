@@ -9,23 +9,33 @@ import org.apache.ibatis.type.Alias;
  */
 @Alias("Go_User")
 public class Go_User {
+	/**用户状态--正常*/
+	public static String USER_STATUS_OK = "正常";
+	/**用户状态--禁用*/
+	public static String USER_STATUS_UNOK ="禁用";
 	
 	private Integer id;		//id;
 	private String name;	//名字
 	private String username;	//账号
 	private String telephone;//电话
 	private String password; //密码
-	
+	private String status;		//状态
 	private Integer parentId; //部门id
 
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}

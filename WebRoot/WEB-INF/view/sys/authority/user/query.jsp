@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>加油卡列表</title>
+    <title>用户管理</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -38,69 +38,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    pageSize:15,
 			    pageList:[10,15,20,25,30,50,100,150],
 			    toolbar: [{
+			    	text:'增加',
+					iconCls: 'icon-add',
+					handler: function(){
+						go.window.edit('增加新用户','sys/authority/user/add.htm',600,330);
+					}
+				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
 							hczd_sys.window.edit('修改加油卡','card/gas_card/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
-						}else{
-							$.messager.alert('提示','请选择一项进行修改');
-						}
-					}
-				},'-',{
-			    	text:'修改优惠区域',
-					iconCls: 'icon-edit',
-					handler: function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							hczd_sys.window.edit('修改优惠区域','card/gas_card/update_area.htm?id=' + $('#dg').datagrid('getSelected').id,600,250);
-						}else{
-							$.messager.alert('提示','请选择一项进行修改');
-						}
-					}
-				},'-',{
-			    	text:'修改车牌号',
-					iconCls: 'icon-edit',
-					handler: function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							hczd_sys.window.edit('修改车牌号','card/gas_card/update_vehicle_no.htm?id=' + $('#dg').datagrid('getSelected').id,600,200);
-						}else{
-							$.messager.alert('提示','请选择一项进行修改');
-						}
-					}
-				},'-',{
-			    	text:'油卡信息变更',
-					iconCls: 'icon-edit',
-					handler: function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							if($('#dg').datagrid('getSelected').status!=2){
-								$.messager.alert('提示','该状态下不能修改油卡信息！');
-								return false;
-							}
-							hczd_sys.window.edit('申请油卡信息变更','card/gas_card_change_app_record/update_change.htm?card_no=' + $('#dg').datagrid('getSelected').card_no,600,300);
-						}else{
-							$.messager.alert('提示','请选择一项进行修改');
-						}
-					}
-				},'-',{
-			    	text:'批量修改短信号码',
-					iconCls: 'icon-edit',
-					handler: function(){
-						if($('#dg').datagrid('getSelections').length>0){
-							$("#div_receive_tel").window("open");
-						}else{
-							$.messager.alert('提示','请选择需要修改短信号码的加油卡');
-						}
-					}
-				},'-',{
-			    	text:'修改消费短信号码',
-					iconCls: 'icon-edit',
-					handler: function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							if($('#dg').datagrid('getSelected').status!=2){
-								$.messager.alert('提示','该状态下不能修改油卡信息！');
-								return false;
-							}
-							hczd_sys.window.edit('修改消费短信号码','card/gas_card/update_consumption_receive_tel.htm?id=' + $('#dg').datagrid('getSelected').id,400,200);
 						}else{
 							$.messager.alert('提示','请选择一项进行修改');
 						}
@@ -189,15 +137,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        	return '<a href="card/gas_card/detail_query.htm?card_no='+rowData.card_no+'">'+rowData.card_no+'</a>';
 			        }},
 			        {field:'vehicle_no',title:'车牌号',width:80},
-			        {field:'area',title:'优惠区域',width:80,align:'center'},
-			        {field:'password',title:'油卡密码',width:80,align:'center'},
-			        {field:'receive_tel',title:'短信号码',width:120,align:'center'},
-			        {field:'main_card_no',title:'主卡',width:160},
-			        {field:'balance',title:'余额',width:80},
-			        {field:'consump_count',title:'消费总额',width:80},
-			        {field:'customer_name',title:'客户',width:80},
-			        {field:'registerdate',title:'开卡日期',width:130},
-			        {field:'deadline',title:'有效期',width:130},
 			        {field:'remark',title:'备注',width:130}
 			    ]],
 			    onLoadSuccess:function(data){
@@ -233,12 +172,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<div id="cc" class="easyui-layout" style="width:100%;height:100%; padding: 0;margin: 0;" fit="true">  
-	  	 <div data-options="region:'north',title:'搜索',split:true,collapsible:false" style="height:110px;padding: 10px;">
+	  	 <div data-options="region:'north',title:'搜索',split:true,collapsible:false" style="height:80px;padding: 10px;">
 	  	 	用户名称：<input type="text" value="" id="name" />
-	  	 	<br />
-	  	 	车&nbsp;&nbsp;牌&nbsp;号：<input type="text" value="" id="vehicle_no" />
 	  	 	<a id="btn" href="javascript:void(0);" onclick="search_data()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>
-	  	 	<input type="checkbox" id="cb_balance" name="cb_balance" value="是" onclick="search_data();"  />
 	  	 </div>
 	  	 <div data-options="region:'center'">
 	  	 	<table id="dg" fit="true"></table>
