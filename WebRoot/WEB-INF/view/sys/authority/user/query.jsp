@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							hczd_sys.window.edit('修改加油卡','card/gas_card/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
+							go.window.edit('修改加油卡','card/gas_card/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
 						}else{
 							$.messager.alert('提示','请选择一项进行修改');
 						}
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls:'icon-tip',
 					handler:function(){
 						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							hczd_sys.window.detail('加油卡详情','card/gas_card/detail.htm?id=' + $('#dg').datagrid('getSelected').id,600,420);
+							go.window.detail('加油卡详情','card/gas_card/detail.htm?id=' + $('#dg').datagrid('getSelected').id,600,420);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -130,14 +130,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				selectOnCheck:true,
 			    columns:[[  
 			        {field:'id',title:'编号',width:50,checkbox:true},  
-			        {field:'status',title:'状态',width:50,formatter:function(value,rowindex,rowdata){
-			        	return cardStatus(value);
-			        }},
+			        {field:'status',title:'状态',width:50},
 			        {field:'card_no',title:'卡号',width:200,formatter:function(val,rowData,index){
 			        	return '<a href="card/gas_card/detail_query.htm?card_no='+rowData.card_no+'">'+rowData.card_no+'</a>';
 			        }},
 			        {field:'vehicle_no',title:'车牌号',width:80},
-			        {field:'remark',title:'备注',width:130}
+			        {field:'area',title:'优惠区域',width:80,align:'center'}
 			    ]],
 			    onLoadSuccess:function(data){
 			    	// 取消当前表格选中的所有行

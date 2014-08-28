@@ -14,6 +14,7 @@ public class Go_User {
 	/**用户状态--禁用*/
 	public static String USER_STATUS_UNOK ="禁用";
 	
+	
 	private Integer id;		//id;
 	private String name;	//名字
 	private String username;	//账号
