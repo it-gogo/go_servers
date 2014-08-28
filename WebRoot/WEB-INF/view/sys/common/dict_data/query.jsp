@@ -18,14 +18,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="images/favicon.ico">
-	<script type="text/javascript" src="js/hczd-tms.js"></script>
+	<script type="text/javascript" src="js/go.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			/**
 			*数据显示
 			**/
 			$('#dg').datagrid({  
-			    url:'system/dict_data/ajax_list.htm', 
+			    url:'sys/common/dict_data/ajax_list', 
 			    striped:true,
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
@@ -40,14 +40,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-add',
 					handler: function(){
 						//多种编辑框
-						hczd_tms.window.edit('添加数据字典数据','system/dict_data/add.htm',600,400);
+						go.window.edit('添加数据字典数据','sys/common/dict_data/add.htm',600,400);
 					}
 				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg').datagrid('getSelected')){
-							hczd_tms.window.edit('修改数据字典数据','system/dict_data/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
+							go.window.edit('修改数据字典数据','sys/common/dict_data/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if($('#dg').datagrid('getSelected')){
 							$.messager.confirm('提示','确定要删除所选？',function(r){
 								if(r){
-									$.post('system/dict_data/delete.htm',{id:$('#dg').datagrid('getSelected').id},function(data){
+									$.post('sys/common/dict_data/delete.htm',{id:$('#dg').datagrid('getSelected').id},function(data){
 										if(isNaN(data)){
 											$.messager.show({
 												title:'错误提示',
@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls:'icon-tip',
 					handler:function(){
 						if($('#dg').datagrid('getSelected')){
-							hczd_tms.window.detail('数据字典数据详情','system/dict_data/detail.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
+							go.window.detail('数据字典数据详情','sys/common/dict_data/detail.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
