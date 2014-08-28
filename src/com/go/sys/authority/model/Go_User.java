@@ -10,6 +10,11 @@ import org.apache.ibatis.type.Alias;
 @Alias("Go_User")
 public class Go_User {
 	
+	/**状态--正常*/
+	public static String USER_STATUS_OK = "正常";
+	/**状态--禁用*/
+	public static String USER_STATUS_UNOK ="禁用";
+	
 	private Integer id;		//id;
 	private String name;	//名字
 	private String username;	//账号
