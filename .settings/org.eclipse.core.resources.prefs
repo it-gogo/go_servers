@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/view/client/login/partal.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/registration.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/aboutCompany.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/cloudSolutions.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/faq.jsp=UTF-8
