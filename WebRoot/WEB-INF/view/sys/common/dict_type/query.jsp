@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg').datagrid('getSelected')){
-							go.window.edit('修改数据字典类型','system/dict_type/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
+							go.window.edit('修改数据字典类型','sys/common/data_type/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if($('#dg').datagrid('getSelected')){
 							$.messager.confirm('提示','确定要删除所选？',function(r){
 								if(r){
-									$.post('system/dict_type/delete.htm',{id:$('#dg').datagrid('getSelected').id},function(data){
+									$.post('sys/common/data_type/delete.htm',{id:$('#dg').datagrid('getSelected').id},function(data){
 										if(isNaN(data)){
 											$.messager.show({
 												title:'错误提示',
@@ -103,10 +103,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        {field:'id',title:'编号',width:50,checkbox:true},  
 			        {field:'name',title:'数据字典类型名称',width:200},  
 			        {field:'extension',title:'标识',width:200,align:'left'},
-			        {field:'status',title:'状态',width:200,align:'center',formatter:function(value,rowData,rowIndex){
-			       		return value==1?"有效":"失效"; 	
-			        }},
-			        {field:'remark',title:'备注说明',width:200,align:'left'}
+			        {field:'status',title:'状态',width:200,align:'center'},
+			        {field:'description',title:'备注说明',width:200,align:'left'}
 			    ]]  
 			}); 
 			
