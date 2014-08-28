@@ -53,4 +53,9 @@ public class Go_UserController extends Go_BaseController{
 		msg.put("total", pageData.getTotalSize());
 		return msg;
 	}
+	@RequestMapping(value="add.htm")
+	public String add(){
+		
+		return "/sys/authority/user/editnew";
+	}
 }

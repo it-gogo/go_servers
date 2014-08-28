@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>加油卡列表</title>
+    <title>用户管理</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -38,6 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    pageSize:15,
 			    pageList:[10,15,20,25,30,50,100,150],
 			    toolbar: [{
+			    	text:'增加',
+					iconCls: 'icon-add',
+					handler: function(){
+						go.window.edit('增加新用户','sys/authority/user/add.htm',600,330);
+					}
+				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
@@ -129,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        	return '<a href="card/gas_card/detail_query.htm?card_no='+rowData.card_no+'">'+rowData.card_no+'</a>';
 			        }},
 			        {field:'vehicle_no',title:'车牌号',width:80},
-			        {field:'area',title:'优惠区域',width:80,align:'center'},
+			        {field:'area',title:'优惠区域',width:80,align:'center'}
 			    ]],
 			    onLoadSuccess:function(data){
 			    	// 取消当前表格选中的所有行
