@@ -14,7 +14,7 @@
 <div id="content_container">
   <div id="content_left">
     <h1>域名检查</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="domainchecker.php">域名检查</a></p><p align="center"><strong>域名搜索</strong> | <a href="domainchecker.php?search=bulkregister">批量域名搜索</a> | <a href="domainchecker.php?search=bulktransfer">批量域名转移</a></p>
+    <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="demain.htm">域名检查</a></p><p align="center"><strong>域名搜索</strong> | <a href="domainchecker.php?search=bulkregister">批量域名搜索</a> | <a href="domainchecker.php?search=bulktransfer">批量域名转移</a></p>
 
 <form method="post" action="domainchecker.php">
 <input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" />
@@ -58,11 +58,8 @@
   </table>
 <br />
 
-<p style="text-align:center;">Powered by <a href="http://www.whmcs.com/" target="_blank">WHMCompleteSolution</a></p>
-
-<div align="right"><form method="post" action="/whmcs/domainchecker.php" name="languagefrm" id="languagefrm">
-<input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" /><strong>语言:</strong> <select name="language" onchange="languagefrm.submit()"><option>#chinese</option><option>Arabic</option><option>Azerbaijani</option><option>Catalan</option><option selected="selected">Chinese</option><option>Croatian</option><option>Czech</option><option>Danish</option><option>Dutch</option><option>English</option><option>Farsi</option><option>French</option><option>German</option><option>Hungarian</option><option>Italian</option><option>Norwegian</option><option>Portuguese-br</option><option>Portuguese-pt</option><option>Russian</option><option>Spanish</option><option>Swedish</option><option>Turkish</option><option>Ukranian</option></select></form></div><br />  </div>
-  <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>
+<%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
+<%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>
   <div class="clear"></div>
 </div>
 

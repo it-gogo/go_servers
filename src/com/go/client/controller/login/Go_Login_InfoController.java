@@ -1,4 +1,4 @@
-package com.go.client.controller.main;
+package com.go.client.controller.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,9 +85,19 @@ public class Go_Login_InfoController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="ticket.htm")
-	public String ticket(Go_PageData pageData){
-		return "client/login/ticket";
+	@RequestMapping(value="submitticket.htm")
+	public String submitticket(Go_PageData pageData){
+		return "client/login/submitticket";
+	}
+	
+	/**
+	 * 服务ticket
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="supportticket.htm")
+	public String supportticket(Go_PageData pageData){
+		return "client/login/supportticket";
 	}
 	
 	/**
@@ -95,9 +105,9 @@ public class Go_Login_InfoController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="dowmload.htm")
+	@RequestMapping(value="download.htm")
 	public String dowmload(Go_PageData pageData){
-		return "client/login/dowmload";
+		return "client/login/download";
 	}
 	
 	/**

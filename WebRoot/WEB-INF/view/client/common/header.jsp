@@ -53,8 +53,8 @@
          </ul>      
       </li>
       <li class="memBtn"> 
-          <a href="http://cn.raksmart.com/whmcs/clientarea.php" class="btnLogin">登录</a> 
-          <a href="http://cn.raksmart.com/whmcs/register.php" class="btnRegister">注册</a> 
+          <a href="../login/login.htm" class="btnLogin">登录</a> 
+          <a href="../login/registration.htm" class="btnRegister">注册</a> 
       </li>
     </ul>
   </div>

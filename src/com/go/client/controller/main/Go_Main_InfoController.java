@@ -15,7 +15,7 @@ import com.go.controller.base.Go_BaseController;
  */
 @Controller
 @RequestMapping(value="/client/main/*")
-public class Go_ServiceList_InfoController extends Go_BaseController{
+public class Go_Main_InfoController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_ServerList_InfoService go_serverList_infoService;
