@@ -12,8 +12,7 @@
 <div id="content_container">
   <div id="content_left">
     <h1>注册</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="register.php">注册</a></p><script type="text/javascript" src="includes/jscript/statesdropdown.js"></script>
-<script type="text/javascript" src="includes/jscript/pwstrength.js"></script>
+    <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="registration.htm">注册</a></p>
 <p>请在下方填写新账户注册信息。</p>
 <form method="post" action="/whmcs/register.php">
 <input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" />
