@@ -2,7 +2,6 @@ package com.go.client.login.dao;
 
 import com.go.base.dao.IGo_BaseDao;
 import com.go.client.login.model.Go_Portal_Info;
-import com.go.sys.authority.model.Go_Department_Info;
 
 /**
  * 门户信息 数据层接口

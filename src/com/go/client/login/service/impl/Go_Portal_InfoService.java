@@ -7,9 +7,6 @@ import com.go.base.service.impl.Go_BaseService;
 import com.go.client.login.dao.impl.Go_Portal_InfoDao;
 import com.go.client.login.model.Go_Portal_Info;
 import com.go.client.login.service.IGo_Portal_InfoService;
-import com.go.client.main.dao.impl.Go_Login_InfoDao;
-import com.go.client.main.service.IGo_Login_InfoService;
-import com.go.sys.authority.model.Go_Department_Info;
 
 /**
  * 用户登陆信息 逻辑层实现类

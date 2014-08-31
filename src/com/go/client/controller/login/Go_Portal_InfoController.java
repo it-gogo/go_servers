@@ -1,6 +1,5 @@
 package com.go.client.controller.login;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.go.base.module.Go_PageData;
 import com.go.client.login.model.Go_Portal_Info;
 import com.go.client.login.service.IGo_Portal_InfoService;
-import com.go.client.main.service.IGo_Login_InfoService;
 import com.go.controller.base.Go_BaseController;
-import com.go.sys.common.model.Go_Common_Type;
 
 /**
  * 门户信息 控制类
