@@ -53,6 +53,11 @@ public class Go_UserController extends Go_BaseController{
 		msg.put("total", pageData.getTotalSize());
 		return msg;
 	}
+	/**
+	 * 增加用户
+	 * @author linyb
+	 * @create_time 2014-8-28下午9:37:26
+	 */
 	@RequestMapping(value="add.htm")
 	public String add(){
 		
