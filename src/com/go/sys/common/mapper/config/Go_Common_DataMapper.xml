@@ -7,16 +7,15 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Common_Data(data_name,status,order,type_id,type_name,create_time,update_time,remark)
-	    values(#{data_name},#{status},#{order},#{type_id},#{type_name},#{create_time},#{update_time},#{remark})
+	    insert into Go_Common_Data(data_name,`status`,`order`,type_id,create_time,update_time,remark)
+	    values(#{data_name},#{status},#{order},#{type_id},#{create_time},#{update_time},#{remark})
 	</insert>
 	<update id="update">
 	    update Go_Common_Data 
 		    set data_name = #{data_name},
-		    status = #{status},
-		    order = #{order},
+		    `status` = #{status},
+		    `order` = #{order},
 		    type_id = #{type_id},
-		    type_name = #{type_name},
 		    create_time=#{create_time},
 		    update_time=#{update_time},
 		    remark=#{remark}

@@ -7,6 +7,6 @@ import com.go.sys.authority.model.Go_Department_Info;
  * @author chenhb
  *
  */
-public interface IGo_ServerList_InfoService  extends IGo_BaseService<Go_Department_Info, Integer> {
+public interface IGo_Main_InfoService  extends IGo_BaseService<Go_Department_Info, Integer> {
 
 }

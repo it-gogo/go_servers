@@ -32,6 +32,20 @@ public class Go_Common_DataController extends Go_BaseController {
 
 	@Autowired
 	private IGo_Common_DataService go_common_dataService;
+	
+	
+	/**
+	 * 数据字典管理
+	 * @author zhangjf
+	 * @version 2.0
+	 * @create_date 2014-4-24 下午3:24:06
+	 * @return
+	 */
+	@RequestMapping(value = "dict_data.htm")
+	public String dict_data(){
+		return "sys/common/dict_data/dict_data";
+	}
+	
 	/**
 	 * 数据字典数据列表页面
 	 * @author zhangjf
@@ -72,8 +86,11 @@ public class Go_Common_DataController extends Go_BaseController {
 	 * @create_time 2014-8-27 下午11:38:16
 	 * @return
 	 */
-	@RequestMapping("add.htm")
-	public String add(){
+	@RequestMapping(value = "add.htm")
+	public String add(ModelMap model,Integer type_id){
+		Go_Common_Data common_data = new Go_Common_Data();
+		common_data.setType_id(type_id);
+		model.put("common_data", common_data);
 		return "sys/common/dict_data/editnew";
 	}
 	
@@ -84,6 +101,48 @@ public class Go_Common_DataController extends Go_BaseController {
 			model.put("common_data", common_data);
 		}
 		return "sys/common/dict_data/editnew";
+	}
+	
+	/**
+	 * 返回详细页面
+	 * @author zhangjf
+	 * @create_time 2014-8-28 下午9:21:01
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "detail.htm")
+	public String detail(ModelMap model,Integer id){
+		if(id != null)
+			model.addAttribute("common_data", go_common_dataService.get(id));
+		return "sys/common/dict_data/detail";
+	}
+	
+	/**
+	 * 数据字典删除操作
+	 * @author zhangjf
+	 * @create_time 2014-8-28 下午9:29:37
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "delete.htm")
+	public String delete(ModelMap model,Integer id){
+		Map<String,Object>params=null;
+		if(id != null){
+			setShow_msg("200");
+			try{
+				params=new HashMap<String, Object>();
+				params.put("update_status", Go_Common_Data.STATUS_DEL);
+				params.put("where_id", id);
+				go_common_dataService.updateField(params);
+			}catch (Exception e) {
+				setShow_msg("删除出问题了!<br> <strong>错误信息</strong>：" + e.getMessage());
+				e.printStackTrace();
+			}
+			model.addAttribute("show_msg",show_msg);
+		}
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 	
@@ -115,6 +174,7 @@ public class Go_Common_DataController extends Go_BaseController {
 						go_common_dataService.save(common_data);
 					}
 				} catch (Exception e) {
+					e.printStackTrace();
 					result="系统异常";
 				}//end try
 				result="200";
@@ -128,4 +188,35 @@ public class Go_Common_DataController extends Go_BaseController {
 		model.addAttribute("show_msg", show_msg);
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
+	
+	/**
+	 * ajax请求类型数据
+	 * @author zhangjf
+	 * @create_time 2014-8-28 下午9:22:14
+	 * @param request
+	 * @param model
+	 * @param type_id
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value="type_ajax_list.htm")
+	public @ResponseBody Map type_ajax_list(HttpServletRequest request,ModelMap model,Integer type_id,String name){
+		if(type_id!=null&&type_id>0){
+			//条件参数
+			sys_params=new HashMap<String, Object>();
+			sys_params.put("type_id", type_id);
+			sys_params.put("status", Go_Common_Data.STATUS_NORMAL);
+			//添加数据权限的条件约束
+			if(request.getAttribute("check_where")!=null){
+				sys_params.put("check_where", request.getAttribute("check_where"));
+			}
+			Map<String,Object> map=new HashMap<String, Object>();
+			map.put("rows", go_common_dataService.list(sys_params));
+			map.put("total", "0");
+			return map;
+		}
+		return null;
+	}
+	
+	
 }

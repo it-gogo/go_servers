@@ -14,8 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<legend>详细信息</legend>
 		<table border="0" width="100%">
 			<tr>
-				<td align="right" width="20%">名称：</td><td align="left" width="30%">${tms_dict_Data.name }</td>
-				<td align="right" width="20%">是否默认：</td><td align="left" width="30%">${tms_dict_Data.checked==1?"默认":"非默认"}</td>
+				<td align="right" width="20%">名称：</td><td align="left" width="30%">${common_data.data_name }</td>
 			</tr>
 		<%-- 	<tr>
 				<td align="right">创建用户：</td><td align="left">${tms_dict_Data.create_user_id }</td>
@@ -26,7 +25,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td align="right">修改时间：</td><td align="left">${tms_dict_Data.update_time }</td>
 			</tr> --%>
 			<tr>
-				<td align="right">描述：</td><td align="left" colspan="3">${tms_dict_Data.remark }</td>
+				<td align="right">创建时间：</td><td align="left">${common_data.create_time }</td>
+			</tr>
+			<tr>
+				<td align="right">描述：</td><td align="left" colspan="3">${common_data.remark }</td>
 			</tr>
 		</table>
 	</fieldset>

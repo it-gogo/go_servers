@@ -25,8 +25,6 @@ public class Go_Common_Data {
 	private String order;
 	//对应的数据字典类型ID
 	private Integer type_id;
-	//对应数据字典类型名称
-	private String type_name;
 	//创建时间
 	private String create_time;
 	//修改时间
@@ -41,9 +39,6 @@ public class Go_Common_Data {
 	 * @return
 	 */
 	public String validate(){
-		if(StringUtils.isBlank(type_name)){
-			return "数据字典类型名称不能为空";
-		}
 		if(type_id==null){
 			return "数据字典类型ID不能为空";
 		}
@@ -87,12 +82,7 @@ public class Go_Common_Data {
 	public void setType_id(Integer type_id) {
 		this.type_id = type_id;
 	}
-	public String getType_name() {
-		return type_name;
-	}
-	public void setType_name(String type_name) {
-		this.type_name = type_name;
-	}
+
 	public String getCreate_time() {
 		return create_time;
 	}

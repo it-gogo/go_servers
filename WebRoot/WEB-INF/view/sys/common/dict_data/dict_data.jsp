@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="images/favicon.ico">
-	<script type="text/javascript" src="js/hczd-tms.js"></script>
+	<script type="text/javascript" src="js/go.js"></script>
 	<script type="text/javascript">
 		//缓存当前管理的数据字典类型
 		var type_id = "";
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			*数据字典类型显示
 			**/
 			$('#dg_dict_type').datagrid({  
-			    url:'system/dict_type/all_ajax_list.htm', 
+			    url:'sys/common/data_type/all_ajax_list.htm', 
 			    striped:true,
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
@@ -38,14 +38,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-add',
 					handler: function(){
 						//多种编辑框
-						hczd_tms.window.edit('添加数据字典类型','system/dict_type/add.htm',600,400);
+						go.window.edit('添加数据字典类型','sys/common/data_type/add.htm',600,400);
 					}
 				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg_dict_type').datagrid('getSelected')){
-							hczd_tms.window.edit('修改数据字典类型','system/dict_type/edit.htm?id=' + $('#dg_dict_type').datagrid('getSelected').id,600,400);
+							go.window.edit('修改数据字典类型','sys/common/data_type/edit.htm?id=' + $('#dg_dict_type').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if($('#dg_dict_type').datagrid('getSelected')){
 							$.messager.confirm('提示','确定要删除所选？',function(r){
 								if(r){
-									$.post('system/dict_type/delete.htm',{id:$('#dg_dict_type').datagrid('getSelected').id},function(data){
+									$.post('sys/common/data_type/delete.htm',{id:$('#dg_dict_type').datagrid('getSelected').id},function(data){
 										if(isNaN(data)){
 											$.messager.show({
 												title:'错误提示',
@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls:'icon-tip',
 					handler:function(){
 						if($('#dg_dict_type').datagrid('getSelected')){
-							hczd_tms.window.detail('数据字典类型详情','system/dict_type/detail.htm?id=' + $('#dg_dict_type').datagrid('getSelected').id,600,400);
+							go.window.detail('数据字典类型详情','sys/common/data_type/detail.htm?id=' + $('#dg_dict_type').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			/**数据字典数据**/
 			$('#dg_dict_data').datagrid({  
-			    url:'system/dict_data/type_ajax_list.htm', 
+			    url:'sys/common/dict_data/type_ajax_list.htm', 
 			    striped:true,
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
@@ -124,14 +124,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-add',
 					handler: function(){
 						//多种编辑框
-						hczd_tms.window.edit('添加数据字典数据','system/dict_data/add.htm?type_id=' + type_id,600,400);
+						go.window.edit('添加数据字典数据','sys/common/dict_data/add.htm?type_id='+ type_id,600,400);
 					}
 				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg_dict_data').datagrid('getSelected')){
-							hczd_tms.window.edit('修改数据字典数据','system/dict_data/edit.htm?id=' + $('#dg_dict_data').datagrid('getSelected').id,600,400);
+							go.window.edit('修改数据字典数据','sys/common/dict_data/edit.htm?id=' + $('#dg_dict_data').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -143,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						if($('#dg_dict_data').datagrid('getSelected')){
 							$.messager.confirm('提示','确定要删除所选？',function(r){
 								if(r){
-									$.post('system/dict_data/delete.htm',{id:$('#dg_dict_data').datagrid('getSelected').id},function(data){
+									$.post('sys/common/dict_data/delete.htm',{id:$('#dg_dict_data').datagrid('getSelected').id},function(data){
 										if(isNaN(data)){
 											$.messager.show({
 												title:'错误提示',
@@ -173,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls:'icon-tip',
 					handler:function(){
 						if($('#dg_dict_data').datagrid('getSelected')){
-							hczd_tms.window.detail('数据字典数据详情','system/dict_data/detail.htm?id=' + $('#dg_dict_data').datagrid('getSelected').id,600,400);
+							go.window.detail('数据字典数据详情','sys/common/dict_data/detail.htm?id=' + $('#dg_dict_data').datagrid('getSelected').id,600,400);
 						}else{
 							$.messager.alert('提示','请选择一项进行查看详情');
 						}
@@ -186,14 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				selectOnCheck:true,
 			    columns:[[  
 			        {field:'id',title:'编号',width:50,checkbox:true},  
-			        {field:'name',title:'数据字典数据名称',width:150},  
-			        {field:'checked',title:'是否默认',width:100,align:'left',formatter:function(value,row,index){
-			        	if(value == 1){
-			        		return '<span sytle="color:red;">默认</span>';
-			        	}else{
-			        		return '<span sytle="color:blue;">非默认</span>';
-			        	}
-			        }},
+			        {field:'data_name',title:'数据字典数据名称',width:150},  
 			        {field:'create_time',title:'创建时间',width:150,align:'left'},
 			        {field:'update_time',title:'修改时间',width:150,align:'left'},
 			        {field:'remark',title:'备注说明',width:150,align:'left'}

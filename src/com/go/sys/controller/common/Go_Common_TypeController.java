@@ -88,6 +88,22 @@ public class Go_Common_TypeController extends Go_BaseController {
 		return "sys/common/dict_type/editnew";
 	}
 	
+	/**
+	 * 返回详细页面
+	 * @author zhangjf
+	 * @create_time 2014-8-28 下午9:13:01
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "detail.htm")
+	public String detail(ModelMap model,Integer id){
+		if(id != null)
+			model.addAttribute("common_type", go_common_typeService.get(id));
+		return "system/dict_type/detail";
+	}
+	
+	
 	@RequestMapping("delete.htm")
 	public String delete(ModelMap model,Integer id){
 		Map<String,Object> params=new HashMap<String, Object>();
@@ -137,6 +153,26 @@ public class Go_Common_TypeController extends Go_BaseController {
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
+	/**
+	 * ajax请求数据字典类型数据
+	 * @author zhangjf
+	 * @create_time 2014-8-28 下午9:15:52
+	 * @param request
+	 * @param model
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping(value="all_ajax_list.htm",produces = "application/json")
+	public @ResponseBody Map all_ajax_list(HttpServletRequest request,ModelMap model,String name){
+		//添加约束条件
+		if(request.getAttribute("check_where")!=null){
+			sys_params.put("check_where", request.getAttribute("check_where"));
+		}
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("rows", go_common_typeService.list());
+		map.put("total", "0");
+		return map;
+	}
 	
 	
 }

@@ -21,26 +21,26 @@
             <li class="menuTop"></li>
             <li><a href="independence.htm">独立服务器</a></li>
             <li><a href="stations.htm">站群服务器</a></li>
-            <li><a href="linuxWindows.htm">Windows VPS</a></li>
-            <li><a href="linuxWindows.htm">Linux VPS</a></li>
+            <li><a href="windows.htm">Windows VPS</a></li>
+            <li><a href="linux.htm">Linux VPS</a></li>
             <li><a href="specialOffer.htm">每周特价</a></li>
-            <li><a href="HK#VPS">HK VPS</a></li>         
+            <li><a href="HK.htm">HK VPS</a></li>         
            </ul>      
       </li>
       <li><a href="cloudSolutions.htm">解决方案</a>
           <ul>
             <li class="menuTop"></li>
             <li><a href="cloudSolutions.htm">云站点</a></li>
-            <li><a href="cloudSolutions.htm">云托管</a></li>
-            <li><a href="cloudSolutions.htm">服务器托管</a></li>
-            <li><a href="cloudSolutions.htm">服务托管</a></li>         
+            <li><a href="cloudHosting.htm">云托管</a></li>
+            <li><a href="serverHosting.htm">服务器托管</a></li>
+            <li><a href="managedServiecs.htm">服务托管</a></li>         
            </ul>      
 	  </li>
       <li><a href="support.htm">技术支持</a>
          <ul>
             <li class="menuTop"></li>
             <li><a href="support.htm">支持中心</a></li>
-            <li><a href="support#5">API文档</a></li>
+            <li><a href="apiDocumentation.htm">API文档</a></li>
             <li><a href="legal.htm">法律信息</a></li>
             <li><a href="faq.htm">FAQs</a></li>         
            </ul>      
@@ -53,8 +53,8 @@
          </ul>      
       </li>
       <li class="memBtn"> 
-          <a href="http://cn.raksmart.com/whmcs/clientarea.php" class="btnLogin">登录</a> 
-          <a href="http://cn.raksmart.com/whmcs/register.php" class="btnRegister">注册</a> 
+          <a href="../login/login.htm" class="btnLogin">登录</a> 
+          <a href="../login/registration.htm" class="btnRegister">注册</a> 
       </li>
     </ul>
   </div>
