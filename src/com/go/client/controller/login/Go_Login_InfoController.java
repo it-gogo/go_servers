@@ -20,25 +20,6 @@ public class Go_Login_InfoController extends Go_BaseController{
 	@Autowired
 	public IGo_Login_InfoService go_Login_infoService;
 	
-	/**
-	 * 注册信息
-	 * @param pageData
-	 * @return
-	 */
-	@RequestMapping(value="registration.htm")
-	public String registration(Go_PageData pageData){
-		return "client/login/registration";
-	}
-	
-	/**
-	 *登陆信息
-	 * @param pageData
-	 * @return
-	 */
-	@RequestMapping(value="login.htm")
-	public String login(Go_PageData pageData){
-		return "client/login/login";
-	}
 	
 	/**
 	 * 门店主页面

@@ -4,8 +4,8 @@
 	<div id="top">
 		<div id="company_title">RakSmart</div>
 		<div id="welcome_box">
-			请 <a href="login.htm" title="登录"><strong>登录</strong>
-			</a> 或 <a href="registration.htm" title="注册"><strong>注册</strong>
+			请 <a href="../portal/login.htm" title="登录"><strong>登录</strong>
+			</a> 或 <a href="../portal/registration.htm" title="注册"><strong>注册</strong>
 			</a>
 		</div>
 	</div>
