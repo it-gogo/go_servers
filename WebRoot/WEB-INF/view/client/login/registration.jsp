@@ -22,11 +22,11 @@
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
           <tr>
             <td width="150" class="fieldarea">名</td>
-            <td><input type="text" name="surname" size="30" value="" /></td>
+            <td><input type="text" name="surname" size="30" value="" maxlength="5" class="checkLength" /></td>
           </tr>
           <tr>
             <td class="fieldarea">姓</td>
-            <td><input type="text" name="name" size="30" value="" /></td>
+            <td><input type="text" name="name" size="30" value=""  /></td>
           </tr>
           <tr>
             <td class="fieldarea">公司名称</td>
@@ -91,7 +91,6 @@
           <tr>
             <td width="150" class="fieldarea">密码</td>
             <td width="175"><input type="password" name="password" id="newpw" size="25" /></td>
-            <td><script language="JavaScript" type="text/javascript">showStrengthBar();</script></td>
           </tr>
           <tr>
             <td class="fieldarea">确认密码</td>
