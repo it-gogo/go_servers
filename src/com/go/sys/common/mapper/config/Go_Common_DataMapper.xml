@@ -56,4 +56,10 @@
 	    select * from Go_Common_Data where id = #{id}
 	</select>
 	
+	<select id="getDataByExtension" parameterType="map" resultType="Go_Common_Data">
+		select * from go_common_data where type_id=(
+			select id from go_common_type where extension='${extension}'
+		)
+	</select>
+	
 </mapper>

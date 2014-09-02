@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div title="套餐管理" style="overflow:auto;padding:10px;">
 			 		<p>  
 				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度"></a> 
+				        <a id="item_1" rel="<%=basePath%>sys/server/server_info/add.htm" href="javascript:void(0);" name="null" title="套餐 管理">套餐管理</a> 
 			        </p>
 			        <p>  
 				    	<span class="icon-16-category">&nbsp;</span>
