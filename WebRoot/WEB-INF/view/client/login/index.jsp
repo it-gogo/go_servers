@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,12 +12,15 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>门户主页</h1>
-    <p class="breadcrumb"><a href="index.hml">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
+    <p class="breadcrumb"><a href="../index/index.hml">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td><div align="center"><a href="customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.png" border="0" alt="" /></a></div></td>
+    <td><div align="center"><a href="../index/customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.png" border="0" alt="" /></a></div></td>
     <td width="50%"><strong><a href="customerArea.htm">客户区</a></strong><br />
       参考&更新账户详情</td>
     <td><div align="center"><a href="notice.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/announcements.png" border="0" alt="" /></a></div></td>

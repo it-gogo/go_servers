@@ -1,4 +1,3 @@
-#Tue Sep 02 17:13:47 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/login/affiliates.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/customerArea.jsp=UTF-8
@@ -13,6 +12,7 @@ encoding//WebRoot/WEB-INF/view/client/login/notice.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/partal.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/pro-contant.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/registration.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/resetPassword.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/serverStatus.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/submitticket.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/supportticket.jsp=UTF-8

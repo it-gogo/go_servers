@@ -2,7 +2,7 @@
 
 <div id="top_menu">
     <ul>
-      <li><a href="clientarea.php" title="主页">主页</a></li>
+      <li><a href="../index/index.htm" title="主页">主页</a></li>
       <li><a href="clientarea.php?action=details" title="我的详细信息">我的详细信息</a></li>
       <li><a href="clientarea.php?action=products" title="我的服务">我的服务</a></li>
                   <li><a href="clientarea.php?action=quotes" title="我的报价">我的报价</a></li>      <li><a href="clientarea.php?action=invoices" title="我的发票">我的发票</a></li>

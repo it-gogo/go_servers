@@ -148,5 +148,26 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	}
 	
 	
+	/**
+	 *重置密码
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="resetPassword.htm")
+	public String resetPassword(){
+		
+		return "client/login/resetPassword"; 
+	}
+	
+	/**
+	 *发送邮件重置密码
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="sendEmail.htm")
+	public String sendEmail(){
+		
+		return "client/login/sendSuccess"; 
+	}
 	
 }

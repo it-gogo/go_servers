@@ -11,7 +11,7 @@
 <div id="content_container">
   <div id="content_left">
     <h1>客户区</h1>
-    <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="customerArea.htm">客户区</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a></p>
 
 <p>登录访问，该登录信息区别于您的网站控制面板用户名和密码。</p>
 <form action="login.htm" method="post" name="frmlogin" id="frmlogin">
@@ -49,7 +49,7 @@
     </tr>
   </table><br />
 </form>
-<p align="center"><strong>忘记密码？</strong> <a href="pwreset.php">请求密码重置</a></p>
+<p align="center"><strong>忘记密码？</strong> <a href="../portal/resetPassword.htm">请求密码重置</a></p>
 <script type="text/javascript">
 document.frmlogin.email.focus();
 </script>

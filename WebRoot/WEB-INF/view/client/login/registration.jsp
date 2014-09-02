@@ -20,11 +20,11 @@
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
           <tr>
             <td width="150" class="fieldarea">名</td>
-            <td><input type="text" name="surname" size="30" value="" maxlength="5"   /></td>
+            <td><input type="text" name="nam" size="30" value="" maxlength="5"   /></td>
           </tr>
           <tr>
             <td class="fieldarea">姓</td>
-            <td><input type="text" name="name" size="30" value=""  /></td>
+            <td><input type="text" name="surnamee" size="30" value=""  /></td>
           </tr>
           <tr>
             <td class="fieldarea">公司名称</td>
