@@ -53,7 +53,7 @@
          </ul>      
       </li>
       <li class="memBtn"> 
-          <a href="../login/portal/login.htm" class="btnLogin">登录</a> 
+          <a href="../login/portal/toLogin.htm" class="btnLogin">登录</a> 
           <a href="../login/portal/registration.htm" class="btnRegister">注册</a> 
       </li>
     </ul>

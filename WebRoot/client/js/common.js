@@ -1,7 +1,12 @@
+function test(){
+	alert($("input[name='surname']").val())
+}
+
 /**
  * 限制输入长度
  */
-$(function(){
+
+/*fn.$(function(){
 	$(".checkLength").keyup(function(){alert(1231)
 		var val=this.value;
 		if(this.tagName.toLowerCase()=='textarea' ){
@@ -22,7 +27,7 @@ $(function(){
 			 }
 		}
 	});
-});
+});*/
 
 /**
  * 验证函数
@@ -104,7 +109,7 @@ function checkIsNumber(obj,length){
 /**
  * 检测密码
  */
-$(function(){
+/*$(function(){
 	$("#checkedPassword").blur(function(){
 		var str=/^[\w]{6,16}$/;
 		if(check(str.test(this.value),"只能输入6~16之间字母、数字或符号，区分大小写！",this)){
@@ -116,7 +121,7 @@ $(function(){
 	$("#repeatPassword").blur(function(){
 		check(this.value==$("#checkedPassword").val() || this.value=="","输入密码与确认密码必须相同。",this);
 	});
-});
+});*/
 /**
  * 检测身份证(，例如：350625199912255632)
  * @param obj
