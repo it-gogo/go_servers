@@ -13,14 +13,14 @@
 		    surname = #{surname},
 		    name = #{name},
 		    companyname = #{companyname},
-		    email = #{email}
+		    email = #{email},
 		    addressone = #{addressone},
 		    addresstwo = #{addresstwo},
 		    city = #{city},
-		    downtown = #{downtown}
+		    downtown = #{downtown},
 		    zip = #{zip},
 		    telephone = #{telephone},
-		    password = #{password},
+		    password = #{password}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">

@@ -13,7 +13,7 @@
 <div id="content_container">
   <div id="content_left">
     <h1>提交Ticket</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="customerArea.htm">客户区</a> > <a href="supportticket.htm">服务Tickets</a> > <a href="submitticket.htm">提交Ticket</a></p><script language="JavaScript" type="text/javascript">
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="supportticket.htm">服务Tickets</a> > <a href="../ticket/toAdd.htm">提交Ticket</a></p><script language="JavaScript" type="text/javascript">
 
 var currentcheckcontent,lastcheckcontent;
 jQuery(document).ready(function(){
@@ -41,45 +41,65 @@ function getticketsuggestions() {
 getticketsuggestions();
 
 </script>
-<form action="/whmcs/submitticket.php?step=3" method="post" enctype="multipart/form-data" name="submitticket" id="submitticket">
-<input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" />
-  <input type="hidden" name="deptid" value="1" />
+<form action="../ticket/add.htm" method="post" enctype="multipart/form-data" >
+<input type="hidden" name="creator" value="${loginInfo.id }" />
+  <input type="hidden" name="isdispose" value="未处理" />
   <table width="100%" cellspacing="1" cellpadding="0" class="frame">
     <tr>
-      <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
-          <tr>
-            <td width="120" class="fieldarea">姓名</td>
-            <td>              <input type="text" name="name" size="30" value="" />
-              </td>
-          </tr>
-          <tr>
-            <td class="fieldarea">邮箱</td>
-            <td>              <input type="text" name="email" size="50" value="" />
-              </td>
-          </tr>
-          <tr>
+      <td>
+      <table width="100%" border="0" cellpadding="10" cellspacing="0">
+          <c:if test="${loginInfo==null}">
+	          <tr>
+	            <td width="120" class="fieldarea">姓名</td>
+	            <td>              
+	            	<input type="text" name="name" size="30" value="" />
+	              </td>
+	          </tr>
+	          <tr>
+	            <td class="fieldarea">邮箱</td>
+	            <td>              <input type="text" name="email" size="50" value="" />
+	              </td>
+	          </tr>
+          </c:if>
+          <c:if test="${loginInfo!=null}">
+	          <tr>
+	            <td width="120" class="fieldarea">姓名</td>
+	            <td>              
+	            	${loginInfo.name }
+	              </td>
+	          </tr>
+	          <tr>
+	            <td class="fieldarea">邮箱</td>
+	            <td>            
+	            	${loginInfo.email }
+	              </td>
+	          </tr>
+          </c:if>
+         <!--  <tr>
             <td class="fieldarea">部门</td>
             <td>销售部</td>
-          </tr>
+          </tr> -->
           <tr>
             <td class="fieldarea">主题</td>
-            <td><input type="text" name="subject" size="60" value="" /></td>
+            <td><input type="text" name="title" size="60" value="" /></td>
           </tr>
           <tr>
             <td class="fieldarea">紧急通知</td>
-            <td><select name="urgency">
-                <option value="High">高</option>
-                <option value="Medium" selected="selected">中</option>
-                <option value="Low">低</option>
-              </select></td>
+            <td>
+            	<select name="urgenttype">
+	                <option value="高">高</option>
+	                <option value="中" selected="selected">中</option>
+	                <option value="低">低</option>
+              	</select>
+              </td>
           </tr>
                     <tr>
-            <td colspan="2" class="fieldarea"><textarea name="message" id="message" rows="12" cols="60" style="width:100%"></textarea></td>
+            <td colspan="2" class="fieldarea"><textarea name="content"  rows="12" cols="60" style="width:100%"></textarea></td>
           </tr>
                     <tr>
             <td class="fieldarea">附件</td>
             <td><input type="file" name="attachments[]" size="50" />
-              <a href="#" id="addfileupload"><img src="images/add.gif" class="absmiddle" border="0" alt="" /> 添加更多</a><br />
+              <a href="#" id="addfileupload"><img src="<%=request.getContextPath() %>/client/loginCss/images/add.gif" class="absmiddle" border="0" alt="" /> 添加更多</a><br />
               <div id="fileuploads"></div>
               (允许的文件扩展: .jpg, .gif, .jpeg, .png)</td>
           </tr>
@@ -88,13 +108,7 @@ getticketsuggestions();
   </table>
   <br />
   <div id="searchresults" class="contentbox" style="display:none;"></div>
-    <h2>Spam Bot验证</h2>
-  <p>请在文本框中输入下图字符，避免系统自动提交。</p>
-    <p align="center"><img src="includes/verifyimage.php" align="middle" /> <input type="text" name="code" size="10" maxlength="5" /></p>
-      <p align="center">
-    <input type="submit" value="提交" />
-  </p>
-</form><br />
+    <%@include file="/WEB-INF/view/client/login/common/validateCode.jsp" %>
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
  <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>

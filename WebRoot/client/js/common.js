@@ -1,6 +1,3 @@
-function test(){
-	alert($("input[name='surname']").val())
-}
 
 /**
  * 限制输入长度
@@ -30,24 +27,80 @@ function test(){
 });*/
 
 /**
- * 验证函数
+ * 错误提示函数
  * @param boolean
  * @param str
  * @param obj
  * @returns {Boolean}
  */
-function check(boolean,str,obj){
-	$(obj).parent().find(".check").remove();
+function errorTips(boolean,str,obj){
+	$(obj).parent().find(".error").remove();
+	$(obj).parent().find(".correct").remove();
 	if(boolean){
-		$(obj).parent().find(".check").remove();
+		$(obj).parent().find(".error").remove();
 		return true;
 	}else{
-		if($(obj).parent().find(".check").size()==0){
-			$(obj).parent().append(" <span class='check' style='color:red;font-size:12px;line-height:24px;'>"+str+"</span>");
+		if($(obj).parent().find(".error").size()==0){
+			$(obj).parent().append(" <span class='error' style='color:red;font-size:12px;line-height:24px;'>"+str+"</span>");
 		}
 		return false;
 	}
 }
+/**
+ * 正确提示函数
+ * @param boolean
+ * @param str
+ * @param obj
+ */
+function correctTips(boolean,str,obj){
+	$(obj).parent().find(".correct").remove();
+	$(obj).parent().find(".error").remove();
+	if(boolean){
+		if($(obj).parent().find(".correct").size()==0){
+			$(obj).parent().append(" <span class='correct' style='font-size:12px;line-height:24px;'>"+str+"</span>");
+		}
+	}
+}
+
+/**
+ * 测试验证码
+ */
+function checkCode(obj){
+	var code=obj.value;
+	var url="../portal/checkCode.htm";
+	$.ajax({
+		clearForm: false,
+		url:url,
+		data:"code="+code,
+		dataType:"text",
+		type:"post",
+		success:function(data){
+			var json = eval("("+data+")");
+			if(1==json.status){
+				correctTips(true,json.msg,obj);
+			}else{
+				errorTips(false,json.msg,obj);
+			}
+        }
+	});
+}
+/**
+ * 检测密码
+ */
+function checkPassword(){
+	var password=$("#password").val();
+	var password2=$("#password2").val();
+	errorTips(password2=="" || password=="" || password==password2,"两次密码不一样!",$("#password2").get(0))
+}
+/**
+ * 检测确认密码
+ */
+function confirmPassword(){
+	var password=$("#password").val();
+	var password2=$("#password2").val();
+	errorTips(password2=="" || password=="" || password==password2,"两次密码不一样!",$("#password2").get(0))
+}
+
 /**
  * 计算文字个字符数
  */

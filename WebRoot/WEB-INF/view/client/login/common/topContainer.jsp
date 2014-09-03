@@ -17,7 +17,7 @@
 <div id="top_container">
   <div id="top">
     <div id="company_title">RakSmart</div>
-    <div id="welcome_box">欢迎回来, <strong>${loginInfo.name }</strong>&nbsp;&nbsp;&nbsp;<img src="<%=request.getContextPath() %>/client/loginCss/images/details.gif" alt="我的详细信息" width="16" height="16" border="0" class="absmiddle" /> <a href="clientarea.php?action=details" title="我的详细信息"><strong>我的详细信息</strong></a>&nbsp;&nbsp;&nbsp;<img src="<%=request.getContextPath() %>/client/loginCss/images/logout.gif" alt="退出" width="16" height="16" border="0" class="absmiddle" /> <a href="../portal/loginout.htm" title="Logout"><strong>退出</strong></a></div>
+    <div id="welcome_box">欢迎回来, <strong>${loginInfo.name }</strong>&nbsp;&nbsp;&nbsp;<img src="<%=request.getContextPath() %>/client/loginCss/images/details.gif" alt="我的详细信息" width="16" height="16" border="0" class="absmiddle" /> <a href="../portal/myDetail.htm" title="我的详细信息"><strong>我的详细信息</strong></a>&nbsp;&nbsp;&nbsp;<img src="<%=request.getContextPath() %>/client/loginCss/images/logout.gif" alt="退出" width="16" height="16" border="0" class="absmiddle" /> <a href="../portal/loginout.htm" title="Logout"><strong>退出</strong></a></div>
   </div>
 </div>
 </c:if>

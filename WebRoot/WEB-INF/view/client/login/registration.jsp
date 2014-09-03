@@ -12,9 +12,9 @@
 <div id="content_container">
   <div id="content_left">
     <h1>注册</h1>
-    <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="registration.htm">注册</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../portal/registration.htm">注册</a></p>
 <p>请在下方填写新账户注册信息。</p>
-<form method="post" action="save.htm">
+<form method="post" action="save.htm" >
   <table width="100%" cellspacing="0" cellpadding="0" class="frame">
     <tr>
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
@@ -69,25 +69,17 @@
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
           <tr>
             <td width="150" class="fieldarea">密码</td>
-            <td width="175"><input type="password" name="password" id="newpw" size="25" /></td>
+            <td width="175"><input type="password" name="password" id="password" onblur="checkPassword()" size="25" /></td>
           </tr>
           <tr>
             <td class="fieldarea">确认密码</td>
-            <td colspan="2"><input type="password" name="password2" size="25" /></td>
+            <td colspan="2"><input type="password" name="password2" id="password2" onblur="confirmPassword()"  size="25" /></td>
           </tr>
       </table></td>
     </tr>
   </table>
 
-    <h2>Spam Bot验证</h2>
-  <p>请在文本框中输入下图字符，避免系统自动提交。</p>
-    <p align="center"><img src="includes/verifyimage.php" align="middle" /> <input type="text" name="code" size="10" maxlength="5" /></p>
-    <p> </p>
-  <p align="center">
-    <input type="submit" value="点击继续>>" />
-  </p>
-</form>
-<br />
+    <%@include file="/WEB-INF/view/client/login/common/validateCode.jsp" %>
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
 
 <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>

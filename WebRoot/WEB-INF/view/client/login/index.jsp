@@ -17,7 +17,7 @@
 </c:if>
   <div id="content_left">
     <h1>门户主页</h1>
-    <p class="breadcrumb"><a href="../index/index.hml">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
     <td><div align="center"><a href="../index/customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.png" border="0" alt="" /></a></div></td>
@@ -28,8 +28,8 @@
       查看最新新闻&公告</td>
   </tr>
   <tr>
-    <td><div align="center"><a href="submitticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/submitticket.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="submitticket.htm">提交Ticket</a></strong><br />
+    <td><div align="center"><a href="../ticket/toAdd.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/submitticket.png" border="0" alt="" /></a></div></td>
+    <td><strong><a href="../ticket/toAdd.htm">提交Ticket</a></strong><br />
       提交问题ticket</td>
     <td><div align="center"><a href="download.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="download.htm">下载</a></strong><br />

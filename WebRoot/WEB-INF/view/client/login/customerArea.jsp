@@ -14,7 +14,7 @@
 <%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
   <div id="content_left">
     <h1>客户区</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="clientarea.php">客户区</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a></p>
 
 <p>您可以进入客户端管理账户。该页面简单概述了账户情况如公开服务请求和未付款发票。请确保提供最新的联系方式。 </p>
 <h2><strong>0</strong> 打开服务Tickets</h2>
