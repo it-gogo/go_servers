@@ -4,6 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.go.client.login.mapper.IGo_TicketMapper">
     <insert id="insert" parameterType="Go_Ticket">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
 	    insert into Go_Ticket(creator,name,email,title,urgenttype,content,attachaddress,isdispose)
 	    values(#{creator},#{name},#{email},#{title},#{urgenttype},#{content},#{attachaddress},#{isdispose})
 	</insert>

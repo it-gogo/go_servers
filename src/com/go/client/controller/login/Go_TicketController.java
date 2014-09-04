@@ -39,11 +39,23 @@ public class Go_TicketController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="add.htm")
-	public String add(HttpServletRequest request,Go_Ticket ticket,ModelMap model){
+	@RequestMapping(value="save.htm")
+	public String save(Go_Ticket ticket,ModelMap model){
 		ticket=go_ticketService.save(ticket);
 		model.put("ticket", ticket);
-		return "client/login/submitsuccess";
+		return "client/login/submitTicketSuccess";
+	}
+	
+	/**
+	 * 察看ticket
+	 * @param pageData
+	 * @return
+	 */
+	@RequestMapping(value="look.htm")
+	public String look(Go_Ticket ticket,ModelMap model){
+		ticket=go_ticketService.get(ticket.getId());
+		model.put("ticket", ticket);
+		return "client/login/lookTicket";
 	}
 	
 }

@@ -41,7 +41,7 @@ function getticketsuggestions() {
 getticketsuggestions();
 
 </script>
-<form action="../ticket/add.htm" method="post" enctype="multipart/form-data" >
+<form action="../ticket/save.htm" method="post"  >
 <input type="hidden" name="creator" value="${loginInfo.id }" />
   <input type="hidden" name="isdispose" value="未处理" />
   <table width="100%" cellspacing="1" cellpadding="0" class="frame">

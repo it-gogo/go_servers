@@ -9,13 +9,11 @@
 </head>
 <body>
 
-<div id="top_container">
-  <div id="top">
-    <div id="company_title">RakSmart</div>
-    <div id="welcome_box">请 <a href="clientarea.php" title="登录"><strong>登录</strong></a> 或 <a href="register.php" title="注册"><strong>注册</strong></a></div>
-  </div>
-</div>
+<%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>服务Tickets</h1>
     <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="customerArea.htm">客户区</a> > <a href="supportticket.htm">服务Tickets</a></p><p>登录访问，该登录信息区别于您的网站控制面板用户名和密码。</p>
