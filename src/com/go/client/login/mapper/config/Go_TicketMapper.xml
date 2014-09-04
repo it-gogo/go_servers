@@ -7,19 +7,21 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Ticket(creator,name,email,title,urgenttype,content,attachaddress,isdispose)
-	    values(#{creator},#{name},#{email},#{title},#{urgenttype},#{content},#{attachaddress},#{isdispose})
+	    insert into Go_Ticket(creator,createdate,name,email,title,urgenttype,content,attachaddress,isdispose,ip)
+	    values(#{creator},#{createdate},#{name},#{email},#{title},#{urgenttype},#{content},#{attachaddress},#{isdispose},'${ip}')
 	</insert>
 	<update id="update">
 	    update Go_Ticket 
 		    set creator = #{creator},
+		    createdate=#{createdate},
 		    name = #{name},
 		    email = #{email},
 		    title = #{title},
 		    urgenttype = #{urgenttype},
 		    content = #{content},
 		    attachaddress = #{attachaddress},
-		    isdispose = #{isdispose}
+		    isdispose = #{isdispose},
+		    ip=#{ip}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">

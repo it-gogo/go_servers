@@ -1,6 +1,8 @@
 package com.go.client.controller.login;
 
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_TicketService;
+import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
 
 /**
@@ -40,7 +43,19 @@ public class Go_TicketController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="save.htm")
-	public String save(Go_Ticket ticket,ModelMap model){
+	public String save(HttpServletRequest request,Go_Ticket ticket,ModelMap model){
+//		 MultipartHttpServletRequest multipartRequest  =  (MultipartHttpServletRequest) request;  
+//         //  获得第1张图片（根据前台的name名称得到上传的文件）   
+//         MultipartFile imgFile1  =  multipartRequest.getFile("attachaddress");
+//         String url=ticket.getAttachaddress();
+//         File file=new File("d://test.jpg");
+//         try {
+//			imgFile1.transferTo(file);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+         ticket.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));//创建时间
+         ticket.setIp(request.getRemoteAddr());
 		ticket=go_ticketService.save(ticket);
 		model.put("ticket", ticket);
 		return "client/login/submitTicketSuccess";

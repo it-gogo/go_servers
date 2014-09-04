@@ -156,3 +156,8 @@ div#twofaactivation {
 div#twofaactivation p {
     margin: 15px 0;
 }
+
+.clear{clear: both;}
+.web_annex{background:#ddd; line-height:30px; width:500px; margin-top:5px; display:block; overflow:hidden; float:left; clear:both; border:none;} 
+.web_annex a{ float:left;color:#222; font-size:14px; margin:0 10px; width:400px; overflow:hidden;} 
+a.but_close{ float:right; height:10px; width:10px; padding:5px; background:url(images/ico_close.gif) no-repeat center center; margin-top:2px;}

@@ -16,7 +16,7 @@
 </c:if>
   <div id="content_left">
     <h1>查看Ticket</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="clientarea.php">客户区</a> > <a href="supporttickets.php">服务Tickets</a> > <a href="viewticket.php?tid=692117&amp;c=XVw9S4jG">查看Ticket</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="supporttickets.php">服务Tickets</a> > <a href="../ticket/look.htm?id=${tick.id }">查看Ticket</a></p>
 
 <script language="javascript">
 jQuery(document).ready(function(){
@@ -56,10 +56,10 @@ function rating_select(id){
         </tr>
         <tr>
           <td>销售部</td>
-          <td>2014/09/04 01:08</td>
-          <td>123</td>
-          <td><span style="color:#779500">打开</span></td>
-          <td>中</td>
+          <td>${ticket.createdate }</td>
+          <td>${ticket.title }</td>
+          <td><span style="color:#779500">${ticket.isdispose }</span></td>
+          <td>${ticket.urgenttype }</td>
         </tr>
 </table>
 <br />
@@ -68,33 +68,33 @@ function rating_select(id){
 <div class="clientticketreplyheader">
   <table width="100%" border="0" cellpadding="10" cellspacing="0">
     <tr>
-      <td><strong>123</strong><br />1@2.com</td>
-      <td align="right">2014/09/04 01:08</td>
+      <td><strong>${ticket.name }</strong><br />${ticket.email }</td>
+      <td align="right">${ticket.createdate }</td>
     </tr>
   </table>
 </div>
-<div class="clientticketreply">123<br />
+<div class="clientticketreply">${ticket.content }<br />
 <br />
 ----------------------------<br />
-IP Address: 121.207.143.177</div>
+IP Address: ${ticket.ip }</div>
 
 <p align="center">
   <input type="button" value="得到问题答复之后，请点击此次关闭ticket" onclick="window.location='/whmcs/viewticket.php?tid=692117&amp;c=XVw9S4jG&amp;closeticket=true'" />
 </p>
 <h3>回复</h3>
-<form method="post" action="/whmcs/viewticket.php?tid=692117&amp;c=XVw9S4jG&amp;postreply=true" enctype="multipart/form-data">
-<input type="hidden" name="token" value="667a1c55cfa0812a5053d3057f7e7ca835dc5af3" />
+<form method="post" action="../reply/save.htm" enctype="multipart/form-data">
+<input type="hidden" name="ticketid" value="${ticket.id }" />
   <table width="100%" cellspacing="0" cellpadding="0" class="frame">
     <tr>
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
           <tr>
             <td width="120" class="fieldarea">姓名</td>
-            <td>              <input type="text" name="replyname" size=30 value="123" />
+            <td>              <input type="text" name="replyname" size=30 value="${loginInfo.name }" />
               </td>
           </tr>
           <tr>
             <td class="fieldarea">邮箱</td>
-            <td>              <input type="text" name="replyemail" size=50 value="1@2.com" />
+            <td>              <input type="text" name="replyemail" size=50 value="${loginInfo.email }" />
               </td>
           </tr>
           <tr>
@@ -103,7 +103,7 @@ IP Address: 121.207.143.177</div>
           <tr>
             <td class="fieldarea">附件</td>
             <td><input type="file" name="attachments[]" size="50" />
-              <a href="#" id="addfileupload"><img src="images/add.gif" class="absmiddle" alt="" border="0" /> 添加更多</a><br />
+              <a href="#" id="addfileupload"><img src="<%=request.getContextPath() %>/client/loginCss/images/add.gif" class="absmiddle" alt="" border="0" /> 添加更多</a><br />
               <div id="fileuploads"></div>
               (允许的文件扩展: .jpg, .gif, .jpeg, .png)</td>
           </tr>

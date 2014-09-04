@@ -18,7 +18,7 @@
 var currentcheckcontent,lastcheckcontent;
 jQuery(document).ready(function(){
     jQuery("#addfileupload").click(function () {
-        jQuery("#fileuploads").append("<input type=\"file\" name=\"attachments[]\" size=\"50\"><br />");
+        jQuery("#fileuploads").append("<input type=\"file\" name=\"attachaddress\" size=\"50\"><br />");
         return false;
     });
 });
@@ -41,7 +41,7 @@ function getticketsuggestions() {
 getticketsuggestions();
 
 </script>
-<form action="../ticket/save.htm" method="post"  >
+<form action="../ticket/save.htm" method="post"   >
 <input type="hidden" name="creator" value="${loginInfo.id }" />
   <input type="hidden" name="isdispose" value="未处理" />
   <table width="100%" cellspacing="1" cellpadding="0" class="frame">
@@ -66,12 +66,14 @@ getticketsuggestions();
 	            <td width="120" class="fieldarea">姓名</td>
 	            <td>              
 	            	${loginInfo.name }
+	            	<input type="hidden" name="name" size="30" value="${loginInfo.name }" />
 	              </td>
 	          </tr>
 	          <tr>
 	            <td class="fieldarea">邮箱</td>
 	            <td>            
 	            	${loginInfo.email }
+	            	 <input type="hidden" name="email" size="50" value="${loginInfo.email }" />
 	              </td>
 	          </tr>
           </c:if>
@@ -98,10 +100,21 @@ getticketsuggestions();
           </tr>
                     <tr>
             <td class="fieldarea">附件</td>
-            <td><input type="file" name="attachments[]" size="50" />
-              <a href="#" id="addfileupload"><img src="<%=request.getContextPath() %>/client/loginCss/images/add.gif" class="absmiddle" border="0" alt="" /> 添加更多</a><br />
+            <td>
+            	<input type="file" name="attachaddress" size="50" />
+              <a href="#" id="addfileupload">
+              <img src="<%=request.getContextPath() %>/client/loginCss/images/add.gif" class="absmiddle" border="0" alt="" /> 添加更多
+              </a>
+              <br />
               <div id="fileuploads"></div>
-              (允许的文件扩展: .jpg, .gif, .jpeg, .png)</td>
+              (允许的文件扩展: .jpg, .gif, .jpeg, .png)
+             <!-- <div class="clear" >
+           		<div class="web_annex">
+               <a href="">附件名称-6543213</a>
+               <a href=""  class="but_close"></a>
+          	 </div>
+         	</div> -->
+          	</td>
           </tr>
       </table></td>
     </tr>

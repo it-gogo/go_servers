@@ -10,6 +10,7 @@ import org.apache.ibatis.type.Alias;
 public class Go_Ticket {
 	private Integer id ;		//id主键
 	private Integer creator;	//创建人ID（可以为空）
+	private String createdate;//创建时间
 	private String name;		//姓名
 	private String email;	//邮件地址
 	private String title;	//标题
@@ -17,6 +18,7 @@ public class Go_Ticket {
 	private String content;	//内容
 	private String attachaddress;	//附件地址
 	private String isdispose;	//是否处理
+	private String ip;//ip地址
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +72,18 @@ public class Go_Ticket {
 	}
 	public void setIsdispose(String isdispose) {
 		this.isdispose = isdispose;
+	}
+	public String getCreatedate() {
+		return createdate;
+	}
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	
 }
