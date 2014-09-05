@@ -16,7 +16,7 @@
 </c:if>
   <div id="content_left">
     <h1>查看Ticket</h1>
-    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="supporttickets.php">服务Tickets</a> > <a href="../ticket/look.htm?id=${tick.id }">查看Ticket</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="../ticket/support.htm">服务Tickets</a> > <a href="../ticket/look.htm?id=${tick.id }">查看Ticket</a></p>
 
 <script language="javascript">
 jQuery(document).ready(function(){
@@ -77,28 +77,43 @@ function rating_select(id){
 <br />
 ----------------------------<br />
 IP Address: ${ticket.ip }</div>
-
+<c:forEach items="${ticket.list }" var="reply" >
+	<div class="clientticketreplyheader">
+		<table width="100%" border="0" cellpadding="10" cellspacing="0">
+			<tr>
+				<td><strong>${reply.replyname } ${reply.replyemail }</strong><br />客户</td>
+				<td align="right">${reply.createdate }</td>
+			</tr>
+		</table>
+	</div>
+	<div class="clientticketreply">${reply.replycontent }</div>
+	<br />
+</c:forEach>
 <p align="center">
-  <input type="button" value="得到问题答复之后，请点击此次关闭ticket" onclick="window.location='/whmcs/viewticket.php?tid=692117&amp;c=XVw9S4jG&amp;closeticket=true'" />
+  <input type="button" value="得到问题答复之后，请点击此次关闭ticket" onclick="window.location='../ticket/close.htm?id=${ticket.id}'" />
 </p>
 <h3>回复</h3>
-<form method="post" action="../reply/save.htm" enctype="multipart/form-data">
+<form method="post" action="../reply/save.htm" >
 <input type="hidden" name="ticketid" value="${ticket.id }" />
   <table width="100%" cellspacing="0" cellpadding="0" class="frame">
     <tr>
       <td><table width="100%" border="0" cellpadding="10" cellspacing="0">
           <tr>
             <td width="120" class="fieldarea">姓名</td>
-            <td>              <input type="text" name="replyname" size=30 value="${loginInfo.name }" />
+            <td>
+            	<input type="hidden" name="replyname" size=30 value="${loginInfo.surname } ${loginInfo.name }" />
+            	${loginInfo.surname } ${loginInfo.name }
               </td>
           </tr>
           <tr>
             <td class="fieldarea">邮箱</td>
-            <td>              <input type="text" name="replyemail" size=50 value="${loginInfo.email }" />
+            <td>              
+            	<input type="hidden" name="replyemail" size=50 value="${loginInfo.email }" />
+            	${loginInfo.email }
               </td>
           </tr>
           <tr>
-            <td colspan="2" class="fieldarea"><textarea name="replymessage" rows="12" cols="60" style="width:100%"></textarea></td>
+            <td colspan="2" class="fieldarea"><textarea name="replycontent" rows="12" cols="60" style="width:100%"></textarea></td>
           </tr>
           <tr>
             <td class="fieldarea">附件</td>

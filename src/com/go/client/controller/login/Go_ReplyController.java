@@ -2,6 +2,8 @@ package com.go.client.controller.login;
 
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +13,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.client.login.model.Go_Reply;
-import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_ReplyService;
+import com.go.client.login.service.IGo_TicketService;
 import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
 
@@ -27,6 +29,8 @@ public class Go_ReplyController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_ReplyService go_replyService;
+	@Autowired
+	public IGo_TicketService go_ticketService;
 	
 	
 	
@@ -41,7 +45,11 @@ public class Go_ReplyController extends Go_BaseController{
 		reply.setIp(request.getRemoteAddr());
 		reply=go_replyService.save(reply);
 		model.put("reply", reply);
-		return "client/login/lookTicket";
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("update_isdispose", "客户-回复");
+		params.put("where_id", reply.getTicketid());
+		go_ticketService.updateField(params);
+		return "redirect:/client/login/ticket/look.htm?id="+reply.getTicketid();
 	}
 	
 	

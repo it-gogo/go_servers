@@ -1,5 +1,7 @@
 package com.go.client.login.model;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -19,6 +21,9 @@ public class Go_Ticket {
 	private String attachaddress;	//附件地址
 	private String isdispose;	//是否处理
 	private String ip;//ip地址
+	
+	private List<Go_Reply> list;//回复集合
+	
 	public Integer getId() {
 		return id;
 	}
@@ -84,6 +89,12 @@ public class Go_Ticket {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	public List<Go_Reply> getList() {
+		return list;
+	}
+	public void setList(List<Go_Reply> list) {
+		this.list = list;
 	}
 	
 }

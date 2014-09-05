@@ -13,7 +13,7 @@
 <div id="content_container">
   <div id="content_left">
     <h1>提交Ticket</h1>
-    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="supportticket.htm">服务Tickets</a> > <a href="../ticket/toAdd.htm">提交Ticket</a></p><script language="JavaScript" type="text/javascript">
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="../ticket/support.htm">服务Tickets</a> > <a href="../ticket/toAdd.htm">提交Ticket</a></p><script language="JavaScript" type="text/javascript">
 
 var currentcheckcontent,lastcheckcontent;
 jQuery(document).ready(function(){
@@ -43,7 +43,6 @@ getticketsuggestions();
 </script>
 <form action="../ticket/save.htm" method="post"   >
 <input type="hidden" name="creator" value="${loginInfo.id }" />
-  <input type="hidden" name="isdispose" value="未处理" />
   <table width="100%" cellspacing="1" cellpadding="0" class="frame">
     <tr>
       <td>
