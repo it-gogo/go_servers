@@ -1,6 +1,10 @@
 package com.go.client.controller.login;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.go.base.module.Go_PageData;
 import com.go.client.login.model.Go_Portal_Info;
+import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_Portal_InfoService;
+import com.go.client.login.service.IGo_TicketService;
 import com.go.controller.base.Go_BaseController;
 
 /**
@@ -23,6 +30,8 @@ public class Go_Portal_IndexController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_Portal_InfoService go_portal_infoService;
+	@Autowired
+	public IGo_TicketService go_ticketService;
 	
 	/**
 	 * 主页信息
@@ -45,7 +54,11 @@ public class Go_Portal_IndexController extends Go_BaseController{
 		if(portal_info==null){//未登录账号时，跳转登陆页面
 			return "redirect:/client/login/portal/toLogin.htm";
 		}
-		model.addAttribute("portal_info",portal_info);
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("isdispose_<>","关闭");
+		Go_PageData pageData=new Go_PageData();
+		List<Go_Ticket> listTicket=go_ticketService.listPageByParams(params, pageData);
+		model.addAttribute("listTicket",listTicket);
 		return "client/login/customerArea"; 
 	}
 }

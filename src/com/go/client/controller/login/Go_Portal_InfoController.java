@@ -59,7 +59,7 @@ public class Go_Portal_InfoController extends Go_BaseController{
 		portal_info=go_portal_infoService.save(portal_info);
 		request.getSession().setAttribute("loginInfo", portal_info);
 		model.addAttribute("portal_info",portal_info);
-		return "client/login/customerArea"; 
+		return "redirect:/client/login/index/customerArea.htm";
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class Go_Portal_InfoController extends Go_BaseController{
 			c.setMaxAge(0);
 		}
 		response.addCookie(c);
-		return "client/login/customerArea"; 
+		return "redirect:/client/login/index/customerArea.htm";
 	}
 	
 	/**
@@ -201,6 +201,41 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	@RequestMapping(value="myDetail.htm")
 	public String myDetail(){
 		return "client/login/myDetail"; 
+	}
+	
+	/**
+	 *去更改密码页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="toChangePassword.htm")
+	public String toChangePassword(){
+		
+		return "client/login/changePassword"; 
+	}
+	
+	/**
+	 *更改密码
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="changePassword.htm")
+	public String changePassword(HttpServletRequest request,String oldpw,String newpw,ModelMap model){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(!portal.getPassword().equals(Go_PasswordUtil.encrypt(oldpw))){//密码有错
+			show_msg="0";//当前密码错误
+		}else{
+			newpw=Go_PasswordUtil.encrypt(newpw);
+			Map<String,Object> params=new HashMap<String,Object>();
+			params.put("update_password", newpw);
+			params.put("where_id",portal.getId());
+			go_portal_infoService.updateField(params);
+			show_msg="1";//已成功保存更改
+			portal.setPassword(newpw);
+			request.getSession().setAttribute("loginInfo",portal);
+		}
+		model.put("show_msg", show_msg);
+		return "client/login/changePassword"; 
 	}
 	
 	

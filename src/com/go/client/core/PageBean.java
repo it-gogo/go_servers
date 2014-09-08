@@ -111,7 +111,8 @@ public class PageBean<T> {
 	}
 
 	public boolean isHasNextPage() {
-		return (this.curentPage<totalPage);
+		hasNextPage=this.curentPage<totalPage;
+		return hasNextPage;
 	}
 
 	public void setHasNextPage(boolean hasNextPage) {

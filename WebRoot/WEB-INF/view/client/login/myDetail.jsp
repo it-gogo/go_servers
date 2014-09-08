@@ -18,12 +18,9 @@
 
 <script type="text/javascript" src="includes/jscript/statesdropdown.js"></script>
 
-<div class="contentbox">
-	<strong>我的详细信息</strong> | 
-	<a href="/whmcs/clientarea.php?action=contacts">联系方式/子账户</a> | 
-	<a href="/whmcs/clientarea.php?action=addcontact">添加新的联系方式</a> | 
-	<a href="/whmcs/clientarea.php?action=changepw">更改密码</a>
-</div>
+<jsp:include page="/WEB-INF/view/client/login/common/contentbox.jsp" >
+   	<jsp:param value="我的详细信息" name="name"/>
+</jsp:include>
 <h2 class="heading2">我的详细信息</h2>
 <c:if test="${show_msg=='modify' }">
 	<div class="successbox" >已成功保存修改!</div>

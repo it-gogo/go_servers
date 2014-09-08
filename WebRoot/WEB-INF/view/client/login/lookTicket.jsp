@@ -43,7 +43,7 @@ function rating_select(id){
 </script>
 
 
-<h2>查看Ticket #692117</h2>
+<h2>查看Ticket ${ticket.id }</h2>
 
 
 <table width="100%" border="0" cellpadding="10" cellspacing="0" class="data">

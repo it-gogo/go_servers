@@ -100,13 +100,15 @@ public class Go_TicketController extends Go_BaseController{
 	public String support(Go_PageData pageData,Go_Ticket ticket,ModelMap model){
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("isdispose_<>","关闭");
-		pageData.setPageSize(2);
+//		pageData.setPageSize(2);
 		List<Go_Ticket> list=go_ticketService.listPageByParams(params, pageData);
 		int allRow=go_ticketService.count(params);
 		
 		PageBean<Go_Ticket> pb=new PageBean<Go_Ticket>();
 		pb.setPageSize(pageData.getPageSize());
+		pb.setCurentPage(pageData.getCurrentPage());
 		pb.setAllRow(allRow);
+		pb.setTotalPage(pb.countTotalPage());
 		pb.setList(list);
 		list.size();
 		model.put("pb", pb);

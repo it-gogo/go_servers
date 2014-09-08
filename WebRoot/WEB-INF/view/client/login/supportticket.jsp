@@ -21,7 +21,7 @@
 <table width="100%" border="0" cellpadding="10" cellspacing="0">
   <tr>
     <td>打开服务Tickets: <strong>0</strong></td>
-    <td align="right"><a href="submitticket.php">提交Ticket</a></td>
+    <td align="right"><a href="../ticket/toAdd.htm">提交Ticket</a></td>
   </tr>
 </table>
 <form method="post" action="supporttickets.php">
@@ -66,16 +66,16 @@
 <br />
 <table width="100%" border="0" cellpadding="10" cellspacing="0">
 	  <tr>
-	    <td>显示: <a href="supporttickets.php?itemlimit=10">10</a> <a href="supporttickets.php?itemlimit=25">25</a> <a href="supporttickets.php?itemlimit=50">50</a> <a href="supporttickets.php?itemlimit=100">100</a> <a href="supporttickets.php?itemlimit=all">全部</a></td>
+	    <td>显示: <a href="../ticket/support.htm?pageSize=10">10</a> <a href="../ticket/support.htm?pageSize=25">25</a> <a href="../ticket/support.htm?pageSize=50">50</a> <a href="../ticket/support.htm?pageSize=100">100</a> <a href="supporttickets.php?itemlimit=all">全部</a></td>
 	    <td align="right">
 	    	<c:if test="${pb.hasPreviousPage }">
-	    	<a href="">&laquo; 上一页 &nbsp; </a>
+	    	<a href="../ticket/support.htm?page=${pb.curentPage-1 }">&laquo; 上一页 &nbsp; </a>
 	    	</c:if>
 	    	<c:if test="${!pb.hasPreviousPage }">
 	    	&laquo; 上一页 &nbsp; 
 	    	</c:if>
 	    	<c:if test="${pb.hasNextPage }">
-	    	<a href="">下一页 &raquo;</a>
+	    	<a href="../ticket/support.htm?page=${pb.curentPage+1 }">下一页 &raquo;</a>
 	    	</c:if>
 	    	<c:if test="${!pb.hasNextPage }">
 	    	下一页 &raquo;

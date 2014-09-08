@@ -1,6 +1,6 @@
-#Thu Sep 04 13:35:49 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/login/affiliates.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/changePassword.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/customerArea.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/demain.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/download.jsp=UTF-8

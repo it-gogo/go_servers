@@ -120,8 +120,9 @@ getticketsuggestions();
   </table>
   <br />
   <div id="searchresults" class="contentbox" style="display:none;"></div>
+  <c:if test="${loginInfo==nulll }">
     <%@include file="/WEB-INF/view/client/login/common/validateCode.jsp" %>
-
+	</c:if>
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
  <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>
   <div class="clear"></div>

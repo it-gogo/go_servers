@@ -37,7 +37,7 @@
   </tr>
   <tr>
     <td><div align="center"><a href="supportticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/supporttickets.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="supportticket.htm">服务Tickets</a><br />
+    <td><strong><a href="../ticket/support.htm">服务Tickets</a><br />
     </strong>查看回复当前</td>
     <td><div align="center"><a href="knowledge.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/knowledgebase.png" border="0" alt="" /></a></div></td>
     <td width="50%"><strong><a href="knowledge.htm">知识库</a></strong><br />
