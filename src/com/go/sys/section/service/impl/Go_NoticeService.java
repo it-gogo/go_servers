@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.section.dao.impl.Go_NoticeDao;
-import com.go.sys.section.model.Go_Notice;
+import com.go.sys.section.model.Go_Notice_News;
 import com.go.sys.section.service.IGo_NoticeService;
 
 /**
@@ -14,7 +14,7 @@ import com.go.sys.section.service.IGo_NoticeService;
  */
 @Service
 public class Go_NoticeService extends
-		Go_BaseService<Go_Notice, Integer> implements IGo_NoticeService {
+		Go_BaseService<Go_Notice_News, Integer> implements IGo_NoticeService {
 
 	@Autowired
 	public Go_NoticeService(Go_NoticeDao dao) {

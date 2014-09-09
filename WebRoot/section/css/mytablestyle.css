@@ -1,0 +1,15 @@
+/*Ë°®ÂçïÊ†∑Âºè*/
+
+
+.t2 { clear:both; /*border-collapse: collapse;*/border-collapse:collapse; width:100%; border:1px solid #cbdae8;}
+
+.t2 tr th { border-bottom: 1px solid #e6e6e6; font-weight: normal; background: #f7fafc; text-align:left; border-right: 1px solid #e6e6e6; border-left: 1px solid #e6e6e6; }
+.t2 tr td{font-size:12px; border-bottom: 1px solid #cfd6de; padding: 5px 0px 5px 10px; line-height:22px; word-break:break-all;}
+
+.t2 tr th em, .t2 tr td em{ font-weight:bold; color:Red;}
+.t2 td{ empty-cells:show; line-height:20px;  border-bottom:1px solid #cbdae8; font-weight:normal; padding:3px 8px; font-size:14px; }
+.t2 td.td_left{ white-space:nowrap; empty-cells:show; height:28px;  border-bottom:1px solid #cbdae8; font-weight:normal; padding:3px 8px; color:#000000; background-color:#eff3f8; padding:2px 8px; text-align:right;}
+/*.easyui-dialog div{width:380px;} »Áπ˚‰Ø¿¿∆˜ «IE */
+
+#qForm{display:inline;}
+#qForm .span{line-height:20px;height: 24px;color: #444;}

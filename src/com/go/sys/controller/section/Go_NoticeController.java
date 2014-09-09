@@ -1,6 +1,5 @@
 package com.go.sys.controller.section;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
-import com.go.common.util.Go_DateFormateUtil;
+import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.common.model.Go_Common_Data;
-import com.go.sys.section.model.Go_Notice;
+import com.go.sys.section.model.Go_Notice_News;
 import com.go.sys.section.service.IGo_NoticeService;
 
 /**
@@ -35,87 +37,112 @@ public class Go_NoticeController extends Go_BaseController {
 	@Autowired
 	private IGo_NoticeService go_noticeService;
 	/**
-	 * 数据字典管理
-	 * @author zhangjf
-	 * @version 2.0
-	 * @create_date 2014-4-24 下午3:24:06
+	 * 公告初始化
+	 * @author chenhb
 	 * @return
 	 */
-	@RequestMapping(value = "dict_data.htm")
-	public String dict_data(){
-		return "sys/section/notice/dict_data";
+	@RequestMapping(value = "redirect.htm")
+	public String redirect(){
+		return "sys/section/notice/notice";
 	}
 	
 	/**
-	 * 数据字典数据列表页面
-	 * @author zhangjf
-	 * @create_time 2014-8-27 下午11:02:38
-	 * @param model
+	 * 公告数据列表页面
+	 * @author chenhb
 	 * @return
 	 */
-	@RequestMapping("list.htm")
-	public String list(ModelMap model){
-		return "sys/section/notice/query";
+	@RequestMapping("findlist.htm")
+	public String findlist(ModelMap model,Go_PageData pageData,String gt_json){
+		Map<String,Object> params= new HashMap<String, Object>();
+		JSONArray arr=JSONArray.fromObject(gt_json);
+		for(int i=0;i<arr.size();i++){
+			JSONObject obj=arr.getJSONObject(i);
+			String name=(String) obj.get("id");
+			String value=(String) obj.get("vals");
+			if(value!=null  &&  !"".equals(value)){
+				params.put(name+"_like", value);
+			}
+		}
+		JSONObject  res = new JSONObject();
+		List<Go_Notice_News> list=go_noticeService.listPageByParams(params, pageData);
+		res.put("total", pageData.getTotalSize());
+		res.put("rows", JSONArray.fromObject(list));
+		model.addAttribute("show_msg",res.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 	/**
-	 * ajax请求获取列表数据
-	 * @author zhangjf
-	 * @create_time 2014-8-27 下午11:03:43
+	 * 公告数据新增操作页面
+	 * @author chenhb
+	 * @return
+	 */
+	@RequestMapping(value = "loadxx.htm")
+	public String loadxx(Go_Notice_News notice,ModelMap model){
+		notice=go_noticeService.get(notice.getId());
+		JSONObject obj=JSONObject.fromObject(notice);
+		model.addAttribute("show_msg",obj.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
+	/**
+	 * 公告信息保存
+	 * @author chenhb
+	 * @return
+	 */
+	@RequestMapping(value = "addxx.htm")
+	public String addxx(ModelMap model,Go_Notice_News notice){
+		notice.setType("公告");
+		notice.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
+		go_noticeService.save(notice);
+		setSuccessMessage(model, "保存成功");
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/**
+	 * 公告更新
 	 * @param request
 	 * @param model
-	 * @param name
+	 * @param notice
 	 * @return
 	 */
-	@RequestMapping("ajax_list.htm")
-	public @ResponseBody Map ajax_list(HttpServletRequest request,ModelMap model,String name,Go_PageData pageData){
-		Map<String,Object> params= new HashMap<String, Object>();
-		params.put("status", Go_Common_Data.STATUS_NORMAL);
-		if(StringUtils.isNotBlank(name)){
-			params.put("name_like", name);
-		}
-		Map<String,Object> map=new HashMap<String, Object>();
-		map.put("rows", go_noticeService.listPageByParams(params, pageData));
-		map.put("total", pageData.getTotalSize());
-		return map;
+	@RequestMapping("updatexx.htm")
+	public String updatexx(HttpServletRequest request,ModelMap model,Go_Notice_News notice){
+		go_noticeService.update(notice);
+		setSuccessMessage(model, "保存成功");
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 	/**
-	 * 数据字典数据新增操作页面
-	 * @author zhangjf
-	 * @create_time 2014-8-27 下午11:38:16
+	 * 启用禁用
 	 * @return
 	 */
-	@RequestMapping(value = "add.htm")
-	public String add(ModelMap model,Integer type_id){
-		Go_Notice notice = new Go_Notice();
-		//notice.setType_id(type_id);
-		model.put("notice", notice);
-		return "sys/section/notice/editnew";
-	}
-	
-	@RequestMapping("edit.htm")
-	public String eidt(ModelMap model,Integer id){
-		if(id!=null){
-			Go_Notice notice=go_noticeService.get(id);
-			model.put("notice", notice);
+	@RequestMapping("changestat.htm")
+	public  String changestat(ModelMap model,Go_Notice_News notice,String sns){
+		Map<String,Object> params=new HashMap<String, Object>();
+		params.put("update_isactives", notice.getIsactives());
+		params.put("where_id_in", sns);
+		go_noticeService.updateField(params);
+		if("1".equals(notice.getIsactives())){
+			setSuccessMessage(model, "启用成功");
+		}else{
+			setSuccessMessage(model, "禁用成功");
 		}
-		return "sys/section/notice/editnew";
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 	/**
-	 * 返回详细页面
-	 * @author zhangjf
-	 * @create_time 2014-8-28 下午9:21:01
+	 * 删除
 	 * @param model
-	 * @param id
+	 * @param notice
+	 * @param sns
 	 * @return
 	 */
-	@RequestMapping(value = "detail.htm")
-	public String detail(ModelMap model,Integer id){
-		if(id != null)
-			model.addAttribute("notice", go_noticeService.get(id));
-		return "sys/section/notice/detail";
+	@RequestMapping("deletexx.htm")
+	public String  deletexx(ModelMap model,Go_Notice_News notice,String sns){
+		Map<String,Object> params=new HashMap<String, Object>();
+		params.put("id_in", sns);
+		go_noticeService.deleteList(params);
+		setSuccessMessage(model, "删除成功");
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 	/**
@@ -156,7 +183,7 @@ public class Go_NoticeController extends Go_BaseController {
 	 * @return
 	 */
 	@RequestMapping("save.htm")
-	public String save(ModelMap model,HttpServletRequest request,Go_Notice notice){
+	public String save(ModelMap model,HttpServletRequest request,Go_Notice_News notice){
 		String result="";
 		setShow_msg(result);
 		model.addAttribute("show_msg", show_msg);

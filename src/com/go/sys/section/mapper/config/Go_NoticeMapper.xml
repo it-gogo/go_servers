@@ -2,16 +2,16 @@
 <!DOCTYPE mapper 
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="com.go.sys.common.mapper.IGo_NoticeMapper">
-    <insert id="insert" parameterType="Go_Notice">
+<mapper namespace="com.go.sys.section.mapper.IGo_Notice_NewsMapper">
+    <insert id="insert" parameterType="Go_Notice_News">
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Notice(type,creator,createdate,title,content,isactives)
-	    values(#{type},#{creator},#{createdate},#{title},#{content},${isactives})
+	    insert into Go_Notice_News(type,creator,createdate,title,content,isactives)
+	    values(#{type},#{creator},#{createdate},#{title},#{content},#{isactives})
 	</insert>
 	<update id="update">
-	    update Go_Notice 
+	    update Go_Notice_News 
 		    set type = #{type},
 		    creator = #{creator},
 		    createdate = #{createdate},
@@ -21,38 +21,41 @@
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">
-	    delete from Go_Notice where id= #{id}
+	    delete from Go_Notice_News where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Notice_News ${where}
 	</delete>
 	<update id="updateField" parameterType="map">
-	    update Go_Notice
+	    update Go_Notice_News
 	    ${set_sql}
 	</update>
 	<select id="getScale" parameterType="map" resultType="Object">
-	    select ${column} from Go_Notice 
+	    select ${column} from Go_Notice_News 
 	    ${where}
 	    limit 1 , 0
 	</select>
-	<select id="select" resultType="Go_Notice">
-	    select * from Go_Notice
+	<select id="select" resultType="Go_Notice_News">
+	    select * from Go_Notice_News
 	</select>
-	<select id="selectByParams" resultType="Go_Notice" parameterType="map">
-	    select * from Go_Notice ${where} 
+	<select id="selectByParams" resultType="Go_Notice_News" parameterType="map">
+	    select * from Go_Notice_News ${where} 
 	</select>
-	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Notice">
-	    select * from Go_Notice 
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Notice_News">
+	    select * from Go_Notice_News 
 	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
 	</select>
-	<select id="selectPageByParams" parameterType="map" resultType="Go_Notice">
-	    select Go_Notice.* from Go_Notice 
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Notice_News">
+	    select Go_Notice_News.* from Go_Notice_News 
 	    ${where} 
 	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
 	</select>
 	<select id="count" parameterType="map" resultType="int">
-	    select count(Go_Notice.id) from Go_Notice
+	    select count(Go_Notice_News.id) from Go_Notice_News
 	     ${where}
 	</select>
-	<select id="get" parameterType="string" resultType="Go_Notice">
-	    select * from Go_Notice where id = #{id}
+	<select id="get" parameterType="string" resultType="Go_Notice_News">
+	    select * from Go_Notice_News where id = #{id}
 	</select>
 	
 </mapper>

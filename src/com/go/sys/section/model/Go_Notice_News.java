@@ -6,8 +6,8 @@ import org.apache.ibatis.type.Alias;
  * 公告基本信息
  * @author chenbh
  */
-@Alias("Go_Notice")
-public class Go_Notice {
+@Alias("Go_Notice_News")
+public class Go_Notice_News {
 	private Integer id ;		//id主键
 	private String type;		//类型
 	private Integer creator;	//创建人
