@@ -24,7 +24,7 @@
     <td width="50%"><strong><a href="customerArea.htm">客户区</a></strong><br />
       参考&更新账户详情</td>
     <td><div align="center"><a href="notice.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/announcements.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="notice.htm">公告</a></strong><br />
+    <td><strong><a href="../notice/notice.htm">公告</a></strong><br />
       查看最新新闻&公告</td>
   </tr>
   <tr>

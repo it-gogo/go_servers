@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <jsp:include page="/WEB-INF/view/client/login/common/head.jsp" >
-    	<jsp:param value="公告" name="name"/>
+    	<jsp:param value="公告详细" name="name"/>
 	 </jsp:include>
 </head>
 <body>
@@ -13,20 +13,20 @@
 <div id="content_container">
   <div id="content_left">
     <h1>公告</h1>
-    <p class="breadcrumb">
-	    <a href="../index/index.htm">门户主页</a> > 
-	    <a href="../notice/notice.htm">公告</a>
-    </p>
-    <c:forEach items="${list }" var="notice">
-    <h2><a href="../notice/detail.htm?id=${notice.id }">${notice.title }</a></h2>
-	<p class="small"><strong>${notice.createdate }</strong></p>
-	${notice.content }
-	<p><a href="../notice/detail.htm?id=${notice.id }">更多 &raquo;</a></p><hr />
-	</c:forEach>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../notice/notice.htm">公告</a> > <a href="../notice/detail.htm?id=${notice.id }">${notice.title }</a></p><h2>${notice.title }</h2>
 
 <br />
 
-<%-- <p align="center"><img src="<%=request.getContextPath() %>/client/loginCss/images/rssfeed.gif" class="absmiddle" alt="" border="0" /> <a href="announcementsrss.php">查看RSS订阅</a></p> --%>
+${notice.content }
+<br />
+<p><strong>${notice.createdate }</strong></p>
+
+
+
+
+<p><a href="../notice/notice.htm">&laquo; 返回</a></p>
+
+<%-- <p align="center"><img src="<%=request.getContextPath() %>/client/loginCss/images/rssfeed.gif" class="absmiddle" border="0" alt="" /> <a href="announcementsrss.php">查看RSS订阅</a></p><br /> --%>
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
 <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>

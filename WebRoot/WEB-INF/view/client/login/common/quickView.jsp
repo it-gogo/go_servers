@@ -5,7 +5,7 @@
     <ul>
       <li><a href="../index/index.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/support.gif" alt="门户主页" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../index/index.htm" title="门户主页">门户主页</a></li>
       <li><a href="../index/customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.gif" alt="客户区" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../index/customerArea.htm" title="客户区">客户区</a></li>
-      <li><a href="notice.htm" title="公告"><img src="<%=request.getContextPath() %>/client/loginCss/images/announcement.gif" alt="公告" width="16" height="16" border="0" class="absmiddle" /></a> <a href="notice.htm" title="公告">公告</a></li>
+      <li><a href="../notice/notice.htm" title="公告"><img src="<%=request.getContextPath() %>/client/loginCss/images/announcement.gif" alt="公告" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../notice/notice.htm" title="公告">公告</a></li>
       <li><a href="knowledge.htm" title="知识库"><img src="<%=request.getContextPath() %>/client/loginCss/images/knowledgebase.gif" alt="知识库" width="16" height="16" border="0" class="absmiddle" /></a> <a href="knowledge.htm" title="知识库">知识库</a></li>
       <li><a href="../ticket/toAdd.htm" title="提交Ticket"><img src="<%=request.getContextPath() %>/client/loginCss/images/submit-ticket.gif" alt="提交Ticket" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../ticket/toAdd.htm" title="服务Tickets">提交Ticket</a></li>
       <li><a href="download.htm" title="下载"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.gif" alt="下载" width="16" height="16" border="0" class="absmiddle" /></a> <a href="download.htm" title="下载">下载</a></li>

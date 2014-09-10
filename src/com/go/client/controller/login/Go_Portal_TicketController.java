@@ -29,7 +29,7 @@ import com.go.controller.base.Go_BaseController;
  */
 @Controller
 @RequestMapping(value="/client/login/ticket")
-public class Go_TicketController extends Go_BaseController{
+public class Go_Portal_TicketController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_TicketService go_ticketService;
