@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0;}
+img {border:none;}
+ul,li,div,p,h1,h2,h3 {margin:0;padding:0;}
+ul {list-style:none;}
+body {background:#fafafa;}
+/*顶部开始*/
+#header {width:100%; height:56px; position:relative;background:url(../images/header_m.gif) repeat-x;}
+#header .logo {margin:0 auto;overflow:hidden;height:70px;}
+#header .logo_i {float:left;}
+#header .logo_i img {float:left;}
+#header .logo_i .logo_img{ margin-left:5px;}
+#header .logo_r {float:right;margin-top:20px;overflow:hidden;}
+#header .logo_r .back{margin-top:5px;}
+#header .logo_r .person{margin-top:5px;}
+#header .logo_r .index{margin-top:5px; }
+#header .logo_r span {display:block;float:right;width:344px;height:36px;background:url(../images/searchbg.png) 0 0 no-repeat;margin-right:10px;}
+#header .logo_r span input {background:#f6fafb;width:280px;border:none;height:30px;margin-left:12px;margin-top:4px;line-height:32px;}
+#header a.search {width:40px;height:34px;display:block;float:right;}
+#header .one {margin-top:30px;margin-left:40px;}
+#header .index {color:#67edff;margin-right:15px;display:block;float:right;text-decoration:none;font-size:12px;line-height:32px;}
+#header a.person {color:#67edff;display:block;float:right;margin-right:15px;text-decoration:none;font-size:12px;line-height:32px;}
+#header a.back {display:block;float:right;color:#67edff;margin-right:15px;text-decoration:none;font-size:12px;line-height:32px;}
+#header a.name {margin-left:8px;color:#FFF;text-decoration:none;margin-top:33px;display:block;float:left;}
+#header .logo_r a:hover {color:#f9a400;}
+#header .menu {background:#2d7d88;height:50px;width:auto; border-top:#71a7ae 1px solid;}
+#header .menu ul {margin-left:60px;overflow:hidden;background:#2d7d88;font-size:14px;}
+#header .menu ul li  {display:block;width:110px;float:left;line-height:50px;text-align:center;border-right:1px solid #3b939f; }
+#header .menu ul li:hover {background:#115059;}
+#header .menu ul li a {color:#fff;text-decoration:none;}
+#header .menu ul li a.menu_cycz {color:#f6ff00;}
+#header .menu ul li:hover a.menu_cycz {background:none;}
+
+#header .menu ul li.mb:hover {background:none;}
+#header .menu ul .zdybtn{ float:right;margin-right:10px; height:37px; width:89px; line-height:37px;margin-top:10px;}
+#header .menu ul .zdybtn a{ display:block; float:left;color:#fff; text-decoration:none; background: url(../images/zdy-btn.png) no-repeat;height:37px; width:89px;padding-left:22px;}
+#header .menu ul .zdybtn a:hover{ color:#f9a400;background: url(../images/zdy-btn-h.png) no-repeat;}
+#header .menu ul .zdybtn input {display:block;background:url(../images/zdy-btn.png)  no-repeat;width:89px;height:37px;border:none;margin-left:8px;margin-top:8px;}
+#header .menu ul li a.zdy {display:block;background:url(../images/zdy-btn.png) 16px 6px no-repeat;}
+/*顶部结束*/
+
+/*左侧开始*/
+#content {margin:0 auto;overflow:hidden;width:100%; }
+#content .left {width:200px;border-right:4px solid #b4cdd0;overflow:hidden;float:left;padding-bottom: 6180px; margin-bottom: -6180px;overflow:auto;min-height:800px;}
+#content .left ul {margin:0; width:200px; overflow:hidden;height:auto; font-size:14px; background:#f2f6fa; padding-top:12px;}
+#content .left_one {display:block;background: 0 0 no-repeat;width:180px;height:40px;margin-left:8px;line-height:40px;overflow:hidden;margin-top:10px; font-size:14px; font-weight:bold;}
+#content .left ul li a {font-size:14px;text-decoration:none;color:#757c84; font-family:'Microsoft Yahei';}
+#content .left ul li img {float:left;margin-left:16px;margin-top:10px;}
+#content ul.left_two {border-top:none;background:#fff;margin-top:20px;margin-bottom:20px;width:170px;margin-left:8px;display:block;border-bottom-left-radius:8px;border-bottom-right-radius:8px;font-size:14px;}
+#content ul.left_two  li {margin-left:20px;line-height:24px;margin-top:4px;}
+#content .left ul li ul li a {color:#757c84; font-family:'Microsoft Yahei';}
+#content .left ul li ul li a:hover {color:#f9a400;}
+a{ text-decoration:none;}
+a:hover{ text-decoration:underline;}
+.li_text{float:left; width:75%; overflow:hidden; font-weight:normal;}
+a .li_text, a .li_time{color:#698296; font-weight:normal;}
+.li_time{ float:right; width:25%; overflow:hidden;font-weight:normal;}
+a:hover .li_text, .a:hover .li_time{color:#ff8800;}
+#content .left ul li a:hover,#content .left ul li.on a {background:#fff; }
+/* content css*/
+
+
+
+

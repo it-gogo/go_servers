@@ -25,7 +25,7 @@ import com.go.controller.base.Go_BaseController;
  */
 @Controller
 @RequestMapping(value="/client/login/reply")
-public class Go_ReplyController extends Go_BaseController{
+public class Go_Portal_ReplyController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_ReplyService go_replyService;

@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.authority.model.Go_User;
@@ -63,4 +64,23 @@ public class Go_UserController extends Go_BaseController{
 		
 		return "/sys/authority/user/editnew";
 	}
+	/**
+	 * 去登陆页面
+	 * @return
+	 */
+	@RequestMapping(value="toLogin.htm")
+	public String toLogin(){
+		
+		return "/sys/login";
+	}
+	/**
+	 * 登陆
+	 * @return
+	 */
+	@RequestMapping(value="login.htm")
+	public String login(ModelMap model,Go_User user){
+		model.addAttribute("show_msg",1);
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
 }

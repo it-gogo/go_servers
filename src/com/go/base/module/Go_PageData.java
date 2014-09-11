@@ -1,5 +1,7 @@
 package com.go.base.module;
 
+import net.sf.json.JSONObject;
+
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -78,5 +80,8 @@ public class Go_PageData {
 	public void setRows(int rows) {
 		this.pageSize = rows;
 		this.rows = rows;
+	}
+	public String toString(){
+		return JSONObject.fromObject(this).toString();
 	}
 }

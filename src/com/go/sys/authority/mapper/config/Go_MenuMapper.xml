@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.sys.authority.mapper.IGo_MenuMapper">
+    <insert id="insert" parameterType="Go_Menu">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Menu(number,name,parentnumber,urls,seq,parentid,imgurl,isactives,description,step)
+	    values(#{number},#{name},#{parentnumber},#{urls},#{seq},#{parentid},#{imgurl},#{isactives},#{description},#{step})
+	</insert>
+	<update id="update">
+	    update Go_Menu 
+		    set number = #{number},
+		    name = #{name},
+		    parentnumber = #{parentnumber},
+		    urls = #{urls},
+		    seq = #{seq},
+		    parentid = #{parentid},
+		    imgurl = #{imgurl},
+		    isactives = #{isactives},
+		     step = #{step},
+		    description = #{description}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Menu where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Menu ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Menu
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Menu 
+	    ${where}
+	    limit 1 offset 0
+	</select>
+	<select id="select" resultType="Go_Menu">
+	    select * from Go_Menu
+	</select>
+	<select id="selectByParams" resultType="Go_Menu" parameterType="map">
+	    select * from Go_Menu ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Menu">
+	    select * from Go_Menu 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Menu">
+	    select * from Go_Menu 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(id) from Go_Menu
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Menu">
+	    select * from Go_Menu where id = #{id}
+	</select>
+	
+</mapper>

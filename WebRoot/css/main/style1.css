@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body,button,textarea{font:12px/1.5 'Microsoft Yahei',arial,\5b8b\4f53,sans-serif;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,cite,dfn,em,var{font-style:normal;}
+code,kbd,pre,samp{font-family:'Microsoft Yahei';}
+small{font-size:12px;}
+ul,ol{list-style:none;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+legend{color:#000;}
+fieldset,img{border:0;}
+button,input,select,textarea{font-size:100%;font-family:'Microsoft Yahei';}
+p a{ margin:0; padding:0; font-weight:normal;}
+a{color:#757c84;font-family:'Microsoft Yahei';}
+
+/*头部样式*/
+.header{ background:url(images/header_m.gif) repeat-x; height:55px; width:100%; overflow:hidden;}
+.logo{ float:left; background:url(images/logo.gif) no-repeat 0 0; width:514px; height:33px; margin:13px 19px;}
+.header_r{ height:55px; line-height:55px; float:right;}
+.header_r a{ color:#ffffff; margin:0 5px; text-decoration:none; font-size:14px;}
+.header_r a.edit,.header_r a.logout{padding-left:20px; marign-top:20px;font-size:12px; color: #ffffff; font-size: 12px; line-height: 32px; text-decoration: none;}
+.header_r a.edit{ background:url(images/edit.png) no-repeat 0 0; width:14px; height:15px; }
+.header_r a.edit:hover,.header_r a.logout:hover{ color:#ebab3f;}
+.header_r a.logout{ background:url(images/logout.png) no-repeat 0 0; width:14px; height:15px;}
+.header_r .admin_ico{ float:left; margin-top:20px; }
+
+
+/*目录树样式*/
+.panel{ width:190px; height:auto; background:#f2f6fa !important; font-family:'Microsoft Yahei'; overflow:hidden;}
+.accordion .accordion-header {background: none repeat scroll 0 0 #E0ECFF; filter: none; width:190px;}
+.accordion-noborder .accordion-header { border-width: 0 0 1px;}
+.accordion .accordion-header {border-width: 0 0 1px; cursor: pointer;}
+.accordion .accordion-header-selected { background: none repeat scroll 0 0 #ACD4FF; }
+.panel-title {color: #0E2D5F;font-size: 14px;font-weight: bold;height: 16px;line-height: 16px;}
+.panel-title {background: url(../images/blank.gif) no-repeat scroll 0 0 rgba(0, 0, 0, 0);}
+.panel-header { padding: 5px; position: relative;}
+.panel-tool a { display: inline-block; height: 16px; margin: 0 0 0 2px; opacity: 0.6; vertical-align: top; width: 16px;}
+.accordion-expand { background: url(../images/accordion_arrows.png) no-repeat scroll -16px 0 rgba(0, 0, 0, 0);}
+.accordion-collapse { background: url(../images/accordion_arrows.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);}
+.panel-header, .panel-body {border-color: #95B8E7;}
+.panel-body{ width:200px; height:auto;}
+
+.panel-body ul{ margin:0x; width:200px; overflow:hidden;} 
+
+.panel-body ul li{margin:0; overflow:hidden;}
+
+.panel-body ul li a label{line-height:19px;float:left; margin:10px 0 0 10px; width:90px;}
+
+.panel-body ul li a, #content .left ul li a{ float:left; padding:10px 0; background:url(images/menu_line.gif) bottom repeat-x; width:100%; color:#757c84; font-size:14px; overflow:hidden; cursor:pointer; text-decoration:none;}
+/*.panel-body  span{ float:left; width:23px; height:20px; margin-left:6px; overflow:hidden;}
+*/
+.panel-body ul li a:hover,.panel-body ul li.on a{background:#fff; }
+
+
+
+
+
+
+
+
