@@ -32,7 +32,7 @@
    </div>
 </div>
 
- <%-- <%@include  file="sysmanager/tuser/modifypass.jsp" %> --%>
+ <%@include  file="/WEB-INF/view/sys/authority/user/modifypass.jsp" %>
 
 <!--右侧结束-->
 </body>

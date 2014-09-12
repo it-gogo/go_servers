@@ -85,6 +85,23 @@ public class Go_UserController extends Go_BaseController{
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
+	/**
+	 * 修改密码
+	 * @return
+	 */
+	@RequestMapping(value="modifypass.htm")
+	public String modifypass(){
+		return "/sys/authority/user/modifypassEdit";
+	}
+	/**
+	 * 提交修改密码
+	 * @return
+	 */
+	@RequestMapping(value="updatePass.htm")
+	public String updatePass(ModelMap model){
+		setSuccessMessage(model, "密码修改成功");
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
 	
 	
 }
