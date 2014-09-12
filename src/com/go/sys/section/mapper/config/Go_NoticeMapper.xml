@@ -33,7 +33,7 @@
 	<select id="getScale" parameterType="map" resultType="Object">
 	    select ${column} from Go_Notice_News 
 	    ${where}
-	    limit 1 , 0
+	    limit 1 offset 0
 	</select>
 	<select id="select" resultType="Go_Notice_News">
 	    select * from Go_Notice_News

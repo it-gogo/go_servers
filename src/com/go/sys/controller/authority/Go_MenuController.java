@@ -47,8 +47,9 @@ public class Go_MenuController extends Go_BaseController {
 	 */
 	@RequestMapping("findlist.htm")
 	public String findlist(ModelMap model,Go_PageData pageData,String gt_json){
+		
+		Map<String,Object> p=new HashMap<String,Object>();
 		Map<String,Object> params= new HashMap<String, Object>();
-//		params.put("isactives", "1");
 		JSONArray arr=JSONArray.fromObject(gt_json);
 		for(int i=0;i<arr.size();i++){
 			JSONObject obj=arr.getJSONObject(i);
@@ -62,7 +63,6 @@ public class Go_MenuController extends Go_BaseController {
 		JSONObject  res = new JSONObject();
 		List<Go_Menu> list=go_menuService.listPageByParams(params, pageData);
 		
-		//List<Go_Menu> list=go_menuService.listByPage(pageData);
 		res.put("total", pageData.getTotalSize());
 		res.put("rows", JSONArray.fromObject(list));
 		model.addAttribute("show_msg",res.toString());
@@ -111,11 +111,14 @@ public class Go_MenuController extends Go_BaseController {
 		}
 		seq+=1;
 		int fbh = 0;//父编号
-		if(menu.getParentnumber()!=null){
+		String parentnumber=menu.getParentnumber();
+		if(parentnumber!=null){
 			fbh = Integer.parseInt(menu.getParentnumber());
 		}
+		params=new HashMap<String,Object>();
 		params.put("column", "max(number)");
-		params.put("parentnumber", menu.getParentnumber());
+		params.put("parentnumber", parentnumber);
+		
 		String numberStr=(String) go_menuService.getScale(params);//获得同一个父类里面最大的number
 		 int  number = 100;
 		if(numberStr!=null){
@@ -127,7 +130,8 @@ public class Go_MenuController extends Go_BaseController {
 		
 		
 		menu.setSeq(seq);
-		menu.setStep( String.valueOf(number).length()/3);
+		int step= String.valueOf(number).length()/3;
+		menu.setStep(step);
 		menu.setParentnumber(String.valueOf(fbh));
 		menu.setNumber(String.valueOf(number));
 		go_menuService.save(menu);

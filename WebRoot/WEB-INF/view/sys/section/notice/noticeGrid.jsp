@@ -20,7 +20,7 @@
     <thead>          
        <tr>
           <th field="chk" width="20" align='center' checkbox='true' ></th>
-          <th field="type" width="80"  align='center' >类型</th>
+          <!-- <th field="type" width="80"  align='center' >类型</th> -->
           <th field="title" width="160" align='left'>标题</th>
           <th field="createdate" width="80"  align='left' >创建时间</th>
           <th field="id" width="180"  align='center' formatter='getHandleStr'>操作</th>

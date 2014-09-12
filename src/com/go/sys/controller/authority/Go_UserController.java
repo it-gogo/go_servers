@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,8 +71,8 @@ public class Go_UserController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="toLogin.htm")
-	public String toLogin(){
-		
+	public String toLogin(HttpServletRequest request){
+		request.getSession().invalidate();
 		return "/sys/login";
 	}
 	/**
@@ -82,5 +84,7 @@ public class Go_UserController extends Go_BaseController{
 		model.addAttribute("show_msg",1);
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
+	
+	
 	
 }

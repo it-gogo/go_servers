@@ -72,13 +72,18 @@ input.inputF{color:#555;}
   }
   
    function  login(){
-      //alert();
       $("#loginform").form("submit",{
         url:'login.htm',
         success:function(data){
-           switch(data){
+        	if(data==1){
+        		document.location.href="../index/main.htm";
+        	}else if(data==2){
+        		alert("用户名或密码错误");
+        	}else if(data==3){
+        		 alert("用户已经禁用");
+        	}
+          /*  switch(data){
              case '1':
-             	alert(12)
                document.location.href="../index/main.htm";
              break;
              case '2':
@@ -87,7 +92,7 @@ input.inputF{color:#555;}
              case '3':
              alert("用户已经禁用");
              break;
-           }
+           } */
         }
       });
    }

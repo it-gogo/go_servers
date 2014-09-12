@@ -1,5 +1,7 @@
 package com.go.sys.authority.model;
 
+import net.sf.json.JSONObject;
+
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -88,5 +90,8 @@ public class Go_Menu {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String toString(){
+		return JSONObject.fromObject(this).toString();
 	}
 }

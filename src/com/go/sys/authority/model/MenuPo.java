@@ -155,9 +155,9 @@ public class MenuPo {
 			res +="<div title=\""+name+"\" >";
 			res +="<ul>";//修改
 		}else if(step==2){
-			String img="images/u63_normal.gif";
-			if(imgurl!=null){
-				img="css/menuicons/"+imgurl;
+			String img="../../../css/main/menuicons/u63_normal.gif";
+			if(imgurl!=null && !"".equals(imgurl)){
+				img="../../../css/main/menuicons/"+imgurl;
 			}
 			res +=" <li onclick=\"changeCss(this)\"><a href=\"javascript:void(0);\" onclick=\""+scriptEvent+"('"+number+"','"+name+"','"+url+"');\"  ><img src="+img.toString()+" /><label>"+name+"</label></a></li>";
 			//res +=" <li><a href=\"javascript:"+scriptEvent+"('"+number+"','"+name+"','"+url+"');\"  ><span class='pound_business'><img src="+img+" /> </span><label >"+name+"</label></a></li>";

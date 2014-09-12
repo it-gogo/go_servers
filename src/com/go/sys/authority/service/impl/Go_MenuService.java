@@ -1,6 +1,5 @@
 package com.go.sys.authority.service.impl;
 
-import java.awt.Menu;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -13,6 +12,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.go.base.module.Go_PageData;
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.authority.dao.impl.Go_MenuDao;
 import com.go.sys.authority.model.Go_Menu;
@@ -108,6 +108,8 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 	 * @return
 	 */
 	public  String  getMenuStr(){
+		Go_PageData pageData=new Go_PageData();
+		Map<String,Object> params=new HashMap<String,Object>(); 
 		List<Go_Menu> obj = this.list();
 		List<MenuPo> list = new ArrayList<MenuPo>();
 		MenuPo  po = new MenuPo();
@@ -123,7 +125,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 			 po.setName("系统管理");
 			 po.setNumber(1);
 			 po.setPnumber(0);
-//			 po.setScriptEvent("addPanel");
+			 po.setScriptEvent("addPanel");
 			 po.setUrl("#");
 			 po.setStep(1);
 			 list.add(po);
@@ -131,7 +133,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 			 po.setName("角色管理");
 			 po.setNumber(2);
 			 po.setPnumber(1);
-//			 po.setScriptEvent("addPanel");
+			 po.setScriptEvent("addPanel");
 			 po.setUrl("sysmanager/troleAction.action");
 			 po.setStep(2);
 			 list.add(po);
@@ -144,6 +146,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 				po.setPnumber(Integer.parseInt(mvo.getParentnumber()));
 				po.setScriptEvent("addPanel");
 				po.setUrl(mvo.getUrls());
+				po.setStep(mvo.getStep());
 				po.setImgurl(mvo.getImgurl());//菜单图标
 				list.add(po);
 			}

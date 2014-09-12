@@ -21,7 +21,7 @@
 	        <input class="easyui-validatebox" type="text" style="display:none;" name="id" id="id"></input>
 	        <input class="easyui-validatebox" type="hidden" name="vo.parentid" id="parentid"></input>
 	        <input class="easyui-validatebox" type="hidden" name="seq" id="seq"></input>
-	        <!-- <input class="easyui-validatebox" type="hidden" name="isactives" id="isactives" ></input> -->
+	        <input class="easyui-validatebox" type="hidden" name="step" id="step" ></input>
 	    	<table width="90%" class="t2">
 	    		<tr>
 	    			<td align="right" class="td_left">父菜单:</td>

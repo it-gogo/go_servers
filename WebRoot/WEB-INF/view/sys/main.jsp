@@ -52,7 +52,6 @@ function addPanel(cdbh,titles,action){
     	   var currTab = $('#mainPanel').tabs('getTab', titles),  
              iframe = $(currTab.panel('options').content),  
             content = '<iframe scrolling="auto" frameborder="0"  src="' + iframe.attr('src') + '" style="width:100%;height:100%;"></iframe>';  
-          /* $('#mainPanel').tabs('update', {tab: currTab, options: {content: content, closable: true}});  */
           $('#mainPanel').tabs('updateIframeTab', {tab: currTab, options: {content: content, closable: true},which:titles}); 
        }else{
        var count = 0;
@@ -67,14 +66,6 @@ function addPanel(cdbh,titles,action){
                 },
 				iframe:{src:actions}
 			});
-		      /* $("#mainPanel").tabs('add',{
-		            id:cdbh,
-					title: titles,
-					content:'<iframe id="t"  scrolling="yes" frameborder="0"  src="'+actions+'" width="100%" height="'+ifheight+'"></iframe>',
-					closable: true,
-					border:false,
-					fit:true
-			  });*/
        }
 }
 
@@ -125,13 +116,13 @@ function  load(){
 		{
 			if(!confirm("是否确认退出系统"))
 			  return ;
-			$.post('loginAction.action',{'act':'loginOut'},function(data){
+			/* $.post('loginAction.action',{'act':'loginOut'},function(data){
 			   if(data==1)
 			   {
 			     location.href ="loginAction.action?act=toLongin";
 			   }
-			});
-			
+			}); */
+			location.href ="../user/toLogin.htm";
 		}
 		
 		function modifypass(){
