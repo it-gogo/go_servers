@@ -18,27 +18,30 @@ import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.server.model.Go_Server_Info;
-import com.go.sys.server.service.IGo_Server_InfoService;
+import com.go.sys.server.model.Go_Server_Price;
+import com.go.sys.server.service.IGo_Server_PriceService;
 
 /**
- * 套餐服务信息控制器
- * @author zhangjf
- * @create_time 2014-9-2 下午8:57:10
+ * 价格信息控制器
+ * @author chenhb
  */
 @Controller
-@RequestMapping("/sys/server/server_info/*")
-public class Go_Server_InfoController extends Go_BaseController {
+@RequestMapping("/sys/server/server_price/*")
+public class Go_Server_PriceController extends Go_BaseController {
 
 	@Autowired
-	private IGo_Server_InfoService go_server_infoService;
+	private IGo_Server_PriceService go_server_priceService;
 	/**
 	 * 服务器信息初始化
 	 * @author chenhb
 	 * @return
 	 */
 	@RequestMapping(value = "redirect.htm")
-	public String redirect(){
-		return "sys/server/info/serverInfo";
+	public String redirect(ModelMap model,int rowIndex,int tabIndex,int serverId){
+		model.put("rowIndex", rowIndex);
+		model.put("tabIndex", tabIndex);
+		model.put("serverId", serverId);
+		return "sys/server/price/serverPrice";
 	}
 	
 	/**
@@ -59,7 +62,7 @@ public class Go_Server_InfoController extends Go_BaseController {
 			}
 		}
 		JSONObject  res = new JSONObject();
-		List<Go_Server_Info> list=go_server_infoService.listPageByParams(params, pageData);
+		List<Go_Server_Price> list=go_server_priceService.listPageByParams(params, pageData);
 		res.put("total", pageData.getTotalSize());
 		res.put("rows", JSONArray.fromObject(list));
 		model.addAttribute("show_msg",res.toString());
@@ -72,9 +75,9 @@ public class Go_Server_InfoController extends Go_BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "loadxx.htm")
-	public String loadxx(Go_Server_Info serverInfo,ModelMap model){
-		serverInfo=go_server_infoService.get(serverInfo.getId());
-		JSONObject obj=JSONObject.fromObject(serverInfo);
+	public String loadxx(Go_Server_Price serverPrice,ModelMap model){
+		serverPrice=go_server_priceService.get(serverPrice.getId());
+		JSONObject obj=JSONObject.fromObject(serverPrice);
 		model.addAttribute("show_msg",obj.toString());
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
@@ -85,10 +88,10 @@ public class Go_Server_InfoController extends Go_BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "addxx.htm")
-	public String addxx(ModelMap model,Go_Server_Info serverInfo){
+	public String addxx(ModelMap model,Go_Server_Price serverPrice){
 //		serverInfo.setType("公告");
 //		serverInfo.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
-		go_server_infoService.save(serverInfo);
+		go_server_priceService.save(serverPrice);
 		setSuccessMessage(model, "保存成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
@@ -100,8 +103,8 @@ public class Go_Server_InfoController extends Go_BaseController {
 	 * @return
 	 */
 	@RequestMapping("updatexx.htm")
-	public String updatexx(HttpServletRequest request,ModelMap model,Go_Server_Info serverInfo){
-		go_server_infoService.update(serverInfo);
+	public String updatexx(HttpServletRequest request,ModelMap model,Go_Server_Price serverPrice){
+		go_server_priceService.update(serverPrice);
 		setSuccessMessage(model, "保存成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
@@ -111,12 +114,12 @@ public class Go_Server_InfoController extends Go_BaseController {
 	 * @return
 	 */
 	@RequestMapping("changestat.htm")
-	public  String changestat(ModelMap model,Go_Server_Info serverInfo,String sns){
+	public  String changestat(ModelMap model,Go_Server_Price serverPrice,String sns){
 		Map<String,Object> params=new HashMap<String, Object>();
-		params.put("update_isactives", serverInfo.getIsactives());
+		params.put("update_isactives", serverPrice.getIsactives());
 		params.put("where_id_in", sns);
-		go_server_infoService.updateField(params);
-		if("1".equals(serverInfo.getIsactives())){
+		go_server_priceService.updateField(params);
+		if("1".equals(serverPrice.getIsactives())){
 			setSuccessMessage(model, "启用成功");
 		}else{
 			setSuccessMessage(model, "禁用成功");
@@ -135,7 +138,7 @@ public class Go_Server_InfoController extends Go_BaseController {
 	public String  deletexx(ModelMap model,Go_Server_Info serverInfo,String sns){
 		Map<String,Object> params=new HashMap<String, Object>();
 		params.put("id_in", sns);
-		go_server_infoService.deleteList(params);
+		go_server_priceService.deleteList(params);
 		setSuccessMessage(model, "删除成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}

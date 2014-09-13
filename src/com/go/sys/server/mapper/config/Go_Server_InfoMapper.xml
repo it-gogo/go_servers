@@ -9,37 +9,39 @@
 	    </selectKey>
 	    insert into Go_Server_Info(AREAID,SERVERTYPEID,NAME,CPU,MEMORY,DISK,
 	    BACKUPS,FLOW,NETFAST,IPNUM,PORT,OPERATIONSYSTEMID,CONTROLPANELID,IMGURL,
-	    BUY_TIMES,DESCRIPTION,`STATUS`)
+	    DESCRIPTION,ISACTIVES)
 	    values
 	    (
-	    #{AREA_ID},#{SERVER_TYPE_ID},#{NAME},#{CPU},#{MEMORY},#{DISK},#{BACKUPS},#{FLOW},#{NET_FAST},#{IP_NUM},#{PORT},#{OPERATION_SYSTEM_ID},
-	    #{CONTROL_PANEL_ID},#{IMG_URL},#{BUY_TIMES},#{DESCRIPTION},#{STATUS}
+	    #{areaId},#{serverTypeId},#{name},#{cpu},#{memory},#{disk},#{backups},#{flow},#{netFast},#{ipNum},#{port},#{operationSystemId},
+	    #{controlPanelId},#{imgUrl},#{description},#{isactives}
 	    )
 	</insert>
 	<update id="update">
 	    update Go_Server_Info 
 		    set 
-		    AREAID=#{AREA_ID},
-		    SERVERTYPEID=#{SERVER_TYPE_ID},
-		    NAME=#{NAME},
-		    CPU=#{CPU},
-		    MEMORY=#{MEMORY},
-		    DISK=#{DISK},
-	    	BACKUPS=#{BACKUPS},
-	    	FLOW=#{FLOW},
-	    	NETFAST=#{NET_FAST},
-	    	IPNUM=#{IP_NUM},
-	    	PORT=#{PORT},
-	    	OPERATIONSYSTEMID=#{OPERATION_SYSTEM_ID},
-	    	CONTROLPANELID=#{CONTROL_PANEL_ID},
-	    	IMGURL=#{IMG_URL},
-	   		BUY_TIMES=#{BUY_TIMES},
-	   		DESCRIPTION=#{DESCRIPTION},
-	   		`STATUS`=#{STATUS}
+		    AREAID=#{areaId},
+		    SERVERTYPEID=#{serverTypeId},
+		    NAME=#{name},
+		    CPU=#{cpu},
+		    MEMORY=#{memory},
+		    DISK=#{disk},
+	    	BACKUPS=#{backups},
+	    	FLOW=#{flow},
+	    	NETFAST=#{netFast},
+	    	IPNUM=#{ipNum},
+	    	PORT=#{port},
+	    	OPERATIONSYSTEMID=#{operationSystemId},
+	    	CONTROLPANELID=#{controlPanelId},
+	    	IMGURL=#{imgUrl},
+	   		DESCRIPTION=#{description},
+	   		ISACTIVES=#{isactives}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">
 	    delete from Go_Server_Info where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Server_Info  ${where}
 	</delete>
 	<update id="updateField" parameterType="map">
 	    update Go_Server_Info

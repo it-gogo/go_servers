@@ -13,9 +13,9 @@ public class Go_Server_Info {
 	//主键ID
 	private Integer id;
 	//区域ID
-	private Integer area_id;
+	private Integer areaId;
 	//服务器类型ID
-	private Integer server_type_id;
+	private Integer serverTypeId;
 	//套餐名称
 	private String name;
 	//套餐CPU信息
@@ -29,23 +29,21 @@ public class Go_Server_Info {
 	//流量
 	private String flow;
 	//网速
-	private String net_fast;
+	private String netFast;
 	//IP地址数
-	private String ip_num;
+	private String ipNum;
 	//端口
 	private String port;
 	//操作系统ID
-	private Integer	operation_system_id;
+	private Integer	operationSystemId;
 	//控制面板ID
-	private Integer control_panel_id;
+	private Integer controlPanelId;
 	//图片地址
-	private String img_url;
-	//购买时长
-	private String buy_times;
+	private String imgUrl;
 	//描述
 	private String description;
 	//状态
-	private String status;
+	private String isactives;
 	
 	/**
 	 * 数据完整性校验
@@ -68,18 +66,6 @@ public class Go_Server_Info {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Integer getArea_id() {
-		return area_id;
-	}
-	public void setArea_id(Integer area_id) {
-		this.area_id = area_id;
-	}
-	public Integer getServer_type_id() {
-		return server_type_id;
-	}
-	public void setServer_type_id(Integer server_type_id) {
-		this.server_type_id = server_type_id;
 	}
 	public String getName() {
 		return name;
@@ -117,53 +103,81 @@ public class Go_Server_Info {
 	public void setFlow(String flow) {
 		this.flow = flow;
 	}
-	public String getNet_fast() {
-		return net_fast;
-	}
-	public void setNet_fast(String net_fast) {
-		this.net_fast = net_fast;
-	}
-	public String getIp_num() {
-		return ip_num;
-	}
-	public void setIp_num(String ip_num) {
-		this.ip_num = ip_num;
-	}
 	public String getPort() {
 		return port;
 	}
 	public void setPort(String port) {
 		this.port = port;
 	}
-	public Integer getOperation_system_id() {
-		return operation_system_id;
-	}
-	public void setOperation_system_id(Integer operation_system_id) {
-		this.operation_system_id = operation_system_id;
-	}
-	public Integer getControl_panel_id() {
-		return control_panel_id;
-	}
-	public void setControl_panel_id(Integer control_panel_id) {
-		this.control_panel_id = control_panel_id;
-	}
-	public String getImg_url() {
-		return img_url;
-	}
-	public void setImg_url(String img_url) {
-		this.img_url = img_url;
-	}
-	public String getBuy_times() {
-		return buy_times;
-	}
-	public void setBuy_times(String buy_times) {
-		this.buy_times = buy_times;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getIsactives() {
+		return isactives;
+	}
+
+	public void setIsactives(String isactives) {
+		this.isactives = isactives;
+	}
+
+	public Integer getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
+
+	public Integer getServerTypeId() {
+		return serverTypeId;
+	}
+
+	public void setServerTypeId(Integer serverTypeId) {
+		this.serverTypeId = serverTypeId;
+	}
+
+	public String getNetFast() {
+		return netFast;
+	}
+
+	public void setNetFast(String netFast) {
+		this.netFast = netFast;
+	}
+
+	public String getIpNum() {
+		return ipNum;
+	}
+
+	public void setIpNum(String ipNum) {
+		this.ipNum = ipNum;
+	}
+
+	public Integer getOperationSystemId() {
+		return operationSystemId;
+	}
+
+	public void setOperationSystemId(Integer operationSystemId) {
+		this.operationSystemId = operationSystemId;
+	}
+
+	public Integer getControlPanelId() {
+		return controlPanelId;
+	}
+
+	public void setControlPanelId(Integer controlPanelId) {
+		this.controlPanelId = controlPanelId;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 	
