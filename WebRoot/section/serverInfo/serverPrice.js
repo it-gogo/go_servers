@@ -19,5 +19,11 @@ function  afterSubmitForm(formID){
    reloadData(gID,queryFormID);
 }
 
-
+function beforeaddxx(formID){
+	var rowIndex = $("#rowIndex").val();
+	var tabIndex = $("#tabIndex").val();
+	var row = rows[rowIndex];
+	parent.$("#serverId","#"+formID).val(row.id);
+	return  true;
+}
 
