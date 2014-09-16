@@ -22,7 +22,7 @@
      <thead>          
        <tr>
           <th field="chk" width="20" align='center' checkbox=true  ></th>
-          <th field="mnumber" width="60" align='center'>菜单编号</th>
+          <th field="number" width="60" align='center'>菜单编号</th>
           <th field="name" width="80" align='center'>菜单名称</th>
           <th field="urls" width="180" align='center'>链接地址</th>
           <th field="description" width="70"  align='center'>备注</th>

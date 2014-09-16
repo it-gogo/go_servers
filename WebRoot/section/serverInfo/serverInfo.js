@@ -32,17 +32,4 @@ function  afterSubmitForm(formID){
 		   $("#iframe_"+rowIndex+"_"+tabIndex)[0].contentWindow.loadData(gID,queryFormID);
 	   }
 }
-/**
- * 保存前
- * @param formID
- * @returns {Boolean}
- */
-function  beforeSubmit(formID){
-	if(formID==listeditFormID){
-		var serverId=parent.$("#serverId",$("#"+queryFormID)).val();
-		alert(serverId)
-		$("#serverId",$("#"+formID)).val(serverId);
-	}
-	return true;
-}
 

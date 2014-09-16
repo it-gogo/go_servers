@@ -13,7 +13,7 @@
     	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="resetForm(queryFormID)">重置</a> -->
  
  <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="parentAddxx(listeditDialogID,listeditFormID)">新 增</a>
- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deletexxAll(urls,gID,editFormID);">删 除</a>
+ <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deletexxAll();">删 除</a>
 	</form>	
 </div>
  <table id="grids" title="价格信息列表"  fit="true"

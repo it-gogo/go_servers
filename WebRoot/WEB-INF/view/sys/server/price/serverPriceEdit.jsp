@@ -6,7 +6,9 @@
           style="width:610px;height:520px;padding:2px;">
 	     <form id="listeForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
-	        <input  type="text"  style="display:none;" name="serverId" id="serverId" value="${serverId }"></input>
+	        <input  type="text"  style="display:none;" name="serverId" id="serverId" ></input>
+	        <input type="hidden" id="rowIndex"  name="rowIndex" >
+			<input type="hidden" id="tabIndex"  name="tabIndex" >
 	    	<table width="96%" class="t2">
 	    		<tr>
 	    			<td align="right"  class="td_left">名称:</td>

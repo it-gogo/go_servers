@@ -57,7 +57,7 @@ public class Go_MenuController extends Go_BaseController {
 			String value=(String) obj.get("vals");
 //			String datatype=(String)obj.get("datatype");
 			if(value!=null  &&  !"".equals(value)){
-				params.put(name+"_like", value);
+				params.put(name+"_like_right", value);
 			}
 		}
 		JSONObject  res = new JSONObject();
