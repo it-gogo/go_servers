@@ -66,7 +66,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 			tpo.setAttributes(attr);
 			arraylist.add(tpo);
 		}
-		array = this.tranArrayToJson(arraylist);
+		array = this.tranArrayToJson1(arraylist);
 		return array;
 	}
 	/**
@@ -74,7 +74,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 	 * @param array
 	 * @return
 	 */
-	private  JSONArray  tranArrayToJson(List<TreePo> array){
+	private  JSONArray  tranArrayToJson1(List<TreePo> array){
     	//存储临时对象
     	Map<Object,Object>  tmpMap = new LinkedHashMap<Object,Object>();
     	//结果返回值

@@ -15,6 +15,7 @@
 <!-- 数据编辑层 -->
 <%-- <%@include file="noticeQuery.jsp" %> --%>
 <%@include file="companyInfoEdit.jsp" %>
+<%@include file="companyInfoEditUE.jsp" %>
 
 </body>
 </html>
