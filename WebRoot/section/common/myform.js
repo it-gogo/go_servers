@@ -106,11 +106,12 @@ function submitForm(action,formID){
 	if(!$("#"+formID).form('validate')){
 		return false;
 	}
+	//alert(formID)
     $("#"+formID).form('submit',{
         url:action+"/"+submitMethod+".htm" ,
         onSubmit:function(param){
         	//var json = eval("("+param+")");
-        	
+        	//alert(json)
         	//判断是否是AJAX提交的标志
         	if(typeof(beforeSubmit)=="function"){
         		return beforeSubmit(formID);
@@ -601,46 +602,35 @@ $.fn.setForm = function(json,formID){
     	var t = this.type, tag = this.tagName.toLowerCase(), id = this.id,title = this.title,classNames = this.className;
     	if( id != "" )
 		{
-    		//alert(id+"-"+t);
-    		//alert(tag+"-"+id);
 			if ( t == 'text' || t == 'hidden' || t == 'password'||t =='textarea' || tag=='textarea' )
 			{
-                 
-//				if(tag=='textarea'){
-//					alert(json[id]);
-//				}
 				if( json[id] != null )
 				{
 					if(classNames.indexOf('easyui-numberbox')>-1){
 	                	$("#"+id,curObj).numberbox('setValue',json[id]);
 	                }else if(classNames.indexOf('easyui-datebox')>-1){
 	                	$("#"+id,curObj).datebox('setValue',json[id]);
-	                	//alert(json[id]);
 	                }else if(classNames.indexOf('easyui-datetimebox')>-1){
 	                	$("#"+id,curObj).datetimebox('setValue',json[id]);
 	                }else {
 					   this.value = json[id];
 	                }
-					
 				}else if(json[title]!=null){
 					if(classNames.indexOf('easyui-numberbox')>-1){
 						$("#"+id,curObj).numberbox('setValue',json[title]);
 					}else if(classNames.indexOf('easyui-datebox')>-1){
-	                	//alert(json[id]);
 	                	$("#"+id,curObj).datebox('setValue',json[title]);
 	                }else if(classNames.indexOf('easyui-datetimebox')>-1){
 	                	$("#"+id,curObj).datetimebox('setValue',json[title]);
 	                }else{
 					  this.value = json[title];
 					}
-					
 				}
 			}
 			else if( t == 'select-one' )
 			{
 				if( json[id] != null )
 				{
-					//alert(json[id]);
 					if(classNames.indexOf("easyui-combobox")>-1){
 					  $("#"+id,curObj).combobox("setValue",json[id]);
 					}else{
@@ -652,7 +642,6 @@ $.fn.setForm = function(json,formID){
 						}else{
 							this.value = json[title];
 						}
-					
 				}
 			}
 			else if(t == "checkbox" || t=="radio"){

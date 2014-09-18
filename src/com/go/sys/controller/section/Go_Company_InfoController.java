@@ -98,6 +98,23 @@ public class Go_Company_InfoController extends Go_BaseController {
 	 */
 	@RequestMapping("updatexx.htm")
 	public String updatexx(HttpServletRequest request,ModelMap model,Go_Company_Info companyInfo){
+		Map<String, String[]> m=request.getParameterMap();
+		String[] p=(String[]) m.get("content");
+		String content="";
+		if(p!=null && p.length>0){
+			content=p[0];
+		}
+		p=(String[]) m.get("updateType");
+		if(p!=null && p.length>0){
+			String type=p[0];
+			if("history".equals(type)){
+				companyInfo.setHistory(content);
+			}else if("corecompetitiveness".equals(type)){
+				companyInfo.setCorecompetitiveness(content);
+			}else if("briefintroduction".equals(type)){
+				companyInfo.setBriefintroduction(content);
+			}
+		}
 		go_company_infoService.update(companyInfo);
 		setSuccessMessage(model, "保存成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;

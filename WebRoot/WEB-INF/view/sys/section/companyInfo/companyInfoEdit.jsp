@@ -6,11 +6,10 @@
           style="width:610px;height:520px;padding:2px;">
 	     <form id="eForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
-	        <input  type="text"  style="display:none;" name="history" id="history"></input>
+	        <input  type="text"  style="display:none;" name="history" id="history" ></input>
 	        <input  type="text"  style="display:none;" name="corecompetitiveness" id="corecompetitiveness"></input>
 	        <input  type="text"  style="display:none;" name="briefintroduction" id="briefintroduction"></input>
 	    	<table width="96%" class="t2">
-	    	  
 	    		<tr>
 	    			<td align="right"  class="td_left">电话:</td>
 	    			<td>

@@ -1,5 +1,7 @@
 package com.go.sys.section.model;
 
+import net.sf.json.JSONObject;
+
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -49,5 +51,8 @@ public class Go_Company_Info {
 	}
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+	public String toString(){
+		return JSONObject.fromObject(this).toString();
 	}
 }

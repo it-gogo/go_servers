@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			*数据显示
 			**/
 			$('#dg').datagrid({  
-			    url:'sys/common/dict_data/ajax_list', 
+			    url:'sys/common/dict_data/ajax_list.htm', 
 			    striped:true,
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
