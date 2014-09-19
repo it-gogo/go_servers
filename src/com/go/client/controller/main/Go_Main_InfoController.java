@@ -1,12 +1,17 @@
 package com.go.client.controller.main;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
 import com.go.client.main.service.IGo_Main_InfoService;
 import com.go.controller.base.Go_BaseController;
+import com.go.sys.section.model.Go_Company_Info;
+import com.go.sys.section.service.IGo_Company_InfoService;
 
 /**
  * 服务器列表信息 控制类
@@ -18,7 +23,9 @@ import com.go.controller.base.Go_BaseController;
 public class Go_Main_InfoController extends Go_BaseController{
 	
 	@Autowired
-	public IGo_Main_InfoService go_serverList_infoService;
+	public IGo_Main_InfoService go_serverList_infoService;//服务器信息service
+	@Autowired
+	private IGo_Company_InfoService go_company_infoService;//公司信息service
 	
 	/**
 	 * 公共云服务器列表查询
@@ -186,7 +193,9 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="company.htm")
-	public String aboutCompany(Go_PageData pageData){
+	public String aboutCompany(ModelMap model){
+		Go_Company_Info company=go_company_infoService.get(new HashMap<String,Object>());
+		model.put("company", company);
 		return "client/main/aboutCompany";
 	}
 	
