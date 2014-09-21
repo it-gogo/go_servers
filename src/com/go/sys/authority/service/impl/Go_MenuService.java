@@ -69,38 +69,7 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 		array = this.tranArrayToJson1(arraylist);
 		return array;
 	}
-	/**
-	 * 树转换成JSON字符串
-	 * @param array
-	 * @return
-	 */
-	private  JSONArray  tranArrayToJson1(List<TreePo> array){
-    	//存储临时对象
-    	Map<Object,Object>  tmpMap = new LinkedHashMap<Object,Object>();
-    	//结果返回值
-    	JSONArray  res = new JSONArray();
-    	TreePo root = null;
-    	for(int i=0;i<array.size();i++){
-    		TreePo  jsonobj = array.get(i);
-    		long  bh = jsonobj.getId();
-    		tmpMap.put(bh,jsonobj);
-    	}
-    	for(int i=0;i<array.size();i++){
-
-    		TreePo  jsonobj = array.get(i);
-    		long bh = jsonobj.getId();
-    		long fbh = jsonobj.getPid();
-    		if(fbh==-1){
-    			//根
-    			root = (TreePo)tmpMap.get(bh);
-    		}else{
-    			if(tmpMap.get(fbh)!=null)
-    	        ((TreePo)tmpMap.get(fbh)).getChildren().addNode((TreePo)tmpMap.get(bh));
-    	    }
-    	}
-    	res.add(JSONObject.fromObject(root.toString()));
-    	return res;
-    }
+	
 	
 	/**
 	 * 取得菜单
@@ -151,32 +120,8 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 				list.add(po);
 			}
 		}
-		return tranArrayToJson(list);
+		return this.tranArrayToJson(list);
 	}
 
-	@SuppressWarnings("unused")
-	private  String  tranArrayToJson(List<MenuPo> array){
-    	//存储临时对象
-    	Map<Object,Object>  tmpMap = new LinkedHashMap<Object,Object>();
-    	//结果返回值
-    	JSONArray  res = new JSONArray();
-    	MenuPo root = null;
-    	for(int i=0;i<array.size();i++){
-    		MenuPo  jsonobj = array.get(i);
-    		int  bh = jsonobj.getNumber();
-    		tmpMap.put(bh,jsonobj);
-    	}
-    	for(int i=0;i<array.size();i++){
-    		MenuPo  jsonobj = array.get(i);
-    		int bh = jsonobj.getNumber();
-    		int fbh = jsonobj.getPnumber();
-    		if(fbh==-1){
-    			//根
-    			root = (MenuPo)tmpMap.get(bh);
-    		}else{
-    	        ((MenuPo)tmpMap.get(fbh)).getChildren().addChildren((MenuPo)tmpMap.get(bh));
-    	    }
-    	}
-    	return root.toString();
-    }
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.AbstractDocument.Content;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -17,7 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.controller.base.Go_BaseController;
+import com.go.sys.authority.model.Constant;
+import com.go.sys.common.model.Go_Code_Data;
+import com.go.sys.common.service.IGo_Code_DataService;
+import com.go.sys.server.model.Go_Server_Configuration_Type;
 import com.go.sys.server.model.Go_Server_Info;
+import com.go.sys.server.service.IGo_Configuration_DataService;
+import com.go.sys.server.service.IGo_Server_Configuration_TypeService;
 import com.go.sys.server.service.IGo_Server_InfoService;
 
 /**
@@ -31,6 +38,49 @@ public class Go_Server_InfoController extends Go_BaseController {
 
 	@Autowired
 	private IGo_Server_InfoService go_server_infoService;
+	@Autowired
+	private IGo_Configuration_DataService go_configuration_dataService;
+	@Autowired
+	private IGo_Server_Configuration_TypeService go_server_configuration_typeService;//关联表
+	@Autowired
+	private IGo_Code_DataService go_code_dataService;//数据字典
+	/**
+	 * 获取所有配置项数据
+	 * @param model
+	 * @param pageData
+	 * @param gt_json
+	 * @return
+	 */
+	@RequestMapping(value = "findAllConfigurationType.htm")
+	public  String  findAllConfigurationType(ModelMap model,Go_PageData pageData,String gt_json){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("type", Constant.CODETYPE_KPZX);
+		List<Go_Code_Data> list=go_code_dataService.list(params);
+		JSONArray array=JSONArray.fromObject(list);
+		JSONObject res=new JSONObject();
+		res.put("total", go_code_dataService.count(params));
+		res.put("rows", array);
+		model.addAttribute("show_msg",res.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/**
+	 * 查找绑定的用户
+	 * @return
+	 */
+	@RequestMapping(value = "findConfiguration.htm")
+	public  String  findConfiguration(ModelMap model,Go_PageData pageData,Integer id){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("server", id);
+		List<Go_Server_Configuration_Type> list=go_server_configuration_typeService.list(params);
+		JSONObject  obj = new JSONObject();
+		for(int i=0;i<list.size();i++){
+			Go_Server_Configuration_Type po = list.get(i);
+			Integer uids = po.getConfigurationType();
+			obj.put(uids,uids);
+		}
+		model.addAttribute("show_msg",obj.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
 	/**
 	 * 服务器信息初始化
 	 * @author chenhb
