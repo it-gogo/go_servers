@@ -7,14 +7,14 @@ var  treeurl = urls+"/findConfigurationTree.htm";
 //取得已经绑定的配置项的URL
 var  fcurl =urls+"/findConfiguration.htm";
 //保存
-var  saveConfigurationUrl = urls+"/saveConfigurationType.htm";
-//var  binguserlisturl = urls+"/findAllConfigurationType.htm";
-
+var  saveConfigurationUrl = urls+"/saveConfiguration.htm";
+//树是否有复选框
+treecheckbox = true;
 $(document).ready(function(){
 	   listGrid.initGrids(gID,listurl,listGridInfo);
 	   initForm(editDialogID,editFormID);
 	   initForm(listeditDialogID,listeditFormID);
-	   initTree(treeID,treeurl);
+	  initTree(treeID,treeurl);
 	   //initGrids(bgridID,binguserlisturl);
 });
 //产生子表格信息
@@ -50,18 +50,52 @@ function  openConfiguration(ids,gridID){
 	openDialog("aDialog");
 	if(ids!=snumber){
 		$("#snumber").val(ids);
-		clearRowChecked(gridID);
-		ajaxRequest(buserurl,{"id":ids},function(data){
-			setRowsChecked(gridID,data,"id");
+		//clearRowChecked(gridID);
+		var nodes = $('#tt').tree('getChecked');
+		for(var i=0;i<nodes.length;i++){
+			var node=nodes[i];
+			$("#" + treeID).tree('uncheck', node.target);
+		}
+		ajaxRequest(fcurl,{"id":ids},function(data){
+			for(var i=0;i<data.length;i++){
+				var id=data[i].configuration;
+				var node = $('#tt').tree('find', id);
+				var isleaf = $("#" + treeID).tree('isLeaf', node.target);//判断是否最后节点
+				if(!isleaf){
+					var nodes = $("#" + treeID).tree('getChildren', node.target);//判断是否最后节点
+					for(var j=0;j<nodes.length;j++){
+						var n=nodes[j];
+						if(n.id==id){
+							 $("#"+treeID).tree("check",n.target);
+							 break;
+						}
+					}
+				}else{
+					 $("#"+treeID).tree("check",node.target);
+				}
+				//alert(node.text)
+			}
+			//setRowsChecked(gridID,data,"id");
 		});
 	}
 }
 
 //保存绑定配置项
-function  saveConfiguration(url,gridID){
+function  saveConfiguration(url){
 	var snumber = $("#snumber").val();
-	var  bgids = getCheckeds(gridID);
-	ajaxRequest(url,{'id':snumber,'configurationType':bgids},function(data){
+//	var mnumber = getCheckedNodesOfID(treeID,true);
+	var tnumber="";//类型id字符串
+	var cnumber="";//内容id字符串
+	var nodes = $('#tt').tree('getChecked');
+	for(var i=0;i<nodes.length;i++){
+		var node=nodes[i];
+		var isleaf = $("#" + treeID).tree('isLeaf', node.target);//判断是否最后节点
+		if(isleaf){
+			cnumber+=node.id+",";
+		}
+	}
+//	var  bgids = getCheckeds(gridID);
+	ajaxRequest(url,{'id':snumber,'configuration':cnumber},function(data){
 		if(data.status=="unvalid"){
         	location.href="../errors/sessionError.jsp"
             }else{
@@ -82,4 +116,7 @@ function  getHandleStr(value,row,index){
  	     handstr += "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='changestat(urls,"+value+",1,\"是否启用\",editFormID);'>[启 用]</a>&nbsp;&nbsp;";
     }
     return  handstr;
+}
+
+function treeclick(node){
 }

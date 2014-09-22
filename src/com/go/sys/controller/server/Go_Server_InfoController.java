@@ -22,9 +22,11 @@ import com.go.controller.base.Go_BaseController;
 import com.go.sys.authority.model.Constant;
 import com.go.sys.common.model.Go_Code_Data;
 import com.go.sys.common.service.IGo_Code_DataService;
+import com.go.sys.server.model.Go_Server_Configuration;
 import com.go.sys.server.model.Go_Server_Configuration_Type;
 import com.go.sys.server.model.Go_Server_Info;
 import com.go.sys.server.service.IGo_Configuration_DataService;
+import com.go.sys.server.service.IGo_Server_ConfigurationService;
 import com.go.sys.server.service.IGo_Server_Configuration_TypeService;
 import com.go.sys.server.service.IGo_Server_InfoService;
 
@@ -43,6 +45,8 @@ public class Go_Server_InfoController extends Go_BaseController {
 	private IGo_Configuration_DataService go_configuration_dataService;
 	@Autowired
 	private IGo_Server_Configuration_TypeService go_server_configuration_typeService;//关联表
+	@Autowired
+	private IGo_Server_ConfigurationService go_server_configurationService;//关联表
 	@Autowired
 	private IGo_Code_DataService go_code_dataService;//数据字典
 	
@@ -77,43 +81,49 @@ public class Go_Server_InfoController extends Go_BaseController {
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	/**
-	 * 查找绑定的用户
+	 * 查找绑定的可配置项
 	 * @return
 	 */
 	@RequestMapping(value = "findConfiguration.htm")
 	public  String  findConfiguration(ModelMap model,Go_PageData pageData,Integer id){
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("server", id);
-		List<Go_Server_Configuration_Type> list=go_server_configuration_typeService.list(params);
+		List<Go_Server_Configuration> list=go_server_configurationService.list(params);
 		JSONObject  obj = new JSONObject();
 		for(int i=0;i<list.size();i++){
-			Go_Server_Configuration_Type po = list.get(i);
-			Integer uids = po.getConfigurationType();
+			Go_Server_Configuration po = list.get(i);
+			Integer uids = po.getConfiguration();
 			obj.put(uids,uids);
 		}
-		model.addAttribute("show_msg",obj.toString());
+//		model.addAttribute("show_msg",obj.toString());
+		model.addAttribute("show_msg",JSONArray.fromObject(list).toString());
+		System.out.println(JSONArray.fromObject(list).toString());
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	/**
-	 * 绑定配置项类型
+	 * 绑定配置项
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping(value = "saveConfigurationType.htm")
-	public  String saveConfigurationType(Go_Server_Info serverInfo,ModelMap model,String configurationType){
+	@RequestMapping(value = "saveConfiguration.htm")
+	public  String saveConfiguration(Go_Server_Info serverInfo,ModelMap model,String configuration){
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("server", serverInfo.getId());
-		go_server_configuration_typeService.deleteList(params);
-		List<Go_Server_Configuration_Type> list=new ArrayList<Go_Server_Configuration_Type>();
-		String[] ids=configurationType.split(",");
-		for(String str:ids){
+		go_server_configurationService.deleteList(params);
+		List<Go_Server_Configuration> list=new ArrayList<Go_Server_Configuration>();
+		String[] ids=configuration.split(",");
+		for(int i=0;i<ids.length;i++){
+			String str=ids[i];
+			if("".equals(str)){
+				continue;
+			}
 			str=str.trim();
 			Integer id=Integer.valueOf(str);
-			Go_Server_Configuration_Type vo=new Go_Server_Configuration_Type();
-			vo.setConfigurationType(id);
+			Go_Server_Configuration vo=new Go_Server_Configuration();
+			vo.setConfiguration(id);
 			vo.setServer(serverInfo.getId());
 			list.add(vo);
-			go_server_configuration_typeService.save(vo);
+			go_server_configurationService.save(vo);
 		}
 //		go_server_configuration_typeService.saveList(list);
 		setSuccessMessage(model, "修改成功");
