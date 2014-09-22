@@ -1,19 +1,21 @@
 var urls = "../server_info";
 var listurl = urls+"/findlist.htm";
 var listediturl = "../server_price";
-var  bgridID = "bgrids";
-//取得已经绑定的用户的URL
-var  buserurl =urls+"/findConfiguration.htm";
+//var  bgridID = "bgrids";
+//可配置项树的URL
+var  treeurl = urls+"/findConfigurationTree.htm";
+//取得已经绑定的配置项的URL
+var  fcurl =urls+"/findConfiguration.htm";
 //保存
-var  saveConfigurationUrl = urls+"/saveConfiguration.htm";
-var  binguserlisturl = urls+"/findAllConfigurationType.htm";
+var  saveConfigurationUrl = urls+"/saveConfigurationType.htm";
+//var  binguserlisturl = urls+"/findAllConfigurationType.htm";
 
 $(document).ready(function(){
-//	   initGrids(gID,listurl);
 	   listGrid.initGrids(gID,listurl,listGridInfo);
 	   initForm(editDialogID,editFormID);
 	   initForm(listeditDialogID,listeditFormID);
-	   initGrids(bgridID,binguserlisturl);
+	   initTree(treeID,treeurl);
+	   //initGrids(bgridID,binguserlisturl);
 });
 //产生子表格信息
 var listGridInfo = {
@@ -44,10 +46,10 @@ function  afterSubmitForm(formID){
 //绑定配置项
 function  openConfiguration(ids,gridID){
 	
-	var ornumber = $("#urnumber").val();
-	openDialog("bDialog");
-	if(ids!=ornumber){
-		$("#urnumber").val(ids);
+	var snumber = $("#snumber").val();
+	openDialog("aDialog");
+	if(ids!=snumber){
+		$("#snumber").val(ids);
 		clearRowChecked(gridID);
 		ajaxRequest(buserurl,{"id":ids},function(data){
 			setRowsChecked(gridID,data,"id");
@@ -56,10 +58,10 @@ function  openConfiguration(ids,gridID){
 }
 
 //保存绑定配置项
-function  saveConfiguration(buserurl,gridID){
-	var rnumber = $("#urnumber").val();
+function  saveConfiguration(url,gridID){
+	var snumber = $("#snumber").val();
 	var  bgids = getCheckeds(gridID);
-	ajaxRequest(buserurl,{'id':rnumber,'userId':bgids},function(data){
+	ajaxRequest(url,{'id':snumber,'configurationType':bgids},function(data){
 		if(data.status=="unvalid"){
         	location.href="../errors/sessionError.jsp"
             }else{
@@ -71,7 +73,7 @@ function  saveConfiguration(buserurl,gridID){
 
 //操作信息
 function  getHandleStr(value,row,index){
-    var  handstr = "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='openConfiguration("+value+",bgridID);'>[绑定用户]</a>&nbsp;"+
+    var  handstr = "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='openConfiguration("+value+",treeID);'>[绑定配置项]</a>&nbsp;"+
     				"<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='loadxx(urls,"+value+",editFormID);'>[修 改]</a> "+
                    "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='deletexx(urls,"+value+",editFormID);'>[删 除]</a>";
     if(row.isactives==1){

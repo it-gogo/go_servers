@@ -1,5 +1,7 @@
 package com.go.sys.server.service;
 
+import net.sf.json.JSONArray;
+
 import com.go.base.service.IGo_BaseService;
 import com.go.sys.server.model.Go_Server_Info;
 
@@ -11,4 +13,5 @@ import com.go.sys.server.model.Go_Server_Info;
 public interface IGo_Server_InfoService extends
 		IGo_BaseService<Go_Server_Info, Integer> {
 
+	public  JSONArray  findConfigurationTree();
 }

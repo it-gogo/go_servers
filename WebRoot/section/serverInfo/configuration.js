@@ -1,9 +1,9 @@
-var urls = "../server_configuration";
+var urls = "../configuration";
 var listurl = urls+"/findlist.htm";
-var treeurl = "../server_configuration/getServerTree.htm";
+var treeurl = "../configuration/getConfigurationTree.htm";
 
 $(document).ready(function(){
-	 initTree(treeID,treeurl);
+	   initTree(treeID,treeurl);
 	   initGrids(gID,listurl);
 	   initForm(editDialogID,editFormID);
 });

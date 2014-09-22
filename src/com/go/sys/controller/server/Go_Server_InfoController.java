@@ -1,11 +1,12 @@
 package com.go.sys.controller.server;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.AbstractDocument.Content;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -44,6 +45,18 @@ public class Go_Server_InfoController extends Go_BaseController {
 	private IGo_Server_Configuration_TypeService go_server_configuration_typeService;//关联表
 	@Autowired
 	private IGo_Code_DataService go_code_dataService;//数据字典
+	
+	/**
+	 * 可配置项树
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "findConfigurationTree.htm")
+	public  String  findConfigurationTree(ModelMap model){
+		JSONArray  res = go_server_infoService.findConfigurationTree();
+		model.addAttribute("show_msg",res.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
 	/**
 	 * 获取所有配置项数据
 	 * @param model
@@ -79,6 +92,31 @@ public class Go_Server_InfoController extends Go_BaseController {
 			obj.put(uids,uids);
 		}
 		model.addAttribute("show_msg",obj.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/**
+	 * 绑定配置项类型
+	 * @return
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "saveConfigurationType.htm")
+	public  String saveConfigurationType(Go_Server_Info serverInfo,ModelMap model,String configurationType){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("server", serverInfo.getId());
+		go_server_configuration_typeService.deleteList(params);
+		List<Go_Server_Configuration_Type> list=new ArrayList<Go_Server_Configuration_Type>();
+		String[] ids=configurationType.split(",");
+		for(String str:ids){
+			str=str.trim();
+			Integer id=Integer.valueOf(str);
+			Go_Server_Configuration_Type vo=new Go_Server_Configuration_Type();
+			vo.setConfigurationType(id);
+			vo.setServer(serverInfo.getId());
+			list.add(vo);
+			go_server_configuration_typeService.save(vo);
+		}
+//		go_server_configuration_typeService.saveList(list);
+		setSuccessMessage(model, "修改成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	/**

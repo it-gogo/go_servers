@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <%@include file="/section/common/includefile.jsp"%>
- <script language="javascript" src="<%=basePath%>/section/serverInfo/serverConfiguration.js" ></script>
+ <script language="javascript" src="<%=basePath%>/section/serverInfo/configuration.js" ></script>
 <meta http-equiv="cache-control" content="no-cache">
 <body>
 
