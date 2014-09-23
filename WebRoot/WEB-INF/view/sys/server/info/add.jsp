@@ -57,6 +57,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    					$('#disk').val($('#sel_disk_info').combobox("getText"));
    				}	
 			});
+			//获取流量配置信息
+			$('#sel_flow_info').combobox({
+				url:'sys/common/dict_data/ajax_combo_list.htm?extension=FLOW',
+				valueField:'id',    
+   				textField:'data_name',
+   				onSelect:function(params){
+   					$('#flow').val($('#sel_flow_info').combobox("getText"));
+   				}	
+			});
+			
+			//获取配套的IP个数
+			$('#sel_ip_num').combobox({
+				url:'sys/common/dict_data/ajax_combo_list.htm?extension=IP_NUM',
+				valueField:'id',    
+   				textField:'data_name',
+   				onSelect:function(params){
+   					$('#ip_num').val($('#sel_ip_num').combobox("getText"));
+   				}	
+			});
+			
+			//获取配套的IP个数
+			$('#sel_port_info').combobox({
+				url:'sys/common/dict_data/ajax_combo_list.htm?extension=PORT',
+				valueField:'id',    
+   				textField:'data_name',
+   				onSelect:function(params){
+   					$('#port').val($('#sel_port_info').combobox("getText"));
+   				}	
+			});
+			
 		});
 	</script>
   </head>
@@ -93,27 +123,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    					<input id="sel_disk_info" name="disk">
 					    				<input type="hidden" name="disk" id="disk" />
 				    				</td>
-				    				<td class="td1">优 惠 方 式<span class="remark">&nbsp;*&nbsp;</span>：</td>
+				    				<td class="td1">云端备份<span class="remark">&nbsp;*&nbsp;</span>：</td>
 				    				<td>
-				    					<input type="radio" value="1" name="discount_type" checked="checked" onclick="monthDiscountType(1);" />特惠积分
-				    					<input type="radio" value="0" name="discount_type" onclick="monthDiscountType(1);" />月结积分
+				    					<input type="radio" value="是" name="backups"/>是
+				    					<input type="radio" value="否" name="backups" />否
 				    				</td>
 				    			</tr>
-				    			<tr><td colspan="4" align="right" id="monthDiscountType_1"></td></tr>
+				    			<tr><td colspan="4" align="right"></td></tr>
 				    			<tr>
-				    				<td class="td1">身份证号码<span class="remark">&nbsp;*&nbsp;</span>：</td>
-				    				<td colspan="3">
-				    					<input type="text" name="identity_no" value="" size="70" />
+				    				<td class="td1">配置流量<span class="remark">&nbsp;*&nbsp;</span>：</td>
+				    				<td>
+				    					<input id="sel_flow_info" name="flow">
+					    				<input type="hidden" name="flow" id="flow" />
+				    				</td>
+				    				<td class="td1">配套IP数<span class="remark">&nbsp;*&nbsp;</span>：</td>
+				    				<td>
+				    					<input id="sel_ip_num" name="ip_num">
+					    				<input type="hidden" name="ip_num" id="ip_num" />
 				    				</td>
 				    			</tr>
 				    			<tr>
-				    				<td class="td1">接收短信<span class="remark">&nbsp;&nbsp;&nbsp;</span>：</td>
+				    				<td class="td1">配置端口<span class="remark">&nbsp;&nbsp;&nbsp;</span>：</td>
 				    				<td>
-				    					<select id="isgetphone" name="issend_sms" style="width:150px;" class="easyui-combobox"
-				    					 data-options="editable:false,onSelect:function(){if($(this).combobox('getValue')=='0'){$('#span_issend_sms').html('&nbsp;*&nbsp;');}else{$('#span_issend_sms').html('&nbsp;&nbsp;&nbsp;');} }" >
-				    						<option value="0">需要</option>
-				    						<option value="1">不需要</option>
-				    					</select>
+				    					<input id="sel_port_info" name="port">
+					    				<input type="hidden" name="port" id="port" />
 				    				</td>
 				    				<td class="td1">接收号码<span id="span_issend_sms" class="remark">&nbsp;*&nbsp;</span>：</td>
 				    				<td><input type="text" value="" name="mobile" style="width:130px;" onkeypress="return event.keyCode>=48&&event.keyCode<=57"  

@@ -52,6 +52,10 @@
 	    ${where}
 	    limit 1 , 0
 	</select>
+	<select id="getScaleList" parameterType="map" resultType="map">
+	    select ${column} from Go_Server_Info a
+	    ${where}
+	</select>
 	<select id="select" resultType="Go_Server_Info">
 	    select * from Go_Server_Info
 	</select>

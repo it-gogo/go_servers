@@ -17,85 +17,26 @@
 <div class="containerW" style="padding-bottom:0;">
     <div class="box">
     <ul class="oneOf5Grid">
-    <h2 class="gray" style="clear:both">  <a name="windows" id="windows"></a>VPS (Windows)</h2>
-      	<li>
-              <img src="/Public/Uploads/20131226/52bb1e09d1f12.jpg" width="87" height="65" alt="RAK W512 VPS服务器" /> 
-              <div class="title">RAK W512</div>
-              <ul>
-                  <li>512M 内存</li>
-                  <li>20G SAN 存储</li>
-                  <li>200G 流量</li>
-                  <li>1 IPv4 地址</li>
-                  <li>1 GBPS 上行速度</li>
-                  <li>SolusVM 控制面板</li> 
-              </ul>
-              <div class="price">$10.95/月</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=14">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=14')"/>
-      </a>
-            </li><li>
-              <img src="/Public/Uploads/20131226/52bb1e9308a04.jpg" width="87" height="65" alt="RAK W1024 VPS服务器" /> 
-              <div class="title">RAK W1024</div>
-              <ul>
-                  <li>1024M 内存</li>
-                  <li>40G SAN存储</li>
-                  <li>400G 流量</li>
-                  <li>1 IPv4 地址</li>
-                  <li>1 GBPS 上行速度</li>
-                  <li>SolusVM 控制面板</li> 
-              </ul>
-              <div class="price">$20.95/月</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=15">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=15')"/>
-      </a>
-            </li><li>
-              <img src="/Public/Uploads/20131226/52bb1f0f5fbe2.jpg" width="87" height="65" alt="RAK W1536 VPS服务器" /> 
-              <div class="title">RAK W1536</div>
-              <ul>
-                  <li>1536M 内存</li>
-                  <li>60G SAN 存储</li>
-                  <li>600G 流量</li>
-                  <li>1 IPv4 地址</li>
-                  <li>1 GBPS 上行速度</li>
-                  <li>SolusVM 控制面板</li> 
-              </ul>
-              <div class="price">$30.95/月</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=17">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=17')"/>
-      </a>
-            </li><li>
-              <img src="/Public/Uploads/20131226/52bb1f824a9f2.jpg" width="87" height="65" alt="RAK W2048 VPS服务器" /> 
-              <div class="title">RAK W2048</div>
-              <ul>
-                  <li>2048M 内存</li>
-                  <li>80G SAN 存储</li>
-                  <li>800G 流量</li>
-                  <li>1 IPv4 地址</li>
-                  <li>1 GBPS 上行速度</li>
-                  <li>SolusVM 控制面板</li> 
-              </ul>
-              <div class="price">$40.95/月</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=16">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=16')"/>
-      </a>
-            </li><li>
-              <img src="/Public/Uploads/20131226/52bb205826222.jpg" width="87" height="65" alt="RAK W4096 VPS服务器" /> 
-              <div class="title">RAK W4096</div>
-              <ul>
-                  <li>4096M 内存</li>
-                  <li>160G SAN存储</li>
-                  <li>1600G 流量</li>
-                  <li>1 IPv4 地址</li>
-                  <li>1 GBPS 上行速度</li>
-                  <li>SolusVM 控制面板</li> 
-              </ul>
-              <div class="price">$80.95/月</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=25">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=25')"/>
-      </a>
-            </li>      <div class="cutOffLine"></div>
     <h2 class="gray"  style="clear:both"> <a name="linux" id="linux"></a>VPS (Linux)</h2>
-    	<li>
+    	<c:forEach items="${list }" var="server">
+		<li>
+              <img src="/Public/Uploads/20131218/52b0ba319f677.jpg" width="87" height="65" alt="ATOM Server 美国服务器" /> 
+              <div class="title">${server.name }</div>
+              <ul>
+                  <li>${server.memory }</li>
+                  <li>${server.disk }</li>
+                  <li>${server.flow }</li>
+                  <li>${server.ipNum }</li>
+                   <li>${server.netFast }</li>
+                   <li>SolusVM 控制面板</li>
+              </ul>
+              <div class="price">${server.pricename }</div>
+      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7">
+      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7')"/>
+      </a>
+            </li>
+	</c:forEach>
+    	<!-- <li>
               <img src="/Public/Uploads/20131226/52bb16d4e5341.jpg" width="87" height="65" alt="RAK L4096 VPS服务器" /> 
               <div class="title">RAK L256</div>
               <ul>
@@ -185,7 +126,8 @@
       <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=36">
       <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=36')"/>
       </a>
-            </li>    </ul>
+            </li>     -->
+    </ul>
 </div></div>
     <!--containerW end-->
     <div class="container">

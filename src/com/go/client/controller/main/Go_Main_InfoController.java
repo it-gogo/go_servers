@@ -1,6 +1,8 @@
 package com.go.client.controller.main;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import com.go.client.main.service.IGo_Main_InfoService;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.section.model.Go_Company_Info;
 import com.go.sys.section.service.IGo_Company_InfoService;
+import com.go.sys.server.model.Go_Server_Info;
+import com.go.sys.server.service.IGo_Server_InfoService;
 
 /**
  * 服务器列表信息 控制类
@@ -24,8 +28,11 @@ public class Go_Main_InfoController extends Go_BaseController{
 	
 	@Autowired
 	public IGo_Main_InfoService go_serverList_infoService;//服务器信息service
+	
 	@Autowired
 	private IGo_Company_InfoService go_company_infoService;//公司信息service
+	@Autowired
+	private IGo_Server_InfoService go_server_infoService;//服务器信息service
 	
 	/**
 	 * 公共云服务器列表查询
@@ -33,7 +40,12 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="public.htm")
-	public String publicCloudServer(Go_PageData pageData){
+	public String publicCloudServer(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "1");//公有云服务器
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
 		return "client/main/publicCloudServer";
 	}
 	
@@ -53,7 +65,12 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="independence.htm")
-	public String independenceServer(Go_PageData pageData){
+	public String independenceServer(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "3");//独立服务器
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
 		return "client/main/independenceServer";
 	}
 	
@@ -63,7 +80,12 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="stations.htm")
-	public String stationsGroupServer(Go_PageData pageData){
+	public String stationsGroupServer(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "4");//群站服务器
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
 		return "client/main/stationsGroupServer";
 	}
 	
@@ -73,8 +95,13 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="linux.htm")
-	public String linuxVPS(Go_PageData pageData){
-		return "client/main/linuxWindowsVPS";
+	public String linuxVPS(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "6");//linux VPS
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
+		return "client/main/linuxVPS";
 	}
 	
 	/**
@@ -83,8 +110,13 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="windows.htm")
-	public String windowsVPS(Go_PageData pageData){
-		return "client/main/linuxWindowsVPS";
+	public String windowsVPS(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "5");//windows VPS
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
+		return "client/main/windowsVPS";
 	}
 	
 	/**
@@ -93,7 +125,12 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="HK.htm")
-	public String hKVPS(Go_PageData pageData){
+	public String hKVPS(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
+		params.put("serverTypeId", "7");//HK VPS
+		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		model.put("list", list);
 		return "client/main/HKVPS";
 	}
 	
@@ -103,7 +140,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="specialOffer.htm")
-	public String specialOffer(Go_PageData pageData){
+	public String specialOffer(ModelMap model){
 		return "client/main/specialOffer";
 	}
 	
@@ -113,7 +150,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="cloudSolutions.htm")
-	public String cloudSolutions(Go_PageData pageData){
+	public String cloudSolutions(ModelMap model){
 		return "client/main/cloudSolutions";
 	}
 	
@@ -123,7 +160,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="cloudHosting.htm")
-	public String cloudHosting(Go_PageData pageData){
+	public String cloudHosting(ModelMap model){
 		return "client/main/cloudHosting";
 	}
 	
@@ -133,7 +170,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="serverHosting.htm")
-	public String serverHosting(Go_PageData pageData){
+	public String serverHosting(ModelMap model){
 		return "client/main/serverHosting";
 	}
 	
@@ -143,7 +180,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="managedServiecs.htm")
-	public String managedServiecs(Go_PageData pageData){
+	public String managedServiecs(ModelMap model){
 		return "client/main/managedServiecs";
 	}
 	
@@ -153,7 +190,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="support.htm")
-	public String supportCenter(Go_PageData pageData){
+	public String supportCenter(ModelMap model){
 		return "client/main/supportCenter";
 	}
 	
@@ -163,7 +200,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="apiDocumentation.htm")
-	public String apiDocumentation(Go_PageData pageData){
+	public String apiDocumentation(ModelMap model){
 		return "client/main/apiDocumentation";
 	}
 	
@@ -173,7 +210,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="legal.htm")
-	public String legal(Go_PageData pageData){
+	public String legal(ModelMap model){
 		return "client/main/legalInfo";
 	}
 	
@@ -183,7 +220,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="faq.htm")
-	public String faq(Go_PageData pageData){
+	public String faq(ModelMap model){
 		return "client/main/faq";
 	}
 	
@@ -205,7 +242,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="technology.htm")
-	public String technologyPartners(Go_PageData pageData){
+	public String technologyPartners(ModelMap model){
 		return "client/main/technologyPartners";
 	}
 	
