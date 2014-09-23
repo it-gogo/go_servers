@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
+import com.go.common.util.Go_StringUtil;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.authority.model.Go_User;
 import com.go.sys.authority.service.IGo_UserService;
@@ -63,10 +64,35 @@ public class Go_UserController extends Go_BaseController{
 	 */
 	@RequestMapping(value="add.htm")
 	public String add(){
-		
 		return "/sys/authority/user/editnew";
 	}
 	/**
+	 * 增加或者修改后台用户的信息
+	 * @author linyb
+	 * @create_time 2014-8-31上午9:45:39
+	 */
+	@RequestMapping(value="save.htm")
+	public String save(Go_User go_user,ModelMap model){
+		String msg = "200";
+		msg = go_user.validate();
+		if("200".equals(msg)){
+			try {
+				if(go_user.getId() != null){
+				  	//修改
+				}else{
+					//新增
+					go_user.setStatus(Go_User.USER_STATUS_OK);
+					go_user.setPassword(Go_StringUtil.encrypt(go_user.getPassword()));
+					go_userService.save(go_user);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				msg = "系统出错！";
+			}
+		}
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/*
 	 * 去登陆页面
 	 * @return
 	 */
@@ -102,6 +128,4 @@ public class Go_UserController extends Go_BaseController{
 		setSuccessMessage(model, "密码修改成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
-	
-	
 }

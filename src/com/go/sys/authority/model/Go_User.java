@@ -1,5 +1,6 @@
 package com.go.sys.authority.model;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -21,7 +22,7 @@ public class Go_User {
 	private String telephone;//电话
 	private String password; //密码
 	private String status;		//状态
-	private Integer parentId; //部门id
+	private Integer departmentId; //部门id
 
 	
 	
@@ -68,12 +69,25 @@ public class Go_User {
 		this.password = password;
 	}
 
-	public Integer getParentId() {
-		return parentId;
+	public Integer getDepartmentId() {
+		return departmentId;
 	}
-
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
+	public void setDepartmentid(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+	/**
+	 * 验证信息
+	 * @author linyb
+	 * @create_time 2014-8-31上午9:46:19
+	 */
+	public String validate() {
+		if(StringUtils.isBlank(username)){
+			return "用户名不能为空！";
+		}
+		if(StringUtils.isBlank(password)){
+			return "密码不能为空！";
+		}
+		return "200";
 	}
 	
 }
