@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	text:'增加',
 					iconCls: 'icon-add',
 					handler: function(){
-						go.window.edit('增加新用户','sys/authority/user/add.htm',600,330);
+						go.window.edit('增加新用户','sys/authority/user/add.htm',550,200);
 					}
 				},'-',{
 			    	text:'修改',

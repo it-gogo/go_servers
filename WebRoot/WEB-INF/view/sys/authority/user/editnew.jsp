@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			//表单信息
 			$('#app_Form3').form({  
-			     url:'carcomerica/app/save.htm',  
+			     url:'sys/authority/user/save.htm',  
 		    onSubmit: function(){  
 		    	
 		    },  
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        }else{
 		        	//保存成功提示
 		        	$.messager.alert('提示','保存成功！','info',function(){
-		        		$('#hczd_sys_win_edit').window('close');
+		        		$('#go_win_edit').window('close');
 				        $('#dg').datagrid('reload');
 		        	});
 		        }
@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</script>
   	<center>
-	    <fieldset style="width:600px;">
+	    <fieldset style="width:500px;">
 	    	<legend>用户信息</legend>
 	    	<form action="" name="myform" id="app_Form3" method="post">
 	    	<table border="0" width="100%" align="center" cellpadding="5px;" >
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			<td align="right">用户名<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
 	    			<td ><input type="text" name="username" /></td>
 	    			<td align="right">密码<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
-	    			<td ><input type="text" name="password" /></td>
+	    			<td ><input type="password" name="password" /></td>
 	    		</tr>
 	    		<tr>
 	    			<td align="right">名字<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
@@ -62,6 +62,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	</form>
 	    </fieldset>
 	    <br />
-	    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="javascript:$('#app_Form3').submit();">提交办卡</a>&nbsp;&nbsp;&nbsp;
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript:document.myform.reset();">重置信息</a>
+	    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="javascript:$('#app_Form3').submit();">提交</a>&nbsp;&nbsp;&nbsp;
+		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript:$('#go_win_edit').window('close');">取消</a>
     </center>
