@@ -14,12 +14,29 @@
         
 <div id="publicloud">
 </div>
-
 <!--aboutBanner end-->
 <div class="containerW" style="padding-bottom:0;">
 <div class="box">
 <ul class="oneOf5Grid">
-    <li>
+	<c:forEach items="${list }" var="server" >
+		<li>
+	      <img src="/Public/Uploads/20131218/52b0b61e84d63.jpg" width="87" height="65" alt="RAK C512 公有云服务器" /> 
+	      <div class="title">${server.name }</div>
+	      <ul>
+	          <li>${server.cpu }</li>
+	          <li>${server.memory }</li>
+	          <li>${server.disk }</li>
+	          <li>${server.backups }</li>
+	          <li>${server.flow }</li>
+	          <li>${server.ipNum }</li> 
+	      </ul>
+	      <div class="price">${server.pricename }</div>
+	      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=28">
+	      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=28')"/>
+	      </a>
+	    </li>
+	</c:forEach>
+    <!-- <li>
       <img src="/Public/Uploads/20131218/52b0b61e84d63.jpg" width="87" height="65" alt="RAK C512 公有云服务器" /> 
       <div class="title">RAK C512</div>
       <ul>
@@ -34,7 +51,8 @@
       <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=28">
       <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=28')"/>
       </a>
-    </li><li>
+    </li>
+    <li>
       <img src="/Public/Uploads/20131218/52b0b604130ff.jpg" width="87" height="65" alt="RAK C1024 公有云服务器" /> 
       <div class="title">RAK C1024</div>
       <ul>
@@ -49,7 +67,8 @@
       <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=27">
       <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=27')"/>
       </a>
-    </li><li>
+    </li>
+    <li>
       <img src="/Public/Uploads/20131218/52b0b5dddb608.jpg" width="87" height="65" alt="RAK C1536 公有云服务器" /> 
       <div class="title">RAK C1536</div>
       <ul>
@@ -169,7 +188,8 @@
       <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=34">
       <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=34')"/>
       </a>
-    </li></ul>
+    </li> -->
+    </ul>
 </div>
 </div>
 <!--containerW end-->
