@@ -17,8 +17,8 @@ import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class ValidateCode {
 	private static final int WIDTH=75;
-	private static final int HEIGHT=30;
-	private static final int LINE_SIZE=5;
+	private static final int HEIGHT=25;
+	private static final int LINE_SIZE=2;
 	private static final int SIZE=4;
 	public static Map<String,BufferedImage> CreateValidateCode(){
 		Map<String,BufferedImage> validateCode=new HashMap<String,BufferedImage>();
@@ -37,9 +37,9 @@ public class ValidateCode {
 				c=(char)(r.nextInt(75)+48);
 				
 			}while(c>57&&c<65 || c>90&&c<122);
-			int size=(int)(HEIGHT*0.4+HEIGHT*0.6*r.nextDouble());
+			int size=(int)(HEIGHT*0.5+HEIGHT*0.6*r.nextDouble());
 			g.setFont(new Font("",Font.BOLD|Font.ITALIC,size));
-			g.drawString(c+"",i*(WIDTH/SIZE), 25);
+			g.drawString(c+"",i*(WIDTH/SIZE), 21);
 			str+=c+"";
 		}
 		for(int i=0;i<LINE_SIZE;i++){

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper 
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
-<mapper namespace="com.go.client.main.mapper.IGoPortal_InfoMapper">
+<mapper namespace="com.go.client.login.mapper.IGo_Portal_InfoMapper">
     <insert id="insert" parameterType="Go_Portal_Info">
 	    insert into Go_Portal_Info(departmentid,surname,name,companyname,email,addressone,addresstwo,city,downtown,zip,telephone,password)
 	    values(#{departmentid},#{surname},#{name},#{companyname},#{email},#{addressone},#{addresstwo},#{city},#{downtown},#{zip},#{telephone},#{password})
@@ -13,14 +13,14 @@
 		    surname = #{surname},
 		    name = #{name},
 		    companyname = #{companyname},
-		    email = #{email}
+		    email = #{email},
 		    addressone = #{addressone},
 		    addresstwo = #{addresstwo},
 		    city = #{city},
-		    downtown = #{downtown}
+		    downtown = #{downtown},
 		    zip = #{zip},
 		    telephone = #{telephone},
-		    password = #{password},
+		    password = #{password}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">

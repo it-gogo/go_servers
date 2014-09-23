@@ -11,14 +11,16 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
 <%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>客户区</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="clientarea.php">客户区</a></p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a></p>
 
 <p>您可以进入客户端管理账户。该页面简单概述了账户情况如公开服务请求和未付款发票。请确保提供最新的联系方式。 </p>
-<h2><strong>0</strong> 打开服务Tickets</h2>
-<p><a href="submitticket.php">提交Ticket</a></p>
+<h2><strong>${listTicket.size() }</strong> 打开服务Tickets</h2>
+<p><a href="../ticket/toAdd.htm">提交Ticket</a></p>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0" class="data">
   <tr>
     <th>日期</th>
@@ -26,9 +28,21 @@
     <th>状态</th>
     <th>紧急通知</th>
   </tr>
-    <tr>
-    <td colspan="4" align="center">未搜索到记录</td>
-  </tr>
+  <c:if test="${listTicket!=null && listTicket.size()!=0 }">
+  	<c:forEach items="${listTicket }" var="ticket">
+	    <tr>
+	    	<td align="left">${ticket.createdate }</td>
+	    	<td align="left">${ticket.title }</td>
+	    	<td align="left">${ticket.isdispose }</td>
+	    	<td align="left">${ticket.urgenttype }</td>
+	  </tr>
+	  </c:forEach>
+  </c:if>
+  <c:if test="${listTicket==null || listTicket.size()==0 }">
+	    <tr>
+	    	<td colspan="4" align="center">未搜索到记录</td>
+	  </tr>
+  </c:if>
   </table>
 <h2><strong>0</strong> 到期发票</h2>
 <form method="post" action="clientarea.php?action=masspay">

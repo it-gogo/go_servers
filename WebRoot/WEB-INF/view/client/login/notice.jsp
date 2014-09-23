@@ -13,19 +13,20 @@
 <div id="content_container">
   <div id="content_left">
     <h1>公告</h1>
-    <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="announcements.php">公告</a></p><h2><a href="/whmcs/announcements.php?id=1">IP价格优惠已经停止</a></h2>
-<p class="small"><strong>Friday, July 18, 2014</strong></p>
- Dear Raksmart Partners or customers, 
- 因近期IPv4地址趋于紧张，大于64 IP的优惠价格已停止，现调整如下： 
-  Additional IP: 
- 61个可用IP $48 
- 128个可用IP $96...
-<p><a href="/whmcs/announcements.php?id=1">更多 &raquo;</a></p><hr />
-
+    <p class="breadcrumb">
+	    <a href="../index/index.htm">门户主页</a> > 
+	    <a href="../notice/notice.htm">公告</a>
+    </p>
+    <c:forEach items="${list }" var="notice">
+    <h2><a href="../notice/detail.htm?id=${notice.id }">${notice.title }</a></h2>
+	<p class="small"><strong>${notice.createdate }</strong></p>
+	${notice.content }
+	<p><a href="../notice/detail.htm?id=${notice.id }">更多 &raquo;</a></p><hr />
+	</c:forEach>
 
 <br />
 
-<p align="center"><img src="images/rssfeed.gif" class="absmiddle" alt="" border="0" /> <a href="announcementsrss.php">查看RSS订阅</a></p>
+<%-- <p align="center"><img src="<%=request.getContextPath() %>/client/loginCss/images/rssfeed.gif" class="absmiddle" alt="" border="0" /> <a href="announcementsrss.php">查看RSS订阅</a></p> --%>
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
 <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>

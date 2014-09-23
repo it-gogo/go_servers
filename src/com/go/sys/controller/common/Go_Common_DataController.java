@@ -1,8 +1,10 @@
 package com.go.sys.controller.common;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -218,5 +220,22 @@ public class Go_Common_DataController extends Go_BaseController {
 		return null;
 	}
 	
-	
+	/**
+	 * 根据数据字典类型表达式获取字典数据
+	 * @author zhangjf
+	 * @create_time 2014-9-2 下午10:33:27
+	 * @param request
+	 * @param extension
+	 * @return
+	 */
+	@RequestMapping(value="ajax_combo_list.htm")
+	public @ResponseBody List<Go_Common_Data> ajax_combo_list(HttpServletRequest request,String extension){
+		List<Go_Common_Data> datas=new ArrayList<Go_Common_Data>();
+		if(StringUtils.isNotBlank(extension)){
+			Map<String,Object> params=new HashMap<String, Object>();
+			params.put("extension", extension);
+			datas=go_common_dataService.getDataByExtension(params);
+		}
+		return datas;
+	}
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.sys.server.mapper.IGo_Server_PriceMapper">
+    <insert id="insert" parameterType="Go_Server_Price">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Server_Price(NAME,SERVERID,MONTHLYPRICE,NUMMONTH,DESCRIPTION,ISACTIVES)
+	    values
+	    (
+	    #{name},#{serverId},#{monthlyPrice},#{numMonth},#{description},#{isactives}
+	    )
+	</insert>
+	<update id="update">
+	    update Go_Server_Price 
+		    set 
+		    NAME=#{name},
+		    SERVERID=#{serverId},
+		    MONTHLYPRICE=#{monthlyPrice},
+		    NUMMONTH=#{numMonth},
+		    DESCRIPTION=#{description},
+	   		ISACTIVES=#{isactives}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Server_Price where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Server_Price  ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Server_Price
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Server_Price 
+	    ${where}
+	    limit 1 , 0
+	</select>
+	<select id="select" resultType="Go_Server_Price">
+	    select * from Go_Server_Price
+	</select>
+	<select id="selectByParams" resultType="Go_Server_Price" parameterType="map">
+	    select * from Go_Server_Price ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Server_Price">
+	    select * from Go_Server_Price 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Server_Price">
+	    select Go_Server_Price.* from Go_Server_Price 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Server_Price.id) from Go_Server_Price
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Server_Price">
+	    select * from Go_Server_Price where id = #{id}
+	</select>
+	
+</mapper>

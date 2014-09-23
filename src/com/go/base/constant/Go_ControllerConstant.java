@@ -9,5 +9,5 @@ public class Go_ControllerConstant {
 	/**
 	 * 通用公共显示信息页面
 	 */
-	public static String RESULT_SHOW_MSG = "/sys/show_ajax_msg";
+	public static String RESULT_SHOW_MSG = "sys/show_ajax_msg";
 }

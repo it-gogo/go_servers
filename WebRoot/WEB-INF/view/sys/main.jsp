@@ -1,216 +1,171 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/include.inc.jsp"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>后台管理系统</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<link type="image/vnd.microsoft.icon" rel="shortcut icon" href="images/favicon.ico">
-	<script type="text/javascript" src="js/go.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			
-			//初始化控制面板
-			var tabs_content = $('#tabs_content').tabs({  
-			    border:false, 
-			    width:'100%', 
-			    onSelect:function(title){  
-			        //alert(title+' is selected');
-			    }  
-			});  
-			//初始化菜单
-			$('#acd_menu').accordion({  
-			    animate:true,
-			    fit:true
-			}); 
-			//初始化菜单按钮
-			$('a:[id^="item_"]').click(function(event){
-				var id = $(this).attr('id');
-				var t_title = $(this).attr('title');
-				if(tabs_content.tabs('exists', $(this).attr('title'))){
-					//选中状态
-					tabs_content.tabs('select',t_title);
-					//刷新内容
-					tabs_content.tabs('update', {
-						tab: tabs_content.tabs('getTab',t_title),
-						options: {
-							content : "<iframe id='content_"+id+"' border='0' frameborder='no' name='inner-frame' onload=\"javascript:dyniframesize('content_"+id+"');\" height='100%' width='100%' src='"+$(this).attr("rel")+"'></iframe>"
-						}
-					});
-          			var ieset = navigator.userAgent;  
-					if(ieset.indexOf("MSIE 6.0") > -1)//浏览器判断 如果是IE6
-						setTimeout('window.parent["'+id+'"].location.reload();',0);//执行这一方法
-				}else{
-					$('#tabs_content').tabs('add',{  
-					    title:$(this).attr('title'), 
-					    id:'tab_'+ id, 
-					    content : "<iframe id='content_"+id+"' border='0' frameborder='no' name='inner-frame' onload=\"javascript:dyniframesize('content_"+id+"');\" height='100%' width='100%' src='"+$(this).attr("rel")+"'></iframe>",  
-					    closable:true  
-					});
-				} 
-				
-				if(id != "item_client_app"){
-					$('a:[id^="item_"]').parent().removeClass("seleted_li");
-					$(this).parent().addClass("seleted_li");
-				}
-			});
-			//站点模块选择
-			$('#select_model').combobox({
-				mode:'local',
-				editable:false
-			});   
-			
-		});
-		
-		/**
-		*兼容性函数
-		*/
-		 function dyniframesize(down) { 
-			var pTar = null; 
-			if (document.getElementById){ 
-				pTar = document.getElementById(down); 
-			} else{ 
-				eval('pTar = ' + down + ';'); 
-			} 
-			if (pTar && !window.opera){ 
-				//begin resizing iframe 
-				pTar.style.display="block" 
-				if (pTar.contentDocument && pTar.contentDocument.body.offsetHeight){ 
-					//ns6 syntax 
-					pTar.height =  document.body.scrollHeight - 100; 
-					pTar.width = "100%"; 
-				} else if (pTar.Document && pTar.Document.body.scrollHeight){ 
-					//ie5+ syntax 
-					pTar.height = pTar.Document.body.scrollHeight; 
-					pTar.width = pTar.Document.body.scrollWidth; 
-				} 
-			} 
-		}
-		/**退出系统**/
-		function loginOut(){
-			$.messager.confirm('提示','确定要退出系统？',function(r){
-				if(r){
-					window.location.href = '<%=basePath%>authority/login/loginout.htm';
-				}
-			});
-		}
-		
-	</script>
-	<style type="text/css">
-		.seleted_li{
-			background-color: #FBEC88;
-		}
-	</style>
-  </head>
-  
-  <body class="easyui-layout">
-		<div data-options="region:'north',border:false" id="north-panel" style="overflow: hidden; height: 25px; background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-	    	<span style="float:right; padding-right:20px;" class="head">
-	    		&nbsp;&nbsp;&nbsp;
-	    		欢迎  xxx &nbsp;&nbsp;<a href="javascript:void(0);" onclick="go.window.edit('修改资料','authority/user/edit_curuser.htm',600,400);" id="editoilprice">修改资料</a>
-		    	<a href="javascript:void(0);" onclick="loginOut()" id="loginOut">安全退出</a>
-	    	</span>
-    		<span style="padding-left:10px; font-size: 16px; "><img src="images/blocks.gif" width="20" height="20" align="absmiddle" /> 智汇车管后台管理系统V2.1</span>
-	    </div>
-		<div data-options="region:'south',border:false" style="overflow: hidden;height:18px;background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%; line-height: 18px;color: #fff;"align="center">福建和诚智达汽车管理服务有限公司&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp;Copyright&nbsp;©&nbsp;2012-2014&nbsp;hczd&nbsp;Corporation,&nbsp;All&nbsp;Rights&nbsp;Reserved</div>
-		<div data-options="region:'west',split:true,title:'导航菜单'" style="width:150px;">
-			<!-- 菜单 -->
-			<div id="acd_menu" class="easyui-accordion">  
-				<%-- <c:forEach items="${default_power.listChild }" var="itm">
-					 <div title="${itm.name }" style="overflow:auto;padding:10px;">
-					 	<c:forEach items="${ itm.listChild}" var="menu" varStatus="row">
-					 		<p>  
-						    	<span class="icon-16-category">&nbsp;</span>
-						        <a id="item_${row.index }" rel="${menu.url }" href="javascript:void(0);" name="null" title="${menu.name }">${menu.name }</a>
-					        </p>
-					 	</c:forEach>
-					 </div>
-				</c:forEach> --%>
-				<div title="系统管理" style="overflow:auto;padding:10px;">
-			 		<p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="<%=basePath%>sys/authority/user/list.htm" href="javascript:void(0);" name="null" title="用户管理">用户管理</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
-			        </p>
-				 </div>
-				<div title="套餐管理" style="overflow:auto;padding:10px;">
-			 		<p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
-			        </p>
-				 </div>
-				 <div title="套餐管理2" style="overflow:auto;padding:10px;">
-			 		<p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
-			        </p>
-				 </div>
-				  <div title="套餐管理2" style="overflow:auto;padding:10px;">
-			 		<p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
-			        </p>
-				 </div>
-				  <div title="套餐管理2" style="overflow:auto;padding:10px;">
-			 		<p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_1" rel="http://www.baidu.com" href="javascript:void(0);" name="null" title="百度">百度</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_2" rel="http://www.sina.com.cn" href="javascript:void(0);" name="null" title="新浪">新浪</a> 
-			        </p>
-			        <p>  
-				    	<span class="icon-16-category">&nbsp;</span>
-				        <a id="item_3" rel="http://www.qq.com" href="javascript:void(0);" name="null" title="腾讯">腾讯</a> 
-			        </p>
-				 </div>
-			</div> 
-			<!-- end 菜单 -->
-		</div>
-		<div id="tabs_content" data-options="region:'center'">
-			<div title="欢迎页面">  
-				<iframe id='sd' border='0' frameborder='no' name='inner-frame' height='100%'  width='100%' src='http://www.baidu.com'></iframe>
-		    </div> 
-		</div>
-	</body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>审批系统</title>
+<link href="<%=request.getContextPath() %>/css/main/style1.css" type="text/css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/css/main/style.css" rel="stylesheet" />
+<%@include file="/section/common/includefile.jsp"%>
+</head>
+<body  onload="load()" >
+<div class="header">
+	<h2 class="logo"><a href="#"></a></h2>
+    <div class="header_r">
+    	<div class="admin_ico"><img src="<%=request.getContextPath() %>/css/main/images/person.png" /></div>
+    	<a href="#">[帐号:${Tuser.userid}&nbsp;&nbsp;姓名:${Tuser.staffname}]</a>
+        <a class="edit" href="javascript:modifypass()">修改密码</a>
+        <a class="logout" href="javascript:loginOut()">注销</a>
+    </div>
+</div>
+ <!--左侧开始-->
+<div id="content" >
+   <div id="lcontent" class="left">
+     ${menuStr}
+   </div>
+	
+
+<!--右侧开始-->
+<div id="rcontent"  class = 'right'>
+   <div id="mainPanel" class="easyui-tabs"    >
+	 
+   </div>
+</div>
+
+ <%@include  file="/WEB-INF/view/sys/authority/user/modifypass.jsp" %>
+
+<!--右侧结束-->
+</body>
 </html>
+<script type="text/javascript">
+var  index = 0;
+var urls = "sysmanager/tuserAction.action";
+function addPanel(cdbh,titles,action){
+      index++;
+     // var tab = $('#tt').tabs(titles);
+     var actions = action+"?cdbh="+cdbh;
+     if(action.indexOf("?")>-1){
+       actions = action;
+     }
+      if($("#mainPanel").tabs('exists',titles)){
+    	  $("#mainPanel").tabs('select',titles);
+    	   var currTab = $('#mainPanel').tabs('getTab', titles),  
+             iframe = $(currTab.panel('options').content),  
+            content = '<iframe scrolling="auto" frameborder="0"  src="' + iframe.attr('src') + '" style="width:100%;height:100%;"></iframe>';  
+          $('#mainPanel').tabs('updateIframeTab', {tab: currTab, options: {content: content, closable: true},which:titles}); 
+       }else{
+       var count = 0;
+       		$("#mainPanel").tabs('addIframeTab',{
+				tab:{
+                     id:cdbh,
+					title: titles,
+					content:'<iframe id="t"  scrolling="yes" frameborder="0"  src="'+actions+'" width="100%" height="'+ifheight+'"></iframe>',
+					closable: true,
+					border:false,
+					fit:true
+                },
+				iframe:{src:actions}
+			});
+       }
+}
+
+function changeCss(obj){
+	$("li").removeClass("on");
+	obj.className="on";
+}
+
+function removePanel(){
+	var tab = $('#mainPanel').tabs('getSelected');
+	if (tab){
+		var index = $('#mainPanel').tabs('getTabIndex', tab);
+		$('#mainPanel').tabs('close', index);
+	}
+}
+
+var h =  $(window).height();	
+var  theight ;//头部高度
+var cheight ;//页面高度
+var ifheight;
+//调整页面高度,进入页面时候加载
+function  load(){
+     theight = 75;
+     cheight =  h-62;//定义层的高度
+     ifheight = h-90;//定义IFrame的高度
+     $("#content").height(cheight);
+     $("#rcontent").height(cheight);
+     //$("#lcontent").innerHTML();
+    $('#a').accordion({
+      //height:cheight,
+      animate:false,
+      border:false
+    });
+    
+     $("#mainPanel").tabs('add',{
+		            id:0,
+		            fit:true,
+					title: '主 页',
+					content:'<iframe id="t" scrolling="yes" frameborder="0"  src="homepage.jsp" width="100%" height="'+ifheight+'"></iframe>',
+					border:false
+		});
+  
+     
+}
+
+//注销
+		function loginOut()
+		{
+			if(!confirm("是否确认退出系统"))
+			  return ;
+			/* $.post('loginAction.action',{'act':'loginOut'},function(data){
+			   if(data==1)
+			   {
+			     location.href ="loginAction.action?act=toLongin";
+			   }
+			}); */
+			location.href ="../user/toLogin.htm";
+		}
+		
+		function modifypass(){
+		    openDialog(editDialogID);
+		    submitMethod = "updatePass";
+		    $(".window-mask").css({height:$(window)._outerHeight()})
+		    $('#'+editDialogID).dialog('refresh','sysmanager/tuserAction.action?act=modifypass');
+		}
+		
+		
+		function  afterSubmitForm(formID){
+		    //closeDialog1(editDialogID,formID,true);
+		    $("#oldpass").val('');
+		     $("#pass").val('');
+	         $("#pass1").val('');
+	          $("#tip").html("");
+		}
+		
+		
+		function  beforeSubmit(formID){
+		    if($("#pass").val()==''){
+		       alertInfo("请输入密码");
+		       return false;
+		    }else if($("#pass").val()!=$("#pass1").val()){
+		       alertInfo("两次密码输入不一致");
+		       $("#pass").val('');
+	           $("#pass1").val('');  
+		       return false;
+		    }
+		    return true;
+		}
+		
+		
+   function checkpass(){
+      var pass = $("#pass").val();
+	  var pass1 = $("#pass1").val();
+	  if(pass!=pass1){
+        $("#tip").html("两次密码输入不一致");
+      }else{
+        $("#tip").html("正确");
+      }
+   }
+   
+  
+</script>
+

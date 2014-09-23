@@ -1,12 +1,18 @@
 package com.go.base.service.impl;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import com.go.base.dao.impl.Go_BaseDao;
 import com.go.base.module.Go_PageData;
 import com.go.base.service.IGo_BaseService;
+import com.go.sys.authority.model.MenuPo;
+import com.go.sys.authority.model.TreePo;
 
 /**
  * (项目基本框架类)
@@ -126,5 +132,63 @@ public class Go_BaseService<T,K> implements IGo_BaseService<T, K> {
 	public List<T> listCustom(Map<String, Object> params) {
 		return dao.listCustom(params);
 	}
+	
+	/**
+	 * 树转换成JSON字符串
+	 * @param array
+	 * @return
+	 */
+	public  JSONArray  tranArrayToJson1(List<TreePo> array){
+    	//存储临时对象
+    	Map<Object,Object>  tmpMap = new LinkedHashMap<Object,Object>();
+    	//结果返回值
+    	JSONArray  res = new JSONArray();
+    	TreePo root = null;
+    	for(int i=0;i<array.size();i++){
+    		TreePo  jsonobj = array.get(i);
+    		long  bh = jsonobj.getId();
+    		tmpMap.put(bh,jsonobj);
+    	}
+    	for(int i=0;i<array.size();i++){
+
+    		TreePo  jsonobj = array.get(i);
+    		long bh = jsonobj.getId();
+    		long fbh = jsonobj.getPid();
+    		if(fbh==-1){
+    			//根
+    			root = (TreePo)tmpMap.get(bh);
+    		}else{
+    			if(tmpMap.get(fbh)!=null)
+    	        ((TreePo)tmpMap.get(fbh)).getChildren().addNode((TreePo)tmpMap.get(bh));
+    	    }
+    	}
+    	res.add(JSONObject.fromObject(root.toString()));
+    	return res;
+    }
+	
+	public  String  tranArrayToJson(List<MenuPo> array){
+    	//存储临时对象
+    	Map<Object,Object>  tmpMap = new LinkedHashMap<Object,Object>();
+    	//结果返回值
+    	JSONArray  res = new JSONArray();
+    	MenuPo root = null;
+    	for(int i=0;i<array.size();i++){
+    		MenuPo  jsonobj = array.get(i);
+    		int  bh = jsonobj.getNumber();
+    		tmpMap.put(bh,jsonobj);
+    	}
+    	for(int i=0;i<array.size();i++){
+    		MenuPo  jsonobj = array.get(i);
+    		int bh = jsonobj.getNumber();
+    		int fbh = jsonobj.getPnumber();
+    		if(fbh==-1){
+    			//根
+    			root = (MenuPo)tmpMap.get(bh);
+    		}else{
+    	        ((MenuPo)tmpMap.get(fbh)).getChildren().addChildren((MenuPo)tmpMap.get(bh));
+    	    }
+    	}
+    	return root.toString();
+    }
 
 }

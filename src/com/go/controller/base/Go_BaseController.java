@@ -1,9 +1,14 @@
 package com.go.controller.base;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
+
+import org.springframework.ui.ModelMap;
 
 
 /**
@@ -33,6 +38,14 @@ public class Go_BaseController {
 		this.error_msg = error_msg;
 	}
 	
+	
+	public  void setSuccessMessage(ModelMap model,String message) {
+		Map<String, String> jsonMap = new HashMap<String, String>();
+		jsonMap.put("status", "success");
+		jsonMap.put("message", message);
+		JSONObject jsonObject = JSONObject.fromObject(jsonMap);
+		model.addAttribute("show_msg",jsonObject.toString());
+	}
 	
 	
 }

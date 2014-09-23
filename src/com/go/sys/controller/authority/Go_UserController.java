@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
-import com.go.common.constant.Go_Constant;
 import com.go.common.util.Go_StringUtil;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.authority.model.Go_User;
@@ -89,6 +90,42 @@ public class Go_UserController extends Go_BaseController{
 				msg = "系统出错！";
 			}
 		}
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/*
+	 * 去登陆页面
+	 * @return
+	 */
+	@RequestMapping(value="toLogin.htm")
+	public String toLogin(HttpServletRequest request){
+		request.getSession().invalidate();
+		return "/sys/login";
+	}
+	/**
+	 * 登陆
+	 * @return
+	 */
+	@RequestMapping(value="login.htm")
+	public String login(ModelMap model,Go_User user){
+		model.addAttribute("show_msg",1);
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
+	/**
+	 * 修改密码
+	 * @return
+	 */
+	@RequestMapping(value="modifypass.htm")
+	public String modifypass(){
+		return "/sys/authority/user/modifypassEdit";
+	}
+	/**
+	 * 提交修改密码
+	 * @return
+	 */
+	@RequestMapping(value="updatePass.htm")
+	public String updatePass(ModelMap model){
+		setSuccessMessage(model, "密码修改成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 }

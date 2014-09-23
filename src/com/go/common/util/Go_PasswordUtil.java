@@ -14,7 +14,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 public class Go_PasswordUtil {
 	public static void main(String[] args) {
 
-		System.out.println(Go_PasswordUtil.encrypt("365365"));
+		System.out.println(Go_PasswordUtil.encrypt("1"));
 	}
 
 	/**

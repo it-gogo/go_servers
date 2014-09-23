@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.sys.common.mapper.IGo_Code_DataMapper">
+    <insert id="insert" parameterType="Go_Code_Data">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Code_Data(type,name,typename,seq,description,isactives)
+	    values(#{type},#{name},#{typename},#{seq},#{description},#{isactives})
+	</insert>
+	<update id="update">
+	    update Go_Code_Data 
+		    set type = #{type},
+		    name = #{name},
+		    typename = #{typename},
+		    seq = #{seq},
+		    description = #{description},
+		    isactives = #{isactives}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Code_Data where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Code_Data ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Code_Data
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Code_Data 
+	    ${where}
+	    limit 1 offset 0
+	</select>
+	<select id="select" resultType="Go_Code_Data">
+	    select * from Go_Code_Data
+	</select>
+	<select id="selectByParams" resultType="Go_Code_Data" parameterType="map">
+	    select * from Go_Code_Data ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Code_Data">
+	    select * from Go_Code_Data 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Code_Data">
+	    select Go_Code_Data.* from Go_Code_Data 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Code_Data.id) from Go_Code_Data
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Code_Data">
+	    select * from Go_Code_Data where id = #{id}
+	</select>
+	
+</mapper>

@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,21 +12,24 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>门户主页</h1>
-    <p class="breadcrumb"><a href="index.hml">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
+    <p class="breadcrumb"><a href="../index/index.htm">门户主页</a></p><p>欢迎进入我们的支持门户。</p>
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0">
   <tr>
-    <td><div align="center"><a href="customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.png" border="0" alt="" /></a></div></td>
+    <td><div align="center"><a href="../index/customerArea.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/clientarea.png" border="0" alt="" /></a></div></td>
     <td width="50%"><strong><a href="customerArea.htm">客户区</a></strong><br />
       参考&更新账户详情</td>
     <td><div align="center"><a href="notice.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/announcements.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="notice.htm">公告</a></strong><br />
+    <td><strong><a href="../notice/notice.htm">公告</a></strong><br />
       查看最新新闻&公告</td>
   </tr>
   <tr>
-    <td><div align="center"><a href="submitticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/submitticket.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="submitticket.htm">提交Ticket</a></strong><br />
+    <td><div align="center"><a href="../ticket/toAdd.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/submitticket.png" border="0" alt="" /></a></div></td>
+    <td><strong><a href="../ticket/toAdd.htm">提交Ticket</a></strong><br />
       提交问题ticket</td>
     <td><div align="center"><a href="download.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="download.htm">下载</a></strong><br />
@@ -33,7 +37,7 @@
   </tr>
   <tr>
     <td><div align="center"><a href="supportticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/supporttickets.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="supportticket.htm">服务Tickets</a><br />
+    <td><strong><a href="../ticket/support.htm">服务Tickets</a><br />
     </strong>查看回复当前</td>
     <td><div align="center"><a href="knowledge.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/knowledgebase.png" border="0" alt="" /></a></div></td>
     <td width="50%"><strong><a href="knowledge.htm">知识库</a></strong><br />

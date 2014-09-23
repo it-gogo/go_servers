@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.sys.server.mapper.IGo_Server_InfoMapper">
+    <insert id="insert" parameterType="Go_Server_Info">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Server_Info(AREAID,SERVERTYPEID,NAME,CPU,MEMORY,DISK,
+	    BACKUPS,FLOW,NETFAST,IPNUM,PORT,OPERATIONSYSTEMID,CONTROLPANELID,IMGURL,
+	    DESCRIPTION,ISACTIVES)
+	    values
+	    (
+	    #{areaId},#{serverTypeId},#{name},#{cpu},#{memory},#{disk},#{backups},#{flow},#{netFast},#{ipNum},#{port},#{operationSystemId},
+	    #{controlPanelId},#{imgUrl},#{description},#{isactives}
+	    )
+	</insert>
+	<update id="update">
+	    update Go_Server_Info 
+		    set 
+		    AREAID=#{areaId},
+		    SERVERTYPEID=#{serverTypeId},
+		    NAME=#{name},
+		    CPU=#{cpu},
+		    MEMORY=#{memory},
+		    DISK=#{disk},
+	    	BACKUPS=#{backups},
+	    	FLOW=#{flow},
+	    	NETFAST=#{netFast},
+	    	IPNUM=#{ipNum},
+	    	PORT=#{port},
+	    	OPERATIONSYSTEMID=#{operationSystemId},
+	    	CONTROLPANELID=#{controlPanelId},
+	    	IMGURL=#{imgUrl},
+	   		DESCRIPTION=#{description},
+	   		ISACTIVES=#{isactives}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Server_Info where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Server_Info  ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Server_Info
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Server_Info 
+	    ${where}
+	    limit 1 , 0
+	</select>
+	<select id="getScaleList" parameterType="map" resultType="map">
+	    select ${column} from Go_Server_Info a
+	    ${where}
+	</select>
+	<select id="select" resultType="Go_Server_Info">
+	    select * from Go_Server_Info
+	</select>
+	<select id="selectByParams" resultType="Go_Server_Info" parameterType="map">
+	    select * from Go_Server_Info ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Server_Info">
+	    select * from Go_Server_Info 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Server_Info">
+	    select Go_Server_Info.* from Go_Server_Info 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Server_Info.id) from Go_Server_Info
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Server_Info">
+	    select * from Go_Server_Info where id = #{id}
+	</select>
+	
+</mapper>

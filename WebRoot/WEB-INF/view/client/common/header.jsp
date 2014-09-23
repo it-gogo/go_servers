@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String name=request.getParameter("name");
 	request.setAttribute("name", name);
@@ -53,7 +54,7 @@
          </ul>      
       </li>
       <li class="memBtn"> 
-          <a href="../login/portal/login.htm" class="btnLogin">登录</a> 
+          <a href="../login/portal/toLogin.htm" class="btnLogin">登录</a> 
           <a href="../login/portal/registration.htm" class="btnRegister">注册</a> 
       </li>
     </ul>

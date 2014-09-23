@@ -41,6 +41,10 @@ public class Go_SQL_ParamsUtil {
 					//条件方式
 					if(key.indexOf("_like") != -1 && key.indexOf("_like") == (key.length() - 5)){
 						sql = sql + key.replace("and_", "").replace("or_", "").replace("_like", "") + " like '%" + params.get(key).toString().trim() + "%'";
+					}else if(key.indexOf("_like_right") != -1 && key.indexOf("_like_right") == (key.length() - 11)){
+						sql = sql + key.replace("and_", "").replace("or_", "").replace("_like_right", "") + " like '" + params.get(key).toString().trim() + "%'";
+					}else if(key.indexOf("_like_left") != -1 && key.indexOf("_like_left") == (key.length() - 10)){
+						sql = sql + key.replace("and_", "").replace("or_", "").replace("_like_left", "") + " like '%" + params.get(key).toString().trim() + "'";
 					}else if(key.indexOf("_not_in") != -1 && key.indexOf("_not_in") == (key.length() - 7)){
 						sql = sql + key.replace("and_", "").replace("or_", "").replace("_not_in", "") + " not in (" + params.get(key).toString().trim() + ")";
 					}else if(key.indexOf("_in") != -1 && key.indexOf("_in") == (key.length() - 3)){
