@@ -120,3 +120,26 @@ function  getHandleStr(value,row,index){
 
 function treeclick(node){
 }
+function tttclick(node){
+	if(node.id!=0){
+	       $("#serverTypeId","#"+queryFormID).val(node.id);
+		}else{
+			$("#serverTypeId","#"+queryFormID).val("");
+		}
+	    /*$("#typename","#"+editFormID).val(node.text);*/
+//	    $("#serverTypeId","#"+editFormID).val(node.id);
+	$("#serverTypeId","#"+editFormID).val('select', node.id);
+	    loadData(gID,queryFormID);
+}
+
+function beforeaddxx(){
+	var node = getSelectTreeNode("ttt");
+	if(node==null||node.id==0){
+		alertWarn("请选择一个服务器类型");
+		return false;
+	}else{
+		$("#serverTypeId","#"+editFormID).val(node.id);
+		/*$("#serverTypeId","#"+editFormID).val('select', node.id);*/
+	}
+	return true;
+}

@@ -50,6 +50,18 @@ public class Go_Server_InfoController extends Go_BaseController {
 	@Autowired
 	private IGo_Code_DataService go_code_dataService;//数据字典
 	
+	
+	/**
+	 * 服务器类型树
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "findServerTypeTree.htm")
+	public  String  findServerTypeTree(ModelMap model){
+		JSONArray  res = go_server_infoService.findServerTypeTree();
+		model.addAttribute("show_msg",res.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
 	/**
 	 * 可配置项树
 	 * @param model
