@@ -67,6 +67,12 @@ public class Go_UserController extends Go_BaseController{
 	public String add(){
 		return "/sys/authority/user/editnew";
 	}
+	@RequestMapping(value="edit.htm")
+	public String edit(ModelMap model ,Integer id){
+		Go_User user = go_userService.get(id);
+		model.addAttribute("go_user", user);
+		return "/sys/authority/user/editnew";
+	}
 	/**
 	 * 增加或者修改后台用户的信息
 	 * @author linyb
@@ -80,6 +86,7 @@ public class Go_UserController extends Go_BaseController{
 			try {
 				if(go_user.getId() != null){
 				  	//修改
+					go_userService.update(go_user);
 				}else{
 					//新增
 					go_user.setStatus(Go_User.USER_STATUS_OK);
@@ -129,5 +136,23 @@ public class Go_UserController extends Go_BaseController{
 	public String updatePass(ModelMap model){
 		setSuccessMessage(model, "密码修改成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	/**
+	 * 启用用户
+	 * @author linyb
+	 * @create_time 2014-9-24下午11:38:41
+	 */
+	@RequestMapping(value="ok_status.htm",produces="application/json")
+	public @ResponseBody String ok_status(ModelMap model,Integer id){
+		try {
+			Map<String,Object> params = new HashMap<String, Object>();
+			params.put("update_sttaus", Go_User.USER_STATUS_OK);
+			params.put("where_id", id);
+			go_userService.updateField(params);
+			return "启用成功！";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "系统出错！";
+		}
 	}
 }

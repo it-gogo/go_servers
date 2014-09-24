@@ -44,19 +44,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	<legend>用户信息</legend>
 	    	<form action="" name="myform" id="app_Form3" method="post">
 	    	<table border="0" width="100%" align="center" cellpadding="5px;" >
-	    		<input type="hidden"   name="customer_id"/>
-	    		<input type="hidden"   name="customer_name"/>
+	    		<input type="hidden" name="id" value="${go_user.id}"/>
+	    		<input type="hidden" name="status" value="${go_user.status}"/>
 	    		<tr>
 	    			<td align="right">用户名<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
-	    			<td ><input type="text" name="username" /></td>
+	    			<td ><input type="text" name="username" value="${go_user.username}"/></td>
 	    			<td align="right">密码<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
-	    			<td ><input type="password" name="password" /></td>
+	    			<td ><input type="password" name="password" value="${go_user.password}"/></td>
 	    		</tr>
 	    		<tr>
 	    			<td align="right">名字<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
-	    			<td ><input type="text" name="position" value=""/></td>
+	    			<td ><input type="text" name="name" value="${go_user.name}"/></td>
 	    			<td align="right">电话<span class="remark" style="color:red;">&nbsp;*&nbsp;</span>：</td>
-	    			<td ><input type="text" name="position" value=""/></td>
+	    			<td ><input type="text" name="telephone" value="${go_user.telephone}"/></td>
 	    		</tr>
 	    	</table>
 	    	</form>

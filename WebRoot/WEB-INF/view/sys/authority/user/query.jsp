@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
 			    pagination:true,
-			    singleSelect:false,
+			    singleSelect:true,
 			    fitColumns:true,
 			    rownumbers:true,
 			    pageSize:15,
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					iconCls: 'icon-edit',
 					handler: function(){
 						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							go.window.edit('修改加油卡','card/gas_card/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
+							go.window.edit('修改用户信息','sys/authority/user/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
 						}else{
 							$.messager.alert('提示','请选择一项进行修改');
 						}
@@ -57,31 +57,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					text:'启用',
 					iconCls:'icon-ok',
 					handler:function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							if($('#dg').datagrid('getSelected').status=='2'){
+						var obj = $('#dg').datagrid('getSelected');
+						if(obj){
+							if(obj.status=="禁用"){
+								$.messager.confirm("提示","确定要启用该用户？",function(b){
+									if(b){
+										$.ajax({
+											url:"sys/authority/user/ok_status.htm",
+											type:POST,
+											data:"id="+obj.id,
+											success:function(msg){
+												$.messager.alert("提示",msg);
+											}
+										});
+									}
+								});
+							}else{
 								$.messager.alert("提示","该状态已经是正常状态","error");
-								return false;
 							}
-							if($('#dg').datagrid('getSelected').status=='-2'){
-								$.messager.alert("提示","启用失败，该卡已经挂失","error");
-								return false;
-							}
-							if($('#dg').datagrid('getSelected').status=='-5'){
-								$.messager.alert("提示","启用失败，该卡已经退卡","error");
-								return false;
-							}
-							$.messager.confirm("提示","您确定要启用选择的加油卡吗？",function(b){
-								if(b){
-									$.post("card/gas_card/update_status.htm?status=2&id=" + $('#dg').datagrid('getSelected').id,"",function(data){
-										if(isNaN(data)){
-											$.messager.alert("提示",data,"error");
-										}else{
-											$.messager.alert("提示","操作成功","info");
-											$('#dg').datagrid("load");
-										}
-									});
-								}
-							});
+							
 						}else{
 							$.messager.alert('提示','请选择一项');
 						}
@@ -130,6 +124,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				selectOnCheck:true,
 			    columns:[[  
 			        {field:'id',title:'编号',width:50,checkbox:true},  
+			        {field:'username',title:'账号',width:80},
+			        {field:'status',title:'状态',width:80},
 			        {field:'name',title:'名字',width:50},
 			        {field:'telephone',title:'电话',width:80},
 			    ]],
