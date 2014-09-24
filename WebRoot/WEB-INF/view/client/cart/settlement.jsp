@@ -8,7 +8,24 @@
 <jsp:include page="/WEB-INF/view/client/login/common/head.jsp">
 	<jsp:param value="购物车" name="name" />
 </jsp:include>
-
+<script  type="text/javascript">
+function removeProduct(productid){
+	var ok=confirm("确定移除该服务器。");
+	if(ok){
+		var url="removeProduct.htm";
+		$.ajax({
+			clearForm: false,
+			url:url,
+			data:"id="+productid,
+			success:function(data){
+				if(data==1){
+					hiddenDiv(productid);
+				}
+	        }
+		});
+	}
+}
+</script>
 </head>
 <body>
 
@@ -30,35 +47,36 @@
 							<th width="60%">描述</th>
 							<th width="40%">价格</th>
 						</tr>
-						<c:forEach items="${cart.productlist }" var="product" >
-							<tr class="carttableproduct">
+						<c:forEach items="${cart.productlist }" var="product" varStatus="i" >
+							<tr class="carttableproduct" id="${product.id }">
 									<td>
-										<strong><em>云主机</em> - RAK C512</strong> (1)<br /> 
-										&nbsp;&raquo; 操作系统:: CentOS 5.4<br />
+										<strong><em>${product.type }</em> - ${product.servername }</strong> (${i.getIndex()+1 })<br /> 
+										<!-- &nbsp;&raquo; 操作系统:: CentOS 5.4<br />
 										&nbsp;&raquo; IP地址:: 5个可用的ip (包含的)<br />
 										&nbsp;&raquo; 额外的内存:: 2G内存 (包含的)<br />
 										&nbsp;&raquo; 控制面板:	: 无<br />
-										&nbsp;&raquo; IPMI:	: 无IPMI<br />
+										&nbsp;&raquo; IPMI:	: 无IPMI<br /> -->
 										<a href="/whmcs/cart.php?a=confproduct&i=0" class="cartedit">[编辑配置]</a>
-										<a href="#" onclick="removeItem('p','0');return false" class="cartremove">[移除]</a>
+										<a href="#" onclick="removeProduct(${product.id});return false" class="cartremove">[移除]</a>
 									</td>
-									<td class="textcenter"><strong>$180.00USD</strong>
+									<td class="textcenter"><strong>$${product.monthlyPrice*product.numMonth }USD</strong>
+									<c:set value="${totalprice+product.monthlyPrice*product.numMonth }" var="totalprice"></c:set>
 									</td>
 							</tr>
 						</c:forEach>
 						<tr class="subtotal">
 							<td class="textright">小计: &nbsp;</td>
-							<td class="textcenter">$180.00USD</td>
+							<td class="textcenter">$${totalprice }USD</td>
 						</tr>
 						<tr class="total">
 							<td class="textright">当前总价: &nbsp;</td>
-							<td class="textcenter">$180.00USD</td>
+							<td class="textcenter">$${totalprice }USD</td>
 						</tr>
-						<tr class="recurring">
+						<!-- <tr class="recurring">
 							<td class="textright">Total Recurring: &nbsp;</td>
-							<td class="textcenter">$180.00USD 年度<br />
+							<td class="textcenter">$${totalprice }USD 年度<br />
 							</td>
-						</tr>
+						</tr> -->
 					</table>
 				</form>
 				<div class="cartbuttons">

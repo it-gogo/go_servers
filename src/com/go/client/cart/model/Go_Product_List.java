@@ -1,5 +1,7 @@
 package com.go.client.cart.model;
 
+import net.sf.json.JSONObject;
+
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -12,6 +14,8 @@ public class Go_Product_List {
 	private Integer cart;		//购物车ID
 	private Integer server;//服务器ID
 	private Integer price;	//价格ID
+	private String type;//服务器类型
+	private String servername;//服务器名称
 	private String hostname;//主机名
 	private String ns1prefix;//NS1 前缀
 	private String ns2prefix;//NS2 前缀
@@ -70,5 +74,20 @@ public class Go_Product_List {
 	}
 	public void setConfiguration(String configuration) {
 		this.configuration = configuration;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String toString(){
+		return JSONObject.fromObject(this).toString();
+	}
+	public String getServername() {
+		return servername;
+	}
+	public void setServername(String servername) {
+		this.servername = servername;
 	}
 }
