@@ -45,7 +45,7 @@
 	<select id="selectPageByParams" parameterType="map" resultType="Go_User">
 	    select * from Go_User 
 	    ${where} 
-	    limit ${pageData.pageSize} , ${(pageData.currentPage - 1) * pageData.pageSize}
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
 	</select>
 	<select id="count" parameterType="map" resultType="int">
 	    select count(id) from Go_User
