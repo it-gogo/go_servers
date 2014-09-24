@@ -13,5 +13,14 @@ import com.go.sys.server.model.Go_Server_Info;
 public interface IGo_Server_InfoService extends
 		IGo_BaseService<Go_Server_Info, Integer> {
 
+	/**
+	 * 
+	 * @return
+	 */
 	public  JSONArray  findConfigurationTree();
+	/**
+	 * 服务器类型树
+	 * @return
+	 */
+	public  JSONArray  findServerTypeTree();
 }

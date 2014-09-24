@@ -8,7 +8,10 @@
 <input  id="snumber"  type="hidden"  name="snumber"  value="">
 
 <div class="easyui-layout"  data-options="fit:'true'">
-		
+		<div data-options="region:'west',split:true,title:'菜单树',collapsible:true" 
+		  style="width:200px;">
+		  <ul id="ttt" class="easyui-tree" data-options="url:'../server_info/findServerTypeTree.htm',method:'get',animate:true,onClick:function(data){tttclick(data);}"></ul>
+		</div>
 		<div data-options="region:'center'">
 		 <%@include file="serverInfoGrid.jsp" %>  
 		</div>

@@ -35,9 +35,17 @@
 	    			</td>
 	    		</tr>
 	    		<tr>
+	    			<td align="right"  class="td_left">季度名:</td>
+	    			<td>
+	    			<input class="easyui-validatebox" type="text" name="quarter" id="quarter" 
+	    			data-options="required:true,validType:'maxLength[20]'" style="width:410px;">
+	    			</input>
+	    			</td>
+	    		</tr>
+	    		<tr>
 	    			<td align="right" class="td_left">是否使用:</td>
 	    			<td>
-	    			    <select class="easyui-combobox" name="isactives" id="isactives" style="width:250px;">
+	    			    <select class="easyui-combobox" name="isactives" id="isactives" style="width:410px;">
 	    		           <option value="1">是 </option>
 	    			       <option value="0"> 否 </option>
 	    			    </select>
@@ -45,7 +53,7 @@
 	    		</tr>
 	    		<tr>
 	    			<td align="right" class="td_left">描述:</td>
-	    			<td><textarea name="description" id="description" style="width:250px;height:60px;"
+	    			<td><textarea name="description" id="description" style="width:410px;height:60px;"
 	    			class="easyui-validatebox" data-options="validType:'maxLength[200]'" ></textarea></td>
 	    		</tr>
 		     </table>
