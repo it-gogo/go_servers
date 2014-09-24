@@ -1,6 +1,7 @@
 package com.go.client.cart.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.type.Alias;
 
@@ -14,7 +15,7 @@ public class Go_Cart_Info {
 	private Integer portal;		//门户
 	private String ip;//ip地址
 	private String createdate;	//创建时间
-	private List<Go_Product_List> productlist;//商品列表
+	private List<Map<String,Object>> productlist;//商品列表
 	public Integer getId() {
 		return id;
 	}
@@ -39,10 +40,10 @@ public class Go_Cart_Info {
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
-	public List<Go_Product_List> getProductlist() {
+	public List<Map<String, Object>> getProductlist() {
 		return productlist;
 	}
-	public void setProductlist(List<Go_Product_List> productlist) {
+	public void setProductlist(List<Map<String, Object>> productlist) {
 		this.productlist = productlist;
 	}
 }

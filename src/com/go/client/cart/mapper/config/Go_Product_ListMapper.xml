@@ -7,14 +7,16 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Product_List(cart,server,price,hostname,ns1prefix,ns2prefix,rootpw,configuration)
-	    values(#{cart},#{server},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{configuration})
+	    insert into Go_Product_List(cart,server,price,type,servername,hostname,ns1prefix,ns2prefix,rootpw,configuration)
+	    values(#{cart},#{server},#{price},#{type},#{servername},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{configuration})
 	</insert>
 	<update id="update">
 	    update Go_Product_List 
 		    set cart = #{cart},
 		    server = #{server},
 		    price = #{price},
+		     type = #{type},
+		     servername = #{servername},
 		    hostname = #{hostname},
 		    ns1prefix = #{ns1prefix},
 		    ns2prefix = #{ns2prefix},
@@ -36,6 +38,10 @@
 	    select ${column} from Go_Product_List 
 	    ${where}
 	    limit 1 offset 0
+	</select>
+	<select id="getScaleList" parameterType="map" resultType="map">
+	    select ${column} from Go_Product_List 
+	    ${where}
 	</select>
 	<select id="select" resultType="Go_Product_List">
 	    select * from Go_Product_List

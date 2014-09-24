@@ -1,3 +1,19 @@
+/**
+ * 隐藏div
+ * @param id
+ */
+function hiddenDiv(id){
+	var target=document.getElementById(id);
+	target.style.display="none";
+}
+/**
+ * 显示div
+ * @param id
+ */
+function showDiv(id){
+	var target=document.getElementById(id);
+	target.style.display="block";
+}
 
 /**
  * 限制输入长度

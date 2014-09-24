@@ -98,10 +98,24 @@ public class Go_CartController extends Go_BaseController{
 		}
 		params=new HashMap<String,Object>();
 		params.put("cart", cart.getId());
-		List<Go_Product_List> productlist=go_product_listService.list(params);
+		params.put("column", "id  id,type  type,configuration  configuration,(select name from Go_Server_Info b where b.id=server) servername,(select monthlyPrice from Go_Server_Price  where id=price) monthlyPrice,(select numMonth from Go_Server_Price  where id=price) numMonth  ");
+		List<Map<String,Object>> productlist=go_product_listService.getScaleList(params);
 		cart.setProductlist(productlist);
 		model.put("cart", cart);
 		return "client/cart/settlement";
+	}
+	
+	/**
+	 * 移除商品
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="removeProduct.htm")
+	public String removeProduct(ModelMap model,Integer id){
+		go_product_listService.delete(id);
+		model.addAttribute("show_msg",1);
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
 }

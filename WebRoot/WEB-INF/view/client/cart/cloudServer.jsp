@@ -39,7 +39,9 @@ function save(){
 			</p>
 			<div id="order-modern">
 				<form id="orderfrm" action="../cart/submitPublic.htm" method="post">
-					<input type="hidden" value="${server.serverTypeId }" name="serverTypeId" />
+					<input type="hidden" value="云主机" name="type" />
+					<input type="hidden" value="${server.id }" name="server" />
+					<input type="hidden" value="${server.name }" name="servername" />
 					<h1>配置</h1>
 					<div id="configproducterror" class="errorbox"></div>
 					<div class="prodconfigcol1">
