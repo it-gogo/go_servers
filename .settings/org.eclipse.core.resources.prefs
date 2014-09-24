@@ -1,4 +1,4 @@
-#Wed Sep 24 14:29:24 CST 2014
+#Tue Sep 23 22:16:49 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/cart/cloudServer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/cart/settlement.jsp=UTF-8
@@ -35,4 +35,5 @@ encoding//WebRoot/WEB-INF/view/client/main/stationsGroupServer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/supportCenter.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/technologyPartners.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/windowsVPS.jsp=UTF-8
+encoding//WebRoot/client/css/style.css=UTF-8
 encoding/<project>=UTF-8

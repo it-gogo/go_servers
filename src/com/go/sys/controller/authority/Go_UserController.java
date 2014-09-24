@@ -47,11 +47,12 @@ public class Go_UserController extends Go_BaseController{
 	 */
 	@RequestMapping(value="ajax_list.htm" , produces="application/json")
 	public @ResponseBody Map<String,Object> ajax_list(ModelMap model,String name,Go_PageData pageData){
-		Map<String,Object> params = new HashMap<String, Object>();
+		Map<String,Object> sys_params = new HashMap<String, Object>();
 		if(StringUtils.isNotBlank(name)){
-			params.put("name_like", name);
+			sys_params.put("name_like", name);
 		}
-		List<Go_User> rows = go_userService.listPageByParams(params, pageData);
+		List<Go_User> rows = go_userService.listPageByParams(sys_params, pageData);
+		
 		Map<String,Object> msg = new HashMap<String, Object>();
 		msg.put("rows", rows);
 		msg.put("total", pageData.getTotalSize());
@@ -90,6 +91,7 @@ public class Go_UserController extends Go_BaseController{
 				msg = "系统出错！";
 			}
 		}
+		model.addAttribute("show_msg", msg);
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	/*

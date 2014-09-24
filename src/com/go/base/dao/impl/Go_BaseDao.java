@@ -119,6 +119,7 @@ public class Go_BaseDao<T,K> extends SqlSessionTemplate implements IGo_BaseDao<T
 		//添加分页功能
 		params.put("where", listWhere);
 		params.put("pageData", pageData);
+		
 		return getMapper().selectPageByParams(params);
 	}
 
