@@ -36,7 +36,7 @@
 	    select * from Go_User
 	</select>
 	<select id="selectByParams" resultType="Go_User" parameterType="map">
-	    select * from Go_Department_Info ${where} 
+	    select * from Go_User ${where} 
 	</select>
 	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_User">
 	    select * from Go_User 

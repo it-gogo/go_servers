@@ -130,12 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				selectOnCheck:true,
 			    columns:[[  
 			        {field:'id',title:'编号',width:50,checkbox:true},  
-			        {field:'status',title:'状态',width:50},
-			        {field:'card_no',title:'卡号',width:200,formatter:function(val,rowData,index){
-			        	return '<a href="card/gas_card/detail_query.htm?card_no='+rowData.card_no+'">'+rowData.card_no+'</a>';
-			        }},
-			        {field:'vehicle_no',title:'车牌号',width:80},
-			        {field:'area',title:'优惠区域',width:80,align:'center'}
+			        {field:'name',title:'名字',width:50},
+			        {field:'telephone',title:'电话',width:80},
 			    ]],
 			    onLoadSuccess:function(data){
 			    	// 取消当前表格选中的所有行

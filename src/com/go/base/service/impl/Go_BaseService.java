@@ -82,9 +82,7 @@ public class Go_BaseService<T,K> implements IGo_BaseService<T, K> {
 		return sum==null?0d:sum;
 	}
 	@Override
-	public List<T> listPageByParams(Map<String, Object> params,
-			Go_PageData pageData) {
-		// TODO Auto-generated method stub
+	public List<T> listPageByParams(Map<String, Object> params,Go_PageData pageData) {
 		return dao.listPageByParams(params, pageData);
 	}
 	@Override
