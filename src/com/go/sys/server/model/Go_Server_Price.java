@@ -19,6 +19,8 @@ public class Go_Server_Price {
 	private String monthlyPrice;
 	//总共几个月
 	private String numMonth;
+	//季度
+	private String quarter;
 	//描述
 	private String description;
 	//是否使用
@@ -64,6 +66,12 @@ public class Go_Server_Price {
 	}
 	public void setServerId(Integer serverId) {
 		this.serverId = serverId;
+	}
+	public String getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(String quarter) {
+		this.quarter = quarter;
 	}
 	
 }

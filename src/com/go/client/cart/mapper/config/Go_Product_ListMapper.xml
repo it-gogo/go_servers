@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.client.cart.mapper.IGo_Product_ListMapper">
+    <insert id="insert" parameterType="Go_Product_List">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Product_List(cart,server,price,hostname,ns1prefix,ns2prefix,rootpw,configuration)
+	    values(#{cart},#{server},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{configuration})
+	</insert>
+	<update id="update">
+	    update Go_Product_List 
+		    set cart = #{cart},
+		    server = #{server},
+		    price = #{price},
+		    hostname = #{hostname},
+		    ns1prefix = #{ns1prefix},
+		    ns2prefix = #{ns2prefix},
+		    rootpw = #{rootpw},
+		    configuration = #{configuration}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Product_List where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Product_List ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Product_List
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Product_List 
+	    ${where}
+	    limit 1 offset 0
+	</select>
+	<select id="select" resultType="Go_Product_List">
+	    select * from Go_Product_List
+	</select>
+	<select id="selectByParams" resultType="Go_Product_List" parameterType="map">
+	    select * from Go_Product_List ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Product_List">
+	    select * from Go_Product_List 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Product_List">
+	    select Go_Product_List.* from Go_Product_List 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Product_List.id) from Go_Product_List
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Product_List">
+	    select * from Go_Product_List where id = #{id}
+	</select>
+	
+</mapper>

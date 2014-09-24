@@ -7,6 +7,7 @@
 <div id="toolbar">&nbsp;&nbsp; 
   <form id="qForm" method="post">
  &nbsp; &nbsp; &nbsp;  <span class="span">套餐名称:</span><input type="text" id="name"  name="name"  value="">
+ <input type="hidden" id="serverTypeId"  name="serverTypeId"   value="" datatype="integer">
  <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="query(gID,queryFormID)">查询</a>
     	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="resetForm(queryFormID)">重置</a>
  

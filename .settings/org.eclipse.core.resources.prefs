@@ -1,5 +1,7 @@
-#Tue Sep 23 11:17:51 CST 2014
+#Wed Sep 24 14:29:24 CST 2014
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/view/client/cart/cloudServer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/cart/settlement.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/affiliates.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/changePassword.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/customerArea.jsp=UTF-8
