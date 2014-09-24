@@ -27,7 +27,7 @@ import com.go.sys.server.service.IGo_Server_InfoService;
 public class Go_Main_InfoController extends Go_BaseController{
 	
 	@Autowired
-	public IGo_Main_InfoService go_serverList_infoService;//服务器信息service
+	public IGo_Main_InfoService go_main_infoService;//服务器信息service
 	
 	@Autowired
 	private IGo_Company_InfoService go_company_infoService;//公司信息service
@@ -41,10 +41,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="public.htm")
 	public String publicCloudServer(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "1");//公有云服务器
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("1");//公有云服务器
 		model.put("list", list);
 		return "client/main/publicCloudServer";
 	}
@@ -66,10 +63,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="independence.htm")
 	public String independenceServer(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "3");//独立服务器
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("3");//独立服务器
 		model.put("list", list);
 		return "client/main/independenceServer";
 	}
@@ -81,10 +75,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="stations.htm")
 	public String stationsGroupServer(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "4");//群站服务器
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("4");//群站服务器
 		model.put("list", list);
 		return "client/main/stationsGroupServer";
 	}
@@ -96,10 +87,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="linux.htm")
 	public String linuxVPS(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "6");//linux VPS
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("6");//linux VPS
 		model.put("list", list);
 		return "client/main/linuxVPS";
 	}
@@ -111,10 +99,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="windows.htm")
 	public String windowsVPS(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "5");//windows VPS
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("5");//windows VPS
 		model.put("list", list);
 		return "client/main/windowsVPS";
 	}
@@ -126,10 +111,7 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 */
 	@RequestMapping(value="HK.htm")
 	public String hKVPS(ModelMap model){
-		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,netFast as netFast,flow as flow,ipNum as ipNum,(select name from Go_Server_Price  b where b.serverId=a.id and b.numMonth=1) as pricename ");
-		params.put("serverTypeId", "7");//HK VPS
-		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
+		List<Map<String,Object>> list=go_main_infoService.getMapByType("7");//HK VPS
 		model.put("list", list);
 		return "client/main/HKVPS";
 	}

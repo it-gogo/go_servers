@@ -1,5 +1,7 @@
 package com.go.sys.server.model;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
@@ -44,6 +46,8 @@ public class Go_Server_Info {
 	private String description;
 	//状态
 	private String isactives;
+	
+	private List<Go_Server_Price> pricelist;
 	
 	/**
 	 * 数据完整性校验
@@ -179,6 +183,12 @@ public class Go_Server_Info {
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-	
-	
+
+	public List<Go_Server_Price> getPricelist() {
+		return pricelist;
+	}
+
+	public void setPricelist(List<Go_Server_Price> pricelist) {
+		this.pricelist = pricelist;
+	}
 }

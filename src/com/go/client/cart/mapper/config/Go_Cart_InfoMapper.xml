@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.client.cart.mapper.IGo_Cart_InfoMapper">
+    <insert id="insert" parameterType="Go_Cart_Info">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Cart_Info(portal,ip,createdate)
+	    values(#{portal},#{ip},#{createdate})
+	</insert>
+	<update id="update">
+	    update Go_Cart_Info 
+		    set portal = #{portal},
+		    ip = #{ip},
+		    createdate = #{createdate}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Cart_Info where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Cart_Info ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Cart_Info
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Cart_Info 
+	    ${where}
+	    limit 1 offset 0
+	</select>
+	<select id="select" resultType="Go_Cart_Info">
+	    select * from Go_Cart_Info
+	</select>
+	<select id="selectByParams" resultType="Go_Cart_Info" parameterType="map">
+	    select * from Go_Cart_Info ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Cart_Info">
+	    select * from Go_Cart_Info 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Cart_Info">
+	    select Go_Cart_Info.* from Go_Cart_Info 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Cart_Info.id) from Go_Cart_Info
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Cart_Info">
+	    select * from Go_Cart_Info where id = #{id}
+	</select>
+	
+</mapper>

@@ -9,4 +9,5 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/client/loginCss/style.css" />
 <script language="javascript" src="<%=request.getContextPath() %>/client/js/common.js"></script>
 <script language="javascript" src="<%=request.getContextPath() %>/client/js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="<%=request.getContextPath() %>/client/js/jquery.form.js"></script>
 <script language="javascript" src="<%=request.getContextPath() %>/client/js/jquery.json-2.4.min.js"></script>

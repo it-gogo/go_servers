@@ -7,10 +7,10 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Server_Price(NAME,SERVERID,MONTHLYPRICE,NUMMONTH,DESCRIPTION,ISACTIVES)
+	    insert into Go_Server_Price(NAME,SERVERID,MONTHLYPRICE,NUMMONTH,QUARTER,DESCRIPTION,ISACTIVES)
 	    values
 	    (
-	    #{name},#{serverId},#{monthlyPrice},#{numMonth},#{description},#{isactives}
+	    #{name},#{serverId},#{monthlyPrice},#{numMonth},#{quarter},#{description},#{isactives}
 	    )
 	</insert>
 	<update id="update">
@@ -20,6 +20,7 @@
 		    SERVERID=#{serverId},
 		    MONTHLYPRICE=#{monthlyPrice},
 		    NUMMONTH=#{numMonth},
+		    QUARTER=#{quarter},
 		    DESCRIPTION=#{description},
 	   		ISACTIVES=#{isactives}
 		    where id = #{id}
