@@ -34,11 +34,12 @@ function save(){
 	<div id="content_container">
 		<div id="content_left">
 			<h1>购物车</h1>
-			<p class="breadcrumb">
+			<!-- <p class="breadcrumb">
 				<a href="cart.php">购物车</a>
-			</p>
+			</p> -->
 			<div id="order-modern">
 				<form id="orderfrm" action="../cart/submitPublic.htm" method="post">
+					<input type="hidden" value="${product.id }" name="id" />
 					<input type="hidden" value="云主机" name="type" />
 					<input type="hidden" value="${server.id }" name="server" />
 					<input type="hidden" value="${server.name }" name="servername" />
@@ -48,17 +49,32 @@ function save(){
 						<h3>订单周期</h3>
 						<div class="billingcycle">
 							<table width="100%" cellspacing="0" cellpadding="0" class="configtable">
-								<c:forEach items="${server.pricelist }" var="price" varStatus="i" >
-									<tr>
-										<td class="radiofield">
-											<c:if test="${i.getIndex()==0 }"><c:set value="${price}" var="one"></c:set></c:if>
-											<input type="radio" name="price" id="${price.id }" value="${price.id }"  <c:if test="${i.getIndex()==0 }">checked</c:if>  onclick="count(${price.monthlyPrice*price.numMonth},'${price.quarter }')" />
-										</td>
-										<td class="fieldarea">
-											<label for="${price.id }">${price.name }</label>
-										</td>
-									</tr>
-								</c:forEach>
+								<c:if test="${product==null || product.price==null }">
+									<c:forEach items="${server.pricelist }" var="price" varStatus="i" >
+										<tr>
+											<td class="radiofield">
+												<c:if test="${i.getIndex()==0 }"><c:set value="${price}" var="one"></c:set></c:if>
+												<input type="radio" name="price" id="${price.id }" value="${price.id }"  <c:if test="${i.getIndex()==0 }">checked</c:if>  onclick="count(${price.monthlyPrice*price.numMonth},'${price.quarter }')" />
+											</td>
+											<td class="fieldarea">
+												<label for="${price.id }">${price.name }</label>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								<c:if test="${product!=null && product.price!=null }">
+									<c:forEach items="${server.pricelist }" var="price" varStatus="i" >
+										<tr>
+											<td class="radiofield">
+												<c:if test="${price.id==product.price }"><c:set value="${price}" var="one"></c:set></c:if>
+												<input type="radio" name="price" id="${price.id }" value="${price.id }"  <c:if test="${price.id==product.price }">checked</c:if>  onclick="count(${price.monthlyPrice*price.numMonth},'${price.quarter }')" />
+											</td>
+											<td class="fieldarea">
+												<label for="${price.id }">${price.name }</label>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
 							</table>
 						</div>
 
@@ -69,29 +85,48 @@ function save(){
 								<tr>
 									<td class="fieldlabel">主机名:</td>
 									<td class="fieldarea">
-										<input type="text" name="hostname" size="15" value="" /> eg. server1(.yourdomain.com)
+										<input type="text" name="hostname" size="15" value="${product.hostname }" /> eg. server1(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">NS1 前缀:</td>
 									<td class="fieldarea">
-										<input type="text" name="ns1prefix" size="10" value="" /> eg. ns1(.yourdomain.com)
+										<input type="text" name="ns1prefix" size="10" value="${product.ns1prefix }" /> eg. ns1(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">NS2 前缀:</td>
 									<td class="fieldarea">
-										<input type="text" name="ns2prefix"size="10" value="" /> eg. ns2(.yourdomain.com)
+										<input type="text" name="ns2prefix"size="10" value="${product.ns2prefix }" /> eg. ns2(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">Root密码:</td>
 									<td class="fieldarea">
-										<input type="password" name="rootpw" size="20" value="" />
+										<input type="password" name="rootpw" size="20" value="${product.rootpw }" />
 									</td>
 								</tr>
 							</table>
 						</div>
+						<c:if test="${map!=null && map.size()!=0}">
+							<h3>可配置项</h3>
+							<div class="serverconfig">
+								<table width="100%" cellspacing="0" cellpadding="0" class="configtable">
+									<c:forEach items="${map }" var="entry">
+										<tr class="configurationTr">
+											<td class="fieldlabel">${entry.key }:<input type="hidden" value="${entry.key }" /></td>
+											<td class="fieldarea">
+												<select style="width: 240px;" >
+													<c:forEach items="${entry.value }" var="configuration" >
+														<option value="${configuration.id }">${configuration.name }</option>
+													</c:forEach>
+												</select>
+											</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:if>
 					</div>
 					<div class="prodconfigcol2">
 						<h3>订单概述</h3>
@@ -135,7 +170,7 @@ function save(){
 						</div>
 						<div class="checkoutbuttons">
 							<input type="button" value="结算 &raquo;" class="checkout" onclick="save();" /><br /> 
-							<input type="button" value="继续购物" onclick="addtocart('5');" /><br /> 
+							<input type="button" value="继续购物" onclick="window.location='../../';" /><br /> 
 							<input type="button" value="查看购物车" onclick="window.location='lookCart.htm'" />
 						</div>
 					</div>

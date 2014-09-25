@@ -36,6 +36,10 @@
 	    ${where}
 	    limit 1 offset 0
 	</select>
+	<select id="getScaleList" parameterType="map" resultType="map">
+	    select ${column} from Go_Configuration_Data 
+	    ${where}
+	</select>
 	<select id="select" resultType="Go_Configuration_Data">
 	    select * from Go_Configuration_Data
 	</select>

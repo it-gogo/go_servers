@@ -1,5 +1,6 @@
 package com.go.client.controller.cart;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,9 @@ import com.go.client.cart.service.IGo_Cart_InfoService;
 import com.go.client.cart.service.IGo_Product_ListService;
 import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
+import com.go.sys.server.model.Go_Configuration_Data;
 import com.go.sys.server.model.Go_Server_Info;
+import com.go.sys.server.service.IGo_Configuration_DataService;
 import com.go.sys.server.service.IGo_Server_InfoService;
 import com.go.sys.server.service.IGo_Server_PriceService;
 
@@ -40,6 +43,8 @@ public class Go_CartController extends Go_BaseController{
 	private IGo_Cart_InfoService go_cart_infoService;//购物车service
 	@Autowired
 	private IGo_Product_ListService go_product_listService;//商品列表service
+	@Autowired
+	private IGo_Configuration_DataService go_configuration_dataService;//可配置内容service
 	
 	/**
 	 * 公共云服务器购物车
@@ -53,7 +58,37 @@ public class Go_CartController extends Go_BaseController{
 		params.put("serverId", id);
 		server.setPricelist(go_server_priceService.list(params));
 		model.put("server", server);
+		
+		//查询配置项内容
+		params=new HashMap<String,Object>();
+		params.put("id_in", "select configuration from Go_Server_Configuration where server="+id);
+		List<Go_Configuration_Data> configurationlist=go_configuration_dataService.list(params);
+		Map<String,List<Go_Configuration_Data>> map=new HashMap<String,List<Go_Configuration_Data>>();
+		for(Go_Configuration_Data configuration:configurationlist){
+			String key=configuration.getTypename();
+			List<Go_Configuration_Data> list=map.get(key);
+			if(list==null){
+				list=new ArrayList<Go_Configuration_Data>();
+			}
+			list.add(configuration);
+			map.put(key, list);
+		}
+		model.put("map", map);
 		return "client/cart/cloudServer";
+	}
+	
+	
+	/**
+	 * 配置编辑
+	 * @param model
+	 * @param id商品id
+	 * @return
+	 */
+	@RequestMapping(value="modifyConfiguration.htm")
+	public String modifyConfiguration(ModelMap model,Integer id){
+		Go_Product_List product=go_product_listService.get(id);
+		model.put("product", product);
+		return publicCart(model,product.getServer());
 	}
 	
 	/**
@@ -62,9 +97,13 @@ public class Go_CartController extends Go_BaseController{
 	 */
 	@RequestMapping(value="submitPublic.htm")
 	public String submitPublic(HttpServletRequest request,ModelMap model,Go_Product_List product){
+//		Go_Portal_Info portal_info=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
 		String ip=request.getLocalAddr();//访问IP地址
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("ip", ip);
+//		if(portal_info!=null){
+//			params.put("or_portal", portal_info.getId());
+//		}
 		Go_Cart_Info cart=go_cart_infoService.get(params);
 		if(cart==null){
 			cart=new Go_Cart_Info();
@@ -73,7 +112,11 @@ public class Go_CartController extends Go_BaseController{
 			cart=go_cart_infoService.save(cart);
 		}
 		product.setCart(cart.getId());
-		go_product_listService.save(product);
+		if(product.getId()==null){
+			go_product_listService.save(product);
+		}else{
+			go_product_listService.update(product);
+		}
 		
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
@@ -116,6 +159,21 @@ public class Go_CartController extends Go_BaseController{
 		go_product_listService.delete(id);
 		model.addAttribute("show_msg",1);
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
+	/**
+	 * 清空购物车
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="emptyCart.htm")
+	public String emptyCart(ModelMap model,Integer id){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("cart", id);
+		go_product_listService.deleteList(params);
+		model.addAttribute("show_msg",1);
+		return "redirect:lookCart.htm";
 	}
 	
 }

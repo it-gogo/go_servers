@@ -9,6 +9,9 @@
 	<jsp:param value="购物车" name="name" />
 </jsp:include>
 <script  type="text/javascript">
+/**
+*移除商品
+*/
 function removeProduct(productid){
 	var ok=confirm("确定移除该服务器。");
 	if(ok){
@@ -23,6 +26,39 @@ function removeProduct(productid){
 				}
 	        }
 		});
+	}
+}
+/**
+*清空购物车
+*/
+function emptyCart(cartid){
+	var ok=confirm("确定要清空购物车？");
+	if(ok){
+		var url="emptyCart.htm";
+		$.ajax({
+			clearForm: false,
+			url:url,
+			data:"id="+cartid,
+			success:function(data){
+				if(data==1){
+					hiddenDiv(productid);
+				}
+	        }
+		});
+	}
+}
+
+function selectCust(cust){
+	if(cust=="new"){//新客服
+		hiddenDiv('loginfrm');
+		showDiv('signupfrm');
+		$("#newcust").addClass("active");
+		$("#existingcust").removeClass("active");
+	}else if(cust=="old"){//老客服
+		hiddenDiv('signupfrm');
+		showDiv('loginfrm');
+		$("#existingcust").addClass("active");
+		$("#newcust").removeClass("active");
 	}
 }
 </script>
@@ -47,23 +83,32 @@ function removeProduct(productid){
 							<th width="60%">描述</th>
 							<th width="40%">价格</th>
 						</tr>
-						<c:forEach items="${cart.productlist }" var="product" varStatus="i" >
-							<tr class="carttableproduct" id="${product.id }">
-									<td>
-										<strong><em>${product.type }</em> - ${product.servername }</strong> (${i.getIndex()+1 })<br /> 
-										<!-- &nbsp;&raquo; 操作系统:: CentOS 5.4<br />
-										&nbsp;&raquo; IP地址:: 5个可用的ip (包含的)<br />
-										&nbsp;&raquo; 额外的内存:: 2G内存 (包含的)<br />
-										&nbsp;&raquo; 控制面板:	: 无<br />
-										&nbsp;&raquo; IPMI:	: 无IPMI<br /> -->
-										<a href="/whmcs/cart.php?a=confproduct&i=0" class="cartedit">[编辑配置]</a>
-										<a href="#" onclick="removeProduct(${product.id});return false" class="cartremove">[移除]</a>
-									</td>
-									<td class="textcenter"><strong>$${product.monthlyPrice*product.numMonth }USD</strong>
-									<c:set value="${totalprice+product.monthlyPrice*product.numMonth }" var="totalprice"></c:set>
-									</td>
-							</tr>
-						</c:forEach>
+						<c:if test="${cart.productlist!=null &&  cart.productlist.size()!=0}">
+							<c:forEach items="${cart.productlist }" var="product" varStatus="i" >
+								<tr class="carttableproduct" id="${product.id }">
+										<td>
+											<strong><em>${product.type }</em> - ${product.servername }</strong> (${i.getIndex()+1 })<br /> 
+											<!-- &nbsp;&raquo; 操作系统:: CentOS 5.4<br />
+											&nbsp;&raquo; IP地址:: 5个可用的ip (包含的)<br />
+											&nbsp;&raquo; 额外的内存:: 2G内存 (包含的)<br />
+											&nbsp;&raquo; 控制面板:	: 无<br />
+											&nbsp;&raquo; IPMI:	: 无IPMI<br /> -->
+											<a href="modifyConfiguration.htm?id=${product.id }" class="cartedit">[编辑配置]</a>
+											<a href="#" onclick="removeProduct(${product.id});" class="cartremove">[移除]</a>
+										</td>
+										<td class="textcenter"><strong>$${product.monthlyPrice*product.numMonth }USD</strong>
+										<c:set value="${totalprice+product.monthlyPrice*product.numMonth }" var="totalprice"></c:set>
+										</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${cart.productlist==null ||  cart.productlist.size()==0}">
+						<tr class="clientareatableactive">
+							<td colspan="2" class="textcenter">
+								</br>"购物车0件"</br></br>
+							</td>
+						</tr>
+						</c:if>
 						<tr class="subtotal">
 							<td class="textright">小计: &nbsp;</td>
 							<td class="textcenter">$${totalprice }USD</td>
@@ -80,21 +125,19 @@ function removeProduct(productid){
 					</table>
 				</form>
 				<div class="cartbuttons">
-					<input type="button" value="购物车为空"
-						onclick="emptyCart();return false" /> <input type="button"
-						value="继续购物" onclick="window.location='cart.php'" />
+					<input type="button" value="购物车为空" onclick="window.location='emptyCart.htm?id=${cart.id}'" /> 
+					<input type="button" value="继续购物" onclick="window.location='../../'" />
 				</div>
 				<form method="post" action="/whmcs/cart.php?a=checkout" id="mainfrm">
-					<input type="hidden" name="token"
-						value="0073245fe7ca0bb81bb909e04f0a1333926a0842" /> <input
-						type="hidden" name="submit" value="true" /> <input type="hidden"
-						name="custtype" id="custtype" value="new" /> <br />
+					<input type="hidden" name="token" value="0073245fe7ca0bb81bb909e04f0a1333926a0842" /> 
+					<input type="hidden" name="submit" value="true" /> 
+					<input type="hidden" name="custtype" id="custtype" value="new" /> <br />
 					<br />
 
 					<h2>您的详细情况</h2>
 					<div style="float:left;width:20px;">&nbsp;</div>
-					<div class="signuptype active" id="newcust">新客户</div>
-					<div class="signuptype" id="existingcust">老客户</div>
+					<div class="signuptype active" id="newcust" onclick="selectCust('new');">新客户</div>
+					<div class="signuptype" id="existingcust" onclick="selectCust('old');">老客户</div>
 					<div class="clear"></div>
 					<div class="signupfields hidden" id="loginfrm">
 						<table width="100%" cellspacing="0" cellpadding="0"
@@ -181,11 +224,11 @@ function removeProduct(productid){
 
 					<div class="checkoutcol1">
 
-						<div class="signupfields padded">
+						<!-- <div class="signupfields padded">
 							<h2>优惠码</h2>
 							<input type="text" name="promocode" size="20" value="" /> <input
 								type="submit" name="validatepromo" value="激活优惠码 >>" />
-						</div>
+						</div> -->
 
 						<div class="signupfields padded">
 							<h2>备注/额外信息</h2>
@@ -206,7 +249,7 @@ function removeProduct(productid){
 								PayPal</label> <br />
 							<br />
 
-							<div id="ccinputform" class="signupfields hidden">
+							<!-- <div id="ccinputform" class="signupfields hidden">
 								<table width="100%" cellspacing="0" cellpadding="0"
 									class="configtable textleft">
 									<input type="hidden" name="ccinfo" value="new" />
@@ -268,7 +311,7 @@ function removeProduct(productid){
 										</td>
 									</tr>
 								</table>
-							</div>
+							</div> -->
 
 						</div>
 
@@ -286,7 +329,7 @@ function removeProduct(productid){
 
 				<div class="cartwarningbox">
 					<img src="<%=request.getContextPath()%>/client/loginCss/images/padlock.gif" align="absmiddle" border="0"
-						alt="Secure Transaction" /> &nbsp; 订单安全防护能够抵御IP地址欺诈行为 (<strong>110.84.3.6</strong>)
+						alt="Secure Transaction" /> &nbsp; 订单安全防护能够抵御IP地址欺诈行为 (<strong><%=request.getLocalAddr() %></strong>)
 					已登录
 				</div>
 
