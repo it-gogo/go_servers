@@ -13,6 +13,20 @@ function count(price,quarter){
 	$("#quarter").html(quarter);
 }
 function save(){
+	var obj=$(".configurationTr");
+	var array=new Array();
+	for(var i=0;i<obj.size();i++){
+		var o=obj.eq(i);
+		var sel=o.find("select");
+		var inp=o.find("input");
+		var json=new Object();
+		json["id"]=sel.val();//选择ID
+		json["name"]=inp.val();//类型名称
+		json["value"]=sel.find("option:selected").text();//选择的值
+		 array[array.length] = json;
+	}
+	var jsonStr=$.toJSON(array);
+	$("#configuration").val(jsonStr);
 	var formid="orderfrm";
 	$("#orderfrm").submit(function() {
         $("#orderfrm").ajaxSubmit({
@@ -43,6 +57,7 @@ function save(){
 					<input type="hidden" value="云主机" name="type" />
 					<input type="hidden" value="${server.id }" name="server" />
 					<input type="hidden" value="${server.name }" name="servername" />
+					<input type="hidden" value="" name="configuration" id="configuration" />
 					<h1>配置</h1>
 					<div id="configproducterror" class="errorbox"></div>
 					<div class="prodconfigcol1">
@@ -112,13 +127,14 @@ function save(){
 							<h3>可配置项</h3>
 							<div class="serverconfig">
 								<table width="100%" cellspacing="0" cellpadding="0" class="configtable">
-									<c:forEach items="${map }" var="entry">
+									<c:forEach items="${map }" var="entry"  varStatus="i">
 										<tr class="configurationTr">
 											<td class="fieldlabel">${entry.key }:<input type="hidden" value="${entry.key }" /></td>
 											<td class="fieldarea">
+													<c:set value="${configurationmap[entry.key] }" var="configurationvalue"></c:set>
 												<select style="width: 240px;" >
 													<c:forEach items="${entry.value }" var="configuration" >
-														<option value="${configuration.id }">${configuration.name }</option>
+														<option value="${configuration.id }"<c:if test="${configurationvalue!=null && configurationvalue.id==configuration.id  }">selected="true"</c:if> >${configuration.name }</option>
 													</c:forEach>
 												</select>
 											</td>
@@ -132,7 +148,12 @@ function save(){
 						<h3>订单概述</h3>
 						<div class="ordersummary" id="producttotal">
 							<div class="summaryproduct">
-								"云主机" - 
+								<c:if test="${server.serverTypeId==1 }">"云主机" - </c:if>
+								<c:if test="${server.serverTypeId==3 }">"独立服务器" - </c:if>
+								<c:if test="${server.serverTypeId==4 }">"站群服务器" - </c:if>
+								<c:if test="${server.serverTypeId==5 }">"Windows VPS" - </c:if>
+								<c:if test="${server.serverTypeId==6 }">"Linux VPS" - </c:if>
+								<c:if test="${server.serverTypeId==7 }">"HK VPS" - </c:if>
 								<b>${server.name }</b>
 							</div>
 							<table class="ordersummarytbl" >

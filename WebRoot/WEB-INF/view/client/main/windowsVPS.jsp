@@ -30,9 +30,9 @@
                    <li>${server.netFast }</li>
                    <li>SolusVM 控制面板</li>
               </ul>
-              <div class="price">${server.pricename }</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7')"/>
+              <div class="price">$${server.pricename }/月</div>
+      <a href="../cart/order.htm?id=${server.id}">
+      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('../cart/order.htm?id=${server.id}')"/>
       </a>
             </li>
 	</c:forEach>

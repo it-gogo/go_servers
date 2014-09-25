@@ -8,6 +8,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -51,8 +54,8 @@ public class Go_CartController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="public.htm")
-	public String publicCart(ModelMap model,Integer id){
+	@RequestMapping(value="order.htm")
+	public String orderCart(ModelMap model,Integer id){
 		Go_Server_Info server=go_server_infoService.get(id);
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("serverId", id);
@@ -74,7 +77,7 @@ public class Go_CartController extends Go_BaseController{
 			map.put(key, list);
 		}
 		model.put("map", map);
-		return "client/cart/cloudServer";
+		return "client/cart/orderServer";
 	}
 	
 	
@@ -88,7 +91,19 @@ public class Go_CartController extends Go_BaseController{
 	public String modifyConfiguration(ModelMap model,Integer id){
 		Go_Product_List product=go_product_listService.get(id);
 		model.put("product", product);
-		return publicCart(model,product.getServer());
+		String jsonStr=product.getConfiguration();
+		if(jsonStr!=null && !"".equals(jsonStr)){
+			JSONArray arr=JSONArray.fromObject(jsonStr);
+			Map<String,JSONObject> map=new HashMap<String,JSONObject>();
+			for(int i=0;i<arr.size();i++){
+				JSONObject obj=arr.getJSONObject(i);
+				if(obj!=null){
+					map.put(obj.getString("name"), obj);
+				}
+			}
+			model.put("configurationmap", map);
+		}
+		return orderCart(model,product.getServer());
 	}
 	
 	/**
