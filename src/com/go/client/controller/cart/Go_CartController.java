@@ -192,21 +192,25 @@ public class Go_CartController extends Go_BaseController{
 		Map<String,Object> params=new HashMap<String,Object>();
 		boolean ok=true;//判断是否错误
 		if("old".equals(cust)){
-			if(loginemail==null){
-				loginemail="";
-			}
-			String  pw="";
-			if(loginpw!=null && !"".equals(loginpw)){
-				pw=Go_PasswordUtil.encrypt(loginpw);
-			}
-			params.put("email", loginemail);
-			params.put("password", pw);
-			portal=go_portal_infoService.get(params);
-			if(portal==null){//账号不存在
+			if(loginemail==null  || "".equals(loginemail) || loginpw==null || "".equals(loginpw)){
 				model.put("error_msg", "#  登录错误，请重试。  # ");
 				model.put("cust", "old");
 				ok=false;//结账失败
-				//return "client/cart/settlement";
+			}else{
+				String  pw="";
+				if(loginpw!=null && !"".equals(loginpw)){
+					pw=Go_PasswordUtil.encrypt(loginpw);
+				}
+				params.put("email", loginemail);
+				params.put("password", pw);
+				portal=go_portal_infoService.get(params);
+				
+				if(portal==null){//账号不存在
+					model.put("error_msg", "#  登录错误，请重试。  # ");
+					model.put("cust", "old");
+					ok=false;//结账失败
+					//return "client/cart/settlement";
+				}
 			}
 		}else{
 			if(portal.getId()!=null){
