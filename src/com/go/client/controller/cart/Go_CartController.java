@@ -18,10 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.client.cart.model.Go_Cart_Info;
+import com.go.client.cart.model.Go_Order_Detail;
+import com.go.client.cart.model.Go_Order_Info;
 import com.go.client.cart.model.Go_Product_List;
 import com.go.client.cart.service.IGo_Cart_InfoService;
 import com.go.client.cart.service.IGo_Product_ListService;
+import com.go.client.login.model.Go_Portal_Info;
+import com.go.client.login.service.IGo_Portal_InfoService;
 import com.go.client.util.ExtendDate;
+import com.go.common.util.Go_PasswordUtil;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.server.model.Go_Configuration_Data;
 import com.go.sys.server.model.Go_Server_Info;
@@ -35,7 +40,7 @@ import com.go.sys.server.service.IGo_Server_PriceService;
  *
  */
 @Controller
-@RequestMapping(value="/client/cart/*")
+@RequestMapping(value="/client/cart/order/*")
 public class Go_CartController extends Go_BaseController{
 	
 	@Autowired
@@ -48,6 +53,8 @@ public class Go_CartController extends Go_BaseController{
 	private IGo_Product_ListService go_product_listService;//商品列表service
 	@Autowired
 	private IGo_Configuration_DataService go_configuration_dataService;//可配置内容service
+	@Autowired
+	private IGo_Portal_InfoService go_portal_infoService;//门户信息service
 	
 	/**
 	 * 公共云服务器购物车
@@ -156,11 +163,140 @@ public class Go_CartController extends Go_BaseController{
 		}
 		params=new HashMap<String,Object>();
 		params.put("cart", cart.getId());
-		params.put("column", "id  id,type  type,configuration  configuration,(select name from Go_Server_Info b where b.id=server) servername,(select monthlyPrice from Go_Server_Price  where id=price) monthlyPrice,(select numMonth from Go_Server_Price  where id=price) numMonth  ");
+		params.put("column", "id  id,type  type,totalprice totalprice,configuration  configuration,(select name from Go_Server_Info b where b.id=server) servername,(select monthlyPrice from Go_Server_Price  where id=price) monthlyPrice,(select numMonth from Go_Server_Price  where id=price) numMonth  ");
 		List<Map<String,Object>> productlist=go_product_listService.getScaleList(params);
+		for(Map<String,Object> map:productlist){
+			String jsonStr=(String) map.get("configuration");
+			if(jsonStr!=null && !"".equals(jsonStr)){
+				JSONArray arr=JSONArray.fromObject(jsonStr);
+				map.put("configurationarr", arr);
+			}
+		}
 		cart.setProductlist(productlist);
 		model.put("cart", cart);
 		return "client/cart/settlement";
+	}
+	
+	/**
+	 * 结账
+	 * @param model
+	 * @param portal
+	 * @param cartid
+	 * @param loginemail
+	 * @param loginpw
+	 * @param notes
+	 * @return
+	 */
+	@RequestMapping(value="checkout.htm")
+	public String checkout(HttpServletRequest request,ModelMap model,Go_Portal_Info portal,Integer cartid,String loginemail,String loginpw,String notes,String cust){
+		Map<String,Object> params=new HashMap<String,Object>();
+		boolean ok=true;//判断是否错误
+		if("old".equals(cust)){
+			if(loginemail==null){
+				loginemail="";
+			}
+			String  pw="";
+			if(loginpw!=null && !"".equals(loginpw)){
+				pw=Go_PasswordUtil.encrypt(loginpw);
+			}
+			params.put("email", loginemail);
+			params.put("password", pw);
+			portal=go_portal_infoService.get(params);
+			if(portal==null){//账号不存在
+				model.put("error_msg", "#  登录错误，请重试。  # ");
+				model.put("cust", "old");
+				ok=false;//结账失败
+				//return "client/cart/settlement";
+			}
+		}else{
+			if(portal.getId()!=null){
+				portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+			}else{
+				error_msg="";
+				String str=portal.getName();
+				if(str==null || "".equals(str)){
+					error_msg+="#  未填写您的名  ";
+				}
+				str=portal.getSurname();
+				if(str==null || "".equals(str)){
+					error_msg+="#  未填写您的姓  ";
+				}
+				str=portal.getEmail();
+				if(str==null || "".equals(str)){
+					error_msg+="#  未填写邮件地址  ";
+				}
+				str=portal.getTelephone();
+				if(str==null || "".equals(str)){
+					error_msg+="#  未填写电话号码  ";
+				}
+				String password=portal.getPassword();
+				if(password==null || "".equals(password)){
+					error_msg+="#  未输入密码   ";
+				}
+				if(error_msg!=null && !"".equals(error_msg)){
+					error_msg+="#";
+					model.put("error_msg", error_msg);
+					model.put("cust", "new");
+					ok=false;//结账失败
+					//return "client/cart/settlement";
+				}else{
+					portal.setPassword(Go_PasswordUtil.encrypt(password));
+					portal=go_portal_infoService.save(portal);
+				}
+			}
+		}
+		
+		if(!ok){
+			params=new HashMap<String,Object>();
+			Go_Cart_Info cart=new Go_Cart_Info();
+			cart.setId(cartid);
+			params.put("cart", cart.getId());
+			params.put("column", "id  id,type  type,configuration  configuration,(select name from Go_Server_Info b where b.id=server) servername,(select monthlyPrice from Go_Server_Price  where id=price) monthlyPrice,(select numMonth from Go_Server_Price  where id=price) numMonth  ");
+			List<Map<String,Object>> productlist=go_product_listService.getScaleList(params);
+			for(Map<String,Object> map:productlist){
+				String jsonStr=(String) map.get("configuration");
+				if(jsonStr!=null && !"".equals(jsonStr)){
+					JSONArray arr=JSONArray.fromObject(jsonStr);
+					map.put("configurationarr", arr);
+				}
+			}
+			cart.setProductlist(productlist);
+			model.put("cart", cart);
+			return "client/cart/settlement";
+		}
+		
+		
+		
+		Go_Order_Info order=new Go_Order_Info();//订单信息
+		order.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
+		order.setNotes(notes);
+		order.setOrdername(portal.getSurname()+portal.getName());
+		order.setOrdertelephone(portal.getTelephone());
+		order.setPayment("现金支付");
+		order.setStatus("提交支付");
+		order.setPortal(portal.getId());
+		order.setTotalprice("");
+		
+		params=new HashMap<String,Object>();
+		params.put("cart", cartid);
+		params.put("column", "server server,servername servername,type servertype," +
+				"(select cpu from Go_Server_Info where id=server) cpu,(select memory from Go_Server_Info where id=server) memory,(select disk from Go_Server_Info where  id=server) disk,(select flow from Go_Server_Info where  id=server) flow,(select ipNum from Go_Server_Info where id=server) ipNum," +
+				"hostname hostname,ns1prefix ns1prefix,ns2prefix ns2prefix,rootpw rootpw,configuration configuration,totalprice price");
+		List<Map<String,Object>> mlist=go_product_listService.getScaleList(params);
+		double totalprice=0.0;
+		for(Map<String,Object> map:mlist){
+//			Go_Order_Detail detail=new Go_Order_Detail();
+			JSONObject obj=JSONObject.fromObject(map);
+			Go_Order_Detail detail=(Go_Order_Detail) JSONObject.toBean(obj, Go_Order_Detail.class);
+			String price=detail.getPrice();
+			if(price!=null && !"".equals(price)){
+				totalprice+=Double.valueOf(price);
+			}
+			detail.setOrder(order.getId());
+//			detail.setConfiguration(product.getConfiguration());
+		}
+		order.setTotalprice(totalprice+"");
+		return "client/cart/checkout";
 	}
 	
 	/**

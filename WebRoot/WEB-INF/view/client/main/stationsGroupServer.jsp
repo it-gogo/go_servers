@@ -27,10 +27,7 @@
                   <li>${server.flow }</li>
                   <li>${server.ipNum }</li>
               </ul>
-              <div class="price">$${server.pricename }/月</div>
-      <a href="../cart/order.htm?id=${server.id}">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('../cart/order.htm?id=${server.id}')"/>
-      </a>
+              <%@include file="/WEB-INF/view/client/login/common/order.jsp" %>
             </li>
 	</c:forEach>
            <!--  <li>

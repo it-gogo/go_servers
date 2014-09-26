@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.go.client.cart.mapper.IGo_Order_DetailMapper">
+    <insert id="insert" parameterType="Go_Order_Detail">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
+	    insert into Go_Order_Detail(order,server,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw)
+	    values(#{order},#{server},#{servername},#{servertype},#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw})
+	</insert>
+	<update id="update">
+	    update Go_Order_Detail 
+		    set order = #{order},
+		    server = #{server},
+		    servername = #{servername},
+		     servertype = #{servertype},
+		     cpu = #{cpu},
+		    memory = #{memory},
+		    disk = #{disk},
+		    flow = #{flow},
+		    ipNum = #{ipNum},
+		    configuration = #{configuration},
+		    price = #{price},
+		    hostname = #{hostname},
+		    ns1prefix = #{ns1prefix},
+		    ns2prefix = #{ns2prefix},
+		    rootpw = #{rootpw}
+		    where id = #{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	    delete from Go_Order_Detail where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Order_Detail ${where}
+	</delete>
+	<update id="updateField" parameterType="map">
+	    update Go_Order_Detail
+	    ${set_sql}
+	</update>
+	<select id="getScale" parameterType="map" resultType="Object">
+	    select ${column} from Go_Order_Detail 
+	    ${where}
+	    limit 1 offset 0
+	</select>
+	<select id="getScaleList" parameterType="map" resultType="map">
+	    select ${column} from Go_Order_Detail 
+	    ${where}
+	</select>
+	<select id="select" resultType="Go_Order_Detail">
+	    select * from Go_Order_Detail
+	</select>
+	<select id="selectByParams" resultType="Go_Order_Detail" parameterType="map">
+	    select * from Go_Order_Detail ${where} 
+	</select>
+	<select id="selectByPage" parameterType="Go_PageData" resultType="Go_Order_Detail">
+	    select * from Go_Order_Detail 
+	    limit ${pageSize} offset ${(currentPage - 1) * pageSize}
+	</select>
+	<select id="selectPageByParams" parameterType="map" resultType="Go_Order_Detail">
+	    select Go_Order_Detail.* from Go_Order_Detail 
+	    ${where} 
+	    limit ${pageData.pageSize} offset ${(pageData.currentPage - 1) * pageData.pageSize}
+	</select>
+	<select id="count" parameterType="map" resultType="int">
+	    select count(Go_Order_Detail.id) from Go_Order_Detail
+	     ${where}
+	</select>
+	<select id="get" parameterType="string" resultType="Go_Order_Detail">
+	    select * from Go_Order_Detail where id = #{id}
+	</select>
+	
+</mapper>

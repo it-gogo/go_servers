@@ -12,7 +12,7 @@
       <li><a href="cart.php" title="订单"><img src="<%=request.getContextPath() %>/client/loginCss/images/order.gif" alt="订单" width="16" height="16" border="0" class="absmiddle" /></a> <a href="cart.php" title="订单">订单</a></li>
     </ul>
     <c:if test="${loginInfo==null }">
-<form method="post" action="../portal/login.htm">
+<form method="post" action="../../login/portal/login.htm">
   <p class="header">客户登录</p>
   <p><strong>邮件</strong><br />
     <input name="email" type="text" size="25" />
@@ -20,9 +20,6 @@
   <p><strong>密码</strong><br />
     <input name="password" type="password" size="25" />
   </p>
-  <!-- <p>
-    <input type="checkbox" name="rememberme" value="1" />
-    记住我</p> -->
   <p>
     <input type="submit" class="submitbutton" value="登录" />
   </p>
