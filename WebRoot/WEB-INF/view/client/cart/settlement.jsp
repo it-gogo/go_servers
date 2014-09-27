@@ -131,7 +131,7 @@ function selectCust(cust){
 				</form>
 				<div class="cartbuttons">
 					<input type="button" value="购物车为空" onclick="window.location='emptyCart.htm?id=${cart.id}'" /> 
-					<input type="button" value="继续购物" onclick="window.location='../../'" />
+					<input type="button" value="继续购物" onclick="window.location='../../../'" />
 				</div>
 				
 				<c:if test="${cart.productlist!=null &&  cart.productlist.size()!=0}">

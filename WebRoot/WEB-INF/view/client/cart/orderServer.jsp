@@ -72,7 +72,7 @@ function save(status){
         		if(status==0){
 	        		location.href="lookCart.htm";
         		}else if(status==1){
-        			location.href="../../";
+        			location.href="../../../";
         		}
           	}
         }); 
