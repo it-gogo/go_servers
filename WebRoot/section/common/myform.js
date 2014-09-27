@@ -24,7 +24,6 @@ function  initForm(dialogId,formId){
            //打开表单
            $("#"+dialogId).dialog('open');
            //设置表单数据
-           
            $('#'+formId).setForm(data,formId);
            if(typeof(afterLoad)=='function'){
         	   afterLoad(formId,data);
@@ -40,7 +39,6 @@ function  initForm(dialogId,formId){
         		beforeSubmit(formId);
         	}
         }
-        
     });
 }
 
@@ -602,81 +600,90 @@ $.fn.setForm = function(json,formID){
     	var t = this.type, tag = this.tagName.toLowerCase(), id = this.id,title = this.title,classNames = this.className;
     	if( id != "" )
 		{
-			if ( t == 'text' || t == 'hidden' || t == 'password'||t =='textarea' || tag=='textarea' )
-			{
-				if( json[id] != null )
+    		if(id=="configuration"){
+    			var j = eval("("+json[id]+")");
+    			var html="";
+    			for(var i=0;i<j.length;i++){
+    				var o=j[i];
+    				html+=o.name+":"+o.value+"\r\n";
+    			}
+    			this.value =html;
+    		}else{
+				if ( t == 'text' || t == 'hidden' || t == 'password'||t =='textarea' || tag=='textarea' )
 				{
-					if(classNames.indexOf('easyui-numberbox')>-1){
-	                	$("#"+id,curObj).numberbox('setValue',json[id]);
-	                }else if(classNames.indexOf('easyui-datebox')>-1){
-	                	$("#"+id,curObj).datebox('setValue',json[id]);
-	                }else if(classNames.indexOf('easyui-datetimebox')>-1){
-	                	$("#"+id,curObj).datetimebox('setValue',json[id]);
-	                }else {
-					   this.value = json[id];
-	                }
-				}else if(json[title]!=null){
-					if(classNames.indexOf('easyui-numberbox')>-1){
-						$("#"+id,curObj).numberbox('setValue',json[title]);
-					}else if(classNames.indexOf('easyui-datebox')>-1){
-	                	$("#"+id,curObj).datebox('setValue',json[title]);
-	                }else if(classNames.indexOf('easyui-datetimebox')>-1){
-	                	$("#"+id,curObj).datetimebox('setValue',json[title]);
-	                }else{
-					  this.value = json[title];
-					}
-				}
-			}
-			else if( t == 'select-one' )
-			{
-				if( json[id] != null )
-				{
-					if(classNames.indexOf("easyui-combobox")>-1){
-					  $("#"+id,curObj).combobox("setValue",json[id]);
-					}else{
-						this.value = json[id];
-					}
-				}else if(json[title]!=null){
-					if(classNames.indexOf("easyui-combobox")>-1){
-						  $("#"+id,curObj).combobox("setValue",json[title]);
-						}else{
-							this.value = json[title];
+					if( json[id] != null )
+					{
+						if(classNames.indexOf('easyui-numberbox')>-1){
+		                	$("#"+id,curObj).numberbox('setValue',json[id]);
+		                }else if(classNames.indexOf('easyui-datebox')>-1){
+		                	$("#"+id,curObj).datebox('setValue',json[id]);
+		                }else if(classNames.indexOf('easyui-datetimebox')>-1){
+		                	$("#"+id,curObj).datetimebox('setValue',json[id]);
+		                }else {
+						   this.value = json[id];
+		                }
+					}else if(json[title]!=null){
+						if(classNames.indexOf('easyui-numberbox')>-1){
+							$("#"+id,curObj).numberbox('setValue',json[title]);
+						}else if(classNames.indexOf('easyui-datebox')>-1){
+		                	$("#"+id,curObj).datebox('setValue',json[title]);
+		                }else if(classNames.indexOf('easyui-datetimebox')>-1){
+		                	$("#"+id,curObj).datetimebox('setValue',json[title]);
+		                }else{
+						  this.value = json[title];
 						}
-				}
-			}
-			else if(t == "checkbox" || t=="radio"){
-				/*
-				if( json[id] != null ){
-					if( json[id] == this.value )
-						
-						this.checked = true;
-					else{
-						this.checked = false;
 					}
-				}else if( json[title] != null ){
-                        if( json[title] == this.value )
+				}
+				else if( t == 'select-one' )
+				{
+					if( json[id] != null )
+					{
+						if(classNames.indexOf("easyui-combobox")>-1){
+						  $("#"+id,curObj).combobox("setValue",json[id]);
+						}else{
+							this.value = json[id];
+						}
+					}else if(json[title]!=null){
+						if(classNames.indexOf("easyui-combobox")>-1){
+							  $("#"+id,curObj).combobox("setValue",json[title]);
+							}else{
+								this.value = json[title];
+							}
+					}
+				}
+				else if(t == "checkbox" || t=="radio"){
+					/*
+					if( json[id] != null ){
+						if( json[id] == this.value )
+							
+							this.checked = true;
+						else{
+							this.checked = false;
+						}
+					}else if( json[title] != null ){
+	                        if( json[title] == this.value )
+							   this.checked = true;
+							else{
+								this.checked = false;
+							}
+					}*/
+					if( json[id] != null ){
+						if(this.value==json[id]){
+		 	 				this.checked=true;
+		 	 			}
+					}else if( json[title] != null ){
+	                    if( json[title] == 1)
 						   this.checked = true;
 						else{
 							this.checked = false;
 						}
-				}*/
-				if( json[id] != null ){
-					if(this.value==json[id]){
-	 	 				this.checked=true;
-	 	 			}
-				}else if( json[title] != null ){
-                    if( json[title] == 1)
-					   this.checked = true;
-					else{
+					}else {
+						if(typeof(json[id])!='undefined')
 						this.checked = false;
 					}
-				}else {
-					if(typeof(json[id])!='undefined')
-					this.checked = false;
+					//this.value = json[id];
 				}
-				//this.value = json[id];
-			}
-			
+    		}
 		}
     });
 };

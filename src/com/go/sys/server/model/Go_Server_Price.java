@@ -1,5 +1,7 @@
 package com.go.sys.server.model;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
@@ -73,5 +75,7 @@ public class Go_Server_Price {
 	public void setQuarter(String quarter) {
 		this.quarter = quarter;
 	}
-	
+	public String toString(){
+		return JSONObject.fromObject(this).toString();
+	}
 }

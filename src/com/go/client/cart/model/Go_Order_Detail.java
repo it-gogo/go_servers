@@ -9,7 +9,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("Go_Order_Detail")
 public class Go_Order_Detail {
 	private Integer id ;		//id主键
-	private Integer order;		//订单ID
+	private Integer orderid;		//订单ID
 	private Integer server;		//服务器ID
 	private String servername;	//服务器名称
 	private String servertype;//服务器类型
@@ -30,11 +30,11 @@ public class Go_Order_Detail {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getOrder() {
-		return order;
+	public Integer getOrderid() {
+		return orderid;
 	}
-	public void setOrder(Integer order) {
-		this.order = order;
+	public void setOrderid(Integer orderid) {
+		this.orderid = orderid;
 	}
 	public Integer getServer() {
 		return server;

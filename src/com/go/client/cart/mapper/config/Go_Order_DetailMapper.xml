@@ -7,12 +7,12 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Order_Detail(order,server,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw)
-	    values(#{order},#{server},#{servername},#{servertype},#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw})
+	    insert into Go_Order_Detail(orderid,server,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw)
+	    values(#{orderid},#{server},#{servername},#{servertype} ,#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw})
 	</insert>
 	<update id="update">
 	    update Go_Order_Detail 
-		    set order = #{order},
+		    set orderid = #{orderid},
 		    server = #{server},
 		    servername = #{servername},
 		     servertype = #{servertype},

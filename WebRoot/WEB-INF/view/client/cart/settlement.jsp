@@ -67,7 +67,7 @@ function selectCust(cust){
 }
 </script>
 </head>
-<body onload="selectCust(${cust})">
+<body onload="selectCust('${cust}')">
 
 	<%@include file="/WEB-INF/view/client/login/common/topContainer.jsp"%>
 	<div id="content_container">
@@ -150,7 +150,7 @@ function selectCust(cust){
 								<tr>
 									<td class="fieldlabel">邮件地址</td>
 									<td class="fieldarea">
-										<input type="text" name="loginemail" size="40" />
+										<input type="text" name="loginemail" size="40"/>
 									</td>
 								</tr>
 								<tr>
@@ -167,51 +167,51 @@ function selectCust(cust){
 								<tr>
 									<td class="fieldlabel">名</td>
 									<td class="fieldarea">
-										<input type="text" name="name" tabindex="1" style="width:80%;" value="" />
+										<input type="text" name="name" tabindex="1" style="width:80%;"  value="${portal.name }" />
 									</td>
 									<td class="fieldlabel">地址1</td>
 									<td class="fieldarea">
-										<input type="text" name="addressone" tabindex="7" style="width:80%;" value="" />
+										<input type="text" name="addressone" tabindex="7" style="width:80%;"  value="${portal.addressone }"  />
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">姓</td>
 									<td class="fieldarea">
-										<input type="text" name="surname" tabindex="2" style="width:80%;" value="" />
+										<input type="text" name="surname" tabindex="2" style="width:80%;"  value="${portal.surname }"  />
 									</td>
 									<td class="fieldlabel">地址2</td>
 									<td class="fieldarea">
-										<input type="text" name="addresstwo" tabindex="8" style="width:80%;" value="" />
+										<input type="text" name="addresstwo" tabindex="8" style="width:80%;"  value="${portal.addresstwo }"  />
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">公司名称</td>
 									<td class="fieldarea">
-										<input type="text" name="companyname" tabindex="3" style="width:80%;" value="" />
+										<input type="text" name="companyname" tabindex="3" style="width:80%;"  value="${portal.companyname }"  />
 									</td>
 									<td class="fieldlabel">城市</td>
 									<td class="fieldarea">
-										<input type="text" name="city" tabindex="9" style="width:80%;" value="" />
+										<input type="text" name="city" tabindex="9" style="width:80%;"  value="${portal.city }"  />
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">邮件地址</td>
 									<td class="fieldarea">
-										<input type="text" name="email" tabindex="4" style="width:90%;" value="" />
+										<input type="text" name="email" tabindex="4" style="width:90%;"  value="${portal.email }"  />
 									</td>
 									<td class="fieldlabel">州/区</td>
 									<td class="fieldarea">
-										<input type="text" name="downtown" tabindex="10" style="width:80%;" value="" />
+										<input type="text" name="downtown" tabindex="10" style="width:80%;"  value="${portal.downtown }"  />
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">密码</td>
 									<td class="fieldarea">
-										<input type="password" name="password" tabindex="5" id="newpw" size="20" value="" />
+										<input type="password" name="password" tabindex="5" id="newpw" size="20" value="${portal.password }" />
 									</td>
 									<td class="fieldlabel">邮编</td>
 									<td class="fieldarea">
-										<input type="text" name="zip" tabindex="11" size="15" value="" />
+										<input type="text" name="zip" tabindex="11" size="15"  value="${portal.zip }"  />
 									</td>
 								</tr>
 								<tr>
@@ -221,7 +221,7 @@ function selectCust(cust){
 									</td>
 									<td class="fieldlabel">电话号码</td>
 									<td class="fieldarea">
-										<input type="text" name="telephone" tabindex="13" size="20" value="" />
+										<input type="text" name="telephone" tabindex="13" size="20"  value="${portal.telephone }"  />
 									</td>
 								</tr>
 							</table>

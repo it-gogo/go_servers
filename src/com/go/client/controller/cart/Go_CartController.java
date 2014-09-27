@@ -22,6 +22,8 @@ import com.go.client.cart.model.Go_Order_Detail;
 import com.go.client.cart.model.Go_Order_Info;
 import com.go.client.cart.model.Go_Product_List;
 import com.go.client.cart.service.IGo_Cart_InfoService;
+import com.go.client.cart.service.IGo_Order_DetailService;
+import com.go.client.cart.service.IGo_Order_InfoService;
 import com.go.client.cart.service.IGo_Product_ListService;
 import com.go.client.login.model.Go_Portal_Info;
 import com.go.client.login.service.IGo_Portal_InfoService;
@@ -55,6 +57,10 @@ public class Go_CartController extends Go_BaseController{
 	private IGo_Configuration_DataService go_configuration_dataService;//可配置内容service
 	@Autowired
 	private IGo_Portal_InfoService go_portal_infoService;//门户信息service
+	@Autowired
+	private IGo_Order_InfoService go_order_infoService;//订单信息service
+	@Autowired
+	private IGo_Order_DetailService go_order_detailService;//订单详情信息service
 	
 	/**
 	 * 公共云服务器购物车
@@ -241,6 +247,7 @@ public class Go_CartController extends Go_BaseController{
 					error_msg+="#";
 					model.put("error_msg", error_msg);
 					model.put("cust", "new");
+					model.put("portal", portal);
 					ok=false;//结账失败
 					//return "client/cart/settlement";
 				}else{
@@ -288,6 +295,11 @@ public class Go_CartController extends Go_BaseController{
 				"hostname hostname,ns1prefix ns1prefix,ns2prefix ns2prefix,rootpw rootpw,configuration configuration,totalprice price");
 		List<Map<String,Object>> mlist=go_product_listService.getScaleList(params);
 		double totalprice=0.0;
+		/*Go_Order_Detail entity=new Go_Order_Detail();
+		go_order_detailService.save(entity);
+		if(1==1){
+			return "";
+		}*/
 		for(Map<String,Object> map:mlist){
 //			Go_Order_Detail detail=new Go_Order_Detail();
 			JSONObject obj=JSONObject.fromObject(map);
@@ -296,10 +308,17 @@ public class Go_CartController extends Go_BaseController{
 			if(price!=null && !"".equals(price)){
 				totalprice+=Double.valueOf(price);
 			}
-			detail.setOrder(order.getId());
+			detail.setOrderid(order.getId());
+			go_order_detailService.save(detail);//保存订购详细
 //			detail.setConfiguration(product.getConfiguration());
 		}
 		order.setTotalprice(totalprice+"");
+		go_order_infoService.save(order);//保存订购
+		
+		go_cart_infoService.delete(cartid);//删除购物车
+		params=new HashMap<String,Object>();
+		params.put("cart", cartid);
+		go_product_listService.deleteList(params);//删除商品列表
 		return "client/cart/checkout";
 	}
 	

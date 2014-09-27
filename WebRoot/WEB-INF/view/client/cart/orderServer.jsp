@@ -8,7 +8,14 @@
 	<jsp:param value="购物车" name="name" />
 </jsp:include>
 <script type="text/javascript">
-function count(monthlyPrice,numMonth,quarter,servername){
+function count(){
+	var c=$("input[type='radio']:checked");
+	var data=c.attr("title");
+	var json = eval("("+data+")");
+	var monthlyPrice=json.monthlyPrice;
+	var numMonth=json.numMonth;
+	var quarter=json.quarter;
+	var servername=$("#servername").val();
 	var totalprice=monthlyPrice*numMonth;
 	$("#quarter").html(quarter);
 	var array=getConfigurationArray();
@@ -47,7 +54,13 @@ function getConfigurationArray(){
 	return array;
 }
 function save(status){
-	
+	var $obj=$(".requires");//必填项
+	for(var i=0;i<$obj.size();i++){
+		if($obj.eq(i).val()==""){
+			$obj.eq(i).focus();
+			return false;
+		}
+	}
 	var jsonStr=$.toJSON(getConfigurationArray());
 	$("#configuration").val(jsonStr);
 	var formid="orderfrm";
@@ -69,7 +82,7 @@ function save(status){
 }
 </script>
 </head>
-<body >
+<body onload="count();">
 
 	<%@include file="/WEB-INF/view/client/login/common/topContainer.jsp"%>
 	<div id="content_container">
@@ -83,7 +96,7 @@ function save(status){
 					<input type="hidden" value="${product.id }" name="id" />
 					<input type="hidden" value="云主机" name="type" />
 					<input type="hidden" value="${server.id }" name="server" />
-					<input type="hidden" value="${server.name }" name="servername" />
+					<input type="hidden" value="${server.name }" name="servername" id="servername" />
 					<input type="hidden" value="" name="configuration" id="configuration" />
 					<input type="hidden" value="" name="totalprice" id="totalprice" />
 					<h1>配置</h1>
@@ -98,14 +111,13 @@ function save(status){
 											<td class="radiofield">
 												<c:if test="${i.getIndex()==0 }">
 													<c:set value="${price}" var="one" ></c:set>
-													<script>
+													<!-- <script>
 														$(document).ready(function(){
-														//alert('${server.name }')
-														count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }');
+															count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }');
 														});
-													</script>
+													</script> -->
 												</c:if>
-												<input type="radio" title="" name="price" id="${price.id }" value="${price.id }"  <c:if test="${i.getIndex()==0 }">checked </c:if>  onclick="count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }');" />
+												<input type="radio" title='${price }' name="price" id="${price.id }" value="${price.id }"  <c:if test="${i.getIndex()==0 }">checked </c:if>  onclick="count();" />
 											</td>
 											<td class="fieldarea">
 												<label for="${price.id }">${price.name }</label>
@@ -119,14 +131,13 @@ function save(status){
 											<td class="radiofield">
 												<c:if test="${price.id==product.price }">
 													<c:set value="${price}" var="one"></c:set>
-													<script>
+													<!-- <script>
 														$(document).ready(function(){
-														//alert('${server.name }')
-														count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }');
+															count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }');
 														});
-													</script>
+													</script> -->
 												</c:if>
-												<input type="radio" name="price" id="${price.id }" value="${price.id }"  <c:if test="${price.id==product.price }">checked</c:if>  onclick="count(${price.monthlyPrice},${price.numMonth },'${price.quarter }','${server.name }')" />
+												<input type="radio" title='${price }'  name="price" id="${price.id }" value="${price.id }"  <c:if test="${price.id==product.price }">checked</c:if>  onclick="count()" />
 											</td>
 											<td class="fieldarea">
 												<label for="${price.id }">${price.name }</label>
@@ -144,25 +155,25 @@ function save(status){
 								<tr>
 									<td class="fieldlabel">主机名:</td>
 									<td class="fieldarea">
-										<input type="text" name="hostname" size="15" value="${product.hostname }" class="requery" /> eg. server1(.yourdomain.com)
+										<input type="text" name="hostname" size="15" value="${product.hostname }" class="requires" /> eg. server1(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">NS1 前缀:</td>
 									<td class="fieldarea">
-										<input type="text" name="ns1prefix" size="10" value="${product.ns1prefix }" /> eg. ns1(.yourdomain.com)
+										<input type="text" name="ns1prefix" size="10" value="${product.ns1prefix }" class="requires"  /> eg. ns1(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">NS2 前缀:</td>
 									<td class="fieldarea">
-										<input type="text" name="ns2prefix"size="10" value="${product.ns2prefix }" /> eg. ns2(.yourdomain.com)
+										<input type="text" name="ns2prefix"size="10" value="${product.ns2prefix }" class="requires"  /> eg. ns2(.yourdomain.com)
 									</td>
 								</tr>
 								<tr>
 									<td class="fieldlabel">Root密码:</td>
 									<td class="fieldarea">
-										<input type="password" name="rootpw" size="20" value="${product.rootpw }" />
+										<input type="password" name="rootpw" size="20" value="${product.rootpw }" class="requires"  />
 									</td>
 								</tr>
 							</table>
@@ -176,7 +187,7 @@ function save(status){
 											<td class="fieldlabel">${entry.key }:<input type="hidden" value="${entry.key }" /></td>
 											<td class="fieldarea">
 													<c:set value="${configurationmap[entry.key] }" var="configurationvalue"></c:set>
-												<select style="width: 240px;" >
+												<select style="width: 240px;"   onchange="count();"  >
 													<c:forEach items="${entry.value }" var="configuration" >
 														<option title="${configuration.price}" value="${configuration.id }"<c:if test="${configurationvalue!=null && configurationvalue.id==configuration.id  }">selected="true"</c:if> >${configuration.name } <c:if test="${configuration.price!=0 }">￥${configuration.price}</c:if></option>
 													</c:forEach>
