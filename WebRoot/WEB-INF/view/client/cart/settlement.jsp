@@ -83,8 +83,6 @@ function selectCust(cust){
 				</div>
 				<div class="clear"></div>
 				<form method="post" action="/whmcs/cart.php?a=view">
-					<input type="hidden" name="token"
-						value="0073245fe7ca0bb81bb909e04f0a1333926a0842" />
 					<table class="cart" cellspacing="1">
 						<tr class="textcenter">
 							<th width="60%">描述</th>

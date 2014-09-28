@@ -199,7 +199,11 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="myDetail.htm")
-	public String myDetail(){
+	public String myDetail(HttpServletRequest request){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		return "client/login/myDetail"; 
 	}
 	
@@ -209,8 +213,11 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="toChangePassword.htm")
-	public String toChangePassword(){
-		
+	public String toChangePassword(HttpServletRequest request){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		return "client/login/changePassword"; 
 	}
 	

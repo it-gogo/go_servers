@@ -37,7 +37,7 @@
             <li><a href="managedServices.htm">服务托管</a></li>         
            </ul>      
 	  </li>
-      <li><a href="support.htm">技术支持</a>
+     <!--  <li><a href="support.htm">技术支持</a>
          <ul>
             <li class="menuTop"></li>
             <li><a href="support.htm">支持中心</a></li>
@@ -45,7 +45,7 @@
             <li><a href="legal.htm">法律信息</a></li>
             <li><a href="faq.htm">FAQs</a></li>         
            </ul>      
-      </li>
+      </li> -->
       <li><a href="company.htm">关于我们</a>
          <ul>
             <li class="menuTop"></li>

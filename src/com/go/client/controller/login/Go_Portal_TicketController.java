@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
 import com.go.client.core.PageBean;
+import com.go.client.login.model.Go_Portal_Info;
 import com.go.client.login.model.Go_Reply;
 import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_ReplyService;
@@ -97,11 +98,15 @@ public class Go_Portal_TicketController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="support.htm")
-	public String support(Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+	public String support(HttpServletRequest request,Go_PageData pageData,Go_Ticket ticket,ModelMap model){
 		request.getSession().removeAttribute("searchdata");
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("isdispose_<>","关闭");
-//		pageData.setPageSize(2);
+		params.put("creator",portal.getId());
 		List<Go_Ticket> list=go_ticketService.listPageByParams(params, pageData);
 		int allRow=go_ticketService.count(params);
 		
@@ -125,7 +130,11 @@ public class Go_Portal_TicketController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="searchsupporttickets.htm")
-	public String searchsupporttickets(Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+	public String searchsupporttickets(HttpServletRequest request,Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("isdispose_<>","关闭");
 		String title=ticket.getTitle();
@@ -141,7 +150,7 @@ public class Go_Portal_TicketController extends Go_BaseController{
 				model.put("title", title);
 			}
 		}
-//		pageData.setPageSize(2);
+		params.put("creator",portal.getId());
 		List<Go_Ticket> list=go_ticketService.listPageByParams(params, pageData);
 		int allRow=go_ticketService.count(params);
 		

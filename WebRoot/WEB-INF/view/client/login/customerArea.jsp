@@ -32,7 +32,12 @@
   	<c:forEach items="${listTicket }" var="ticket">
 	    <tr>
 	    	<td align="left">${ticket.createdate }</td>
-	    	<td align="left">${ticket.title }</td>
+	    	<td align="left">
+	    		<div align="left">
+		    		<img src="<%=request.getContextPath() %>/client/loginCss/images/article.gif" hspace="5" align="middle" alt="" />
+		    		<a href="../ticket/look.htm?id=${ticket.id }">${ticket.title }</a>
+	    		</div>
+	    	</td>
 	    	<td align="left">${ticket.isdispose }</td>
 	    	<td align="left">${ticket.urgenttype }</td>
 	  </tr>

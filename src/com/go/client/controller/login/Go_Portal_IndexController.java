@@ -64,6 +64,7 @@ public class Go_Portal_IndexController extends Go_BaseController{
 		}
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("isdispose_<>","关闭");
+		params.put("creator",portal_info.getId());
 		Go_PageData pageData=new Go_PageData();
 		List<Go_Ticket> listTicket=go_ticketService.listPageByParams(params, pageData);
 		model.addAttribute("listTicket",listTicket);

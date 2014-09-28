@@ -4,6 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.go.client.login.mapper.IGo_Portal_InfoMapper">
     <insert id="insert" parameterType="Go_Portal_Info">
+    	<selectKey keyProperty="id" resultType="int" order="AFTER">
+	        SELECT LAST_INSERT_ID() AS id
+	    </selectKey>
 	    insert into Go_Portal_Info(departmentid,surname,name,companyname,email,addressone,addresstwo,city,downtown,zip,telephone,password)
 	    values(#{departmentid},#{surname},#{name},#{companyname},#{email},#{addressone},#{addresstwo},#{city},#{downtown},#{zip},#{telephone},#{password})
 	</insert>

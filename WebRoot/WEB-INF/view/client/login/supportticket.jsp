@@ -25,7 +25,7 @@
   </tr>
 </table>
 <form method="post" action="searchsupporttickets.htm">
-  <p align="center"><b>搜索:</b>
+  <p align="center"><b>主题:</b>
     <input type="text" name="title" size="25" value="${title }" />
     <input type="submit" value="搜索" />
   </p>
