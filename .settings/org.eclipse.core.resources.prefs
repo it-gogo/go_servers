@@ -1,4 +1,4 @@
-#Fri Sep 26 11:52:59 CST 2014
+#Sun Sep 28 15:54:11 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/cart/checkout.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/cart/orderServer.jsp=UTF-8
@@ -9,11 +9,13 @@ encoding//WebRoot/WEB-INF/view/client/login/customerArea.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/demain.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/download.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/index.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/invoices.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/knowledge.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/login.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/loginout.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/lookTicket.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/myDetail.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/myServer.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/networkProblems.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/notice.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/noticeDetail.jsp=UTF-8
@@ -21,6 +23,7 @@ encoding//WebRoot/WEB-INF/view/client/login/partal.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/pro-contant.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/registration.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/resetPassword.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/serverDetail.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/serverStatus.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/submitTicketSuccess.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/submitticket.jsp=UTF-8

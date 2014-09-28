@@ -5,7 +5,7 @@
 	Powered by <a href="http://www.whmcs.com/" target="_blank">WHMCompleteSolution</a>
 </p>
 
-<div align="right">
+<!-- <div align="right">
 	<form method="post" action="/whmcs/affiliates.php" name="languagefrm"
 		id="languagefrm">
 		<input type="hidden" name="token"
@@ -35,6 +35,6 @@
 			<option>Ukranian</option>
 		</select>
 	</form>
-</div>
+</div> -->
 <br />
 </div>

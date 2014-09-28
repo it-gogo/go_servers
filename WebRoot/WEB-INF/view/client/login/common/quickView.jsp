@@ -9,7 +9,7 @@
       <%-- <li><a href="knowledge.htm" title="知识库"><img src="<%=request.getContextPath() %>/client/loginCss/images/knowledgebase.gif" alt="知识库" width="16" height="16" border="0" class="absmiddle" /></a> <a href="knowledge.htm" title="知识库">知识库</a></li> --%>
       <li><a href="../../login/ticket/toAdd.htm" title="提交Ticket"><img src="<%=request.getContextPath() %>/client/loginCss/images/submit-ticket.gif" alt="提交Ticket" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../../login/ticket/toAdd.htm" title="服务Tickets">提交Ticket</a></li>
      <%--  <li><a href="download.htm" title="下载"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.gif" alt="下载" width="16" height="16" border="0" class="absmiddle" /></a> <a href="download.htm" title="下载">下载</a></li> --%>
-      <li><a href="cart.php" title="订单"><img src="<%=request.getContextPath() %>/client/loginCss/images/order.gif" alt="订单" width="16" height="16" border="0" class="absmiddle" /></a> <a href="cart.php" title="订单">订单</a></li>
+      <li><a href="../../../" title="订单"><img src="<%=request.getContextPath() %>/client/loginCss/images/order.gif" alt="订单" width="16" height="16" border="0" class="absmiddle" /></a> <a href="../../../" title="订单">订单</a></li>
     </ul>
     <c:if test="${loginInfo==null }">
 <form method="post" action="../../login/portal/login.htm">
@@ -26,7 +26,7 @@
 </form>
   <p class="header">搜索</p>
 <form method="post" action="knowledgebase.php?action=search">
-<input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" />
+<!-- <input type="hidden" name="token" value="5bdff6606c8f3f690487b88679094855b1158390" />
   <p>
     <input name="search" type="text" size="25" /><br />
     <select name="searchin">
@@ -35,7 +35,7 @@
     </select>
     <input type="submit" value="Go" />
   </p>
-</form>
+</form> -->
 </c:if>
 <c:if test="${loginInfo!=null }">
 <p class="header">账户信息</p>

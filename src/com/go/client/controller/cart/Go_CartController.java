@@ -290,7 +290,7 @@ public class Go_CartController extends Go_BaseController{
 		
 		params=new HashMap<String,Object>();
 		params.put("cart", cartid);
-		params.put("column", "server server,servername servername,type servertype," +
+		params.put("column", "server server,servername servername,type servertype,price priceid,(select numMonth from Go_Server_Price where id=price) time,(select quarter from Go_Server_Price where id=price) quarter," +
 				"(select cpu from Go_Server_Info where id=server) cpu,(select memory from Go_Server_Info where id=server) memory,(select disk from Go_Server_Info where  id=server) disk,(select flow from Go_Server_Info where  id=server) flow,(select ipNum from Go_Server_Info where id=server) ipNum," +
 				"hostname hostname,ns1prefix ns1prefix,ns2prefix ns2prefix,rootpw rootpw,configuration configuration,totalprice price");
 		List<Map<String,Object>> mlist=go_product_listService.getScaleList(params);
@@ -309,6 +309,8 @@ public class Go_CartController extends Go_BaseController{
 				totalprice+=Double.valueOf(price);
 			}
 			detail.setOrderid(order.getId());
+			detail.setMaturity(ExtendDate.getYMD_h_m_s(new Date()));//到期时间
+			detail.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));//创建时间
 			go_order_detailService.save(detail);//保存订购详细
 //			detail.setConfiguration(product.getConfiguration());
 		}

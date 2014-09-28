@@ -161,9 +161,9 @@ public class Go_Main_InfoController extends Go_BaseController{
 	 * @param pageData
 	 * @return
 	 */
-	@RequestMapping(value="managedServiecs.htm")
+	@RequestMapping(value="managedServices.htm")
 	public String managedServiecs(ModelMap model){
-		return "client/main/managedServiecs";
+		return "client/main/managedServices";
 	}
 	
 	/**

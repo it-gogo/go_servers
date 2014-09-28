@@ -31,27 +31,33 @@
     <td><div align="center"><a href="../ticket/toAdd.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/submitticket.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="../ticket/toAdd.htm">提交Ticket</a></strong><br />
       提交问题ticket</td>
-    <td><div align="center"><a href="download.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.png" border="0" alt="" /></a></div></td>
+    <%-- <td><div align="center"><a href="download.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/downloads.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="download.htm">下载</a></strong><br />
-      查看下载文库</td>
+      查看下载文库</td> --%>
+      <td><div align="center"><a href="supportticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/supporttickets.png" border="0" alt="" /></a></div></td>
+    	<td><strong><a href="../ticket/support.htm">服务Tickets</a><br />
+    </strong>查看回复当前</td>
   </tr>
-  <tr>
+  <%-- <tr>
     <td><div align="center"><a href="supportticket.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/supporttickets.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="../ticket/support.htm">服务Tickets</a><br />
     </strong>查看回复当前</td>
     <td><div align="center"><a href="knowledge.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/knowledgebase.png" border="0" alt="" /></a></div></td>
     <td width="50%"><strong><a href="knowledge.htm">知识库</a></strong><br />
       浏览KB进行FAQs回复</td>
-  </tr>
+  </tr> --%>
   <tr>
-    <td><div align="center"><a href="affiliates.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/affiliates.png" border="0" alt="" /></a></div></td>
+  	<td><div align="center"><a href="proContant.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/contact.png" border="0" alt="" /></a></div></td>
+    <td><strong><a href="proContant.htm">售前联系</a></strong><br />
+      此处输入售前咨询</td>
+    <%-- <td><div align="center"><a href="affiliates.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/affiliates.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="affiliates.htm">Affiliates</a></strong><br />
-      加入我们的affiliate活动或查看收入</td>
+      加入我们的affiliate活动或查看收入</td> --%>
     <td><div align="center"><a href="cart.php"><img src="<%=request.getContextPath() %>/client/loginCss/images/cart.png" border="0" alt="" /></a></div></td>
-    <td><strong><a href="cart.php">订单</a></strong><br />
+    <td><strong><a href="../../../">订单</a></strong><br />
       下新订单</td>
   </tr>
-  <tr>
+  <%-- <tr>
     <td><div align="center"><a href="proContant.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/contact.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="proContant.htm">售前联系</a></strong><br />
       此处输入售前咨询</td>
@@ -66,12 +72,22 @@
     <td><div align="center"><a href="networkProblems.htm"><img src="<%=request.getContextPath() %>/client/loginCss/images/networkissues.png" border="0" alt="" /></a></div></td>
     <td><strong><a href="networkProblems.htm">网络问题</a></strong><br />
       阅读当前/计划网络中断</td>
-  </tr>
+  </tr> --%>
 </table>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <h2>最新公告</h2>
-<p>2014/07/18 - <a href="announcements.php?id=1">IP价格优惠已经停止</a><br /> Dear Raksmart Partners or customers, 
- 因近期IPv4地址趋于紧张，大于64...</p>
+<p >2014/07/18 - <a href="../notice/detail.htm?id=${notice.id }">${notice.title }</a><br />
+<div style="height: 120px;overflow: hidden;">${notice.content }</div>
+	<%-- <c:set value="${notice.content }" var="content"></c:set>
+	<c:choose>  
+    <c:when test="${fn:length(content) > 10}">  
+        <c:out value="${fn:substring(content, 0, 10)}......" />  
+    </c:when>  
+   <c:otherwise>  
+      <c:out value="${content}" />  
+    </c:otherwise>  
+</c:choose>  --%>
+</p>
 
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>

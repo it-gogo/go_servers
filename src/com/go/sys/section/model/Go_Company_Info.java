@@ -16,6 +16,8 @@ public class Go_Company_Info {
 	private String briefintroduction;	//公司简介
 	private String telephone;	//电话
 	private String qq;	//qq
+	private String email;//电子邮箱
+	private String address;//公司地址
 	public Integer getId() {
 		return id;
 	}
@@ -51,6 +53,18 @@ public class Go_Company_Info {
 	}
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String toString(){
 		return JSONObject.fromObject(this).toString();

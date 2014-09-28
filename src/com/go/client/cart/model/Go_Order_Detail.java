@@ -11,6 +11,7 @@ public class Go_Order_Detail {
 	private Integer id ;		//id主键
 	private Integer orderid;		//订单ID
 	private Integer server;		//服务器ID
+	private Integer priceid;//价格ID
 	private String servername;	//服务器名称
 	private String servertype;//服务器类型
 	private String cpu;//CPU
@@ -24,11 +25,39 @@ public class Go_Order_Detail {
 	private String rootpw;//root密码
 	private String configuration;//可配置项
 	private String price;//价格
+	private String time;//使用时间
+	private String quarter;//季度
+	private String maturity;//到期时间
+	private String createdate;//创建时间
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getCreatedate() {
+		return createdate;
+	}
+	public void setCreatedate(String createdate) {
+		this.createdate = createdate;
+	}
+	public String getMaturity() {
+		return maturity;
+	}
+	public void setMaturity(String maturity) {
+		this.maturity = maturity;
+	}
+	public String getQuarter() {
+		return quarter;
+	}
+	public void setQuarter(String quarter) {
+		this.quarter = quarter;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
 	}
 	public Integer getOrderid() {
 		return orderid;
@@ -119,5 +148,11 @@ public class Go_Order_Detail {
 	}
 	public void setRootpw(String rootpw) {
 		this.rootpw = rootpw;
+	}
+	public Integer getPriceid() {
+		return priceid;
+	}
+	public void setPriceid(Integer priceid) {
+		this.priceid = priceid;
 	}
 }

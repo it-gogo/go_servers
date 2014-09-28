@@ -7,13 +7,14 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Order_Detail(orderid,server,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw)
-	    values(#{orderid},#{server},#{servername},#{servertype} ,#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw})
+	    insert into Go_Order_Detail(orderid,server,priceid,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw,maturity,quarter,time,createdate)
+	    values(#{orderid},#{server},#{priceid},#{servername},#{servertype} ,#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{maturity},#{quarter},#{time},#{createdate})
 	</insert>
 	<update id="update">
 	    update Go_Order_Detail 
 		    set orderid = #{orderid},
 		    server = #{server},
+		    priceid = #{priceid},
 		    servername = #{servername},
 		     servertype = #{servertype},
 		     cpu = #{cpu},
@@ -26,6 +27,10 @@
 		    hostname = #{hostname},
 		    ns1prefix = #{ns1prefix},
 		    ns2prefix = #{ns2prefix},
+		    time = #{time},
+		    quarter = #{quarter},
+		    maturity = #{maturity},
+		    createdate = #{createdate},
 		    rootpw = #{rootpw}
 		    where id = #{id}
 	</update>

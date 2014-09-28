@@ -11,6 +11,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>Affiliates</h1>
     <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="affiliates.php">Affiliates</a></p><p>登录访问，该登录信息区别于您的网站控制面板用户名和密码。</p>

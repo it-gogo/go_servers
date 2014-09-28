@@ -25,7 +25,9 @@ public class Go_PasswordUtil {
 	 * @return 加密后的字符串
 	 */
 	public static String encrypt(String password) {
-
+		if(password==null || "".equals(password)){
+			return "";
+		}
 		MessageDigest md;
 		try {
 

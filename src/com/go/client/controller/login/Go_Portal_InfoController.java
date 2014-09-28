@@ -220,10 +220,17 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="changePassword.htm")
-	public String changePassword(HttpServletRequest request,String oldpw,String newpw,ModelMap model){
+	public String changePassword(HttpServletRequest request,String oldpw,String newpw,String newpw2,ModelMap model){
 		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		if(!portal.getPassword().equals(Go_PasswordUtil.encrypt(oldpw))){//密码有错
 			show_msg="0";//当前密码错误
+		}else if(newpw==null || "".equals(newpw)){
+			show_msg="3";//请填写新密码
+		}else if(!newpw.equals(newpw2)){
+			show_msg="2";//当前密码错误
 		}else{
 			newpw=Go_PasswordUtil.encrypt(newpw);
 			Map<String,Object> params=new HashMap<String,Object>();

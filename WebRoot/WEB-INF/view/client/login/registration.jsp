@@ -10,6 +10,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>注册</h1>
     <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../portal/registration.htm">注册</a></p>

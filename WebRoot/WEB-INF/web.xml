@@ -47,4 +47,10 @@
     <error-code>500</error-code>
     <location>/500.jsp</location>
   </error-page>
+  
+  
+  <listener>
+		<description>companyInfo</description>
+		<listener-class>com.go.listener.Company</listener-class>
+	</listener>
 </web-app>

@@ -11,6 +11,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>提交Ticket</h1>
     <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="../ticket/support.htm">服务Tickets</a> > <a href="../ticket/toAdd.htm">提交Ticket</a></p><script language="JavaScript" type="text/javascript">
@@ -107,12 +110,6 @@ getticketsuggestions();
               <br />
               <div id="fileuploads"></div>
               (允许的文件扩展: .jpg, .gif, .jpeg, .png)
-             <!-- <div class="clear" >
-           		<div class="web_annex">
-               <a href="">附件名称-6543213</a>
-               <a href=""  class="but_close"></a>
-          	 </div>
-         	</div> -->
           	</td>
           </tr>
       </table></td>
@@ -123,6 +120,10 @@ getticketsuggestions();
   <c:if test="${loginInfo==nulll }">
     <%@include file="/WEB-INF/view/client/login/common/validateCode.jsp" %>
 	</c:if>
+	 <p align="center">
+    <input type="submit" value="点击继续>>" />
+  </p>
+</form>
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
  <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>
   <div class="clear"></div>

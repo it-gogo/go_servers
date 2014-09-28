@@ -11,6 +11,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>售前联系</h1>
     <p class="breadcrumb"><a href="index.php">门户主页</a> > <a href="contact.php">售前联系</a></p><p>有任何售前问题，请点击进入下表。</p>
