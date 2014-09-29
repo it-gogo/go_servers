@@ -20,11 +20,10 @@
      rownumbers="true" fitColumns="true" singleSelect="true">   
     <thead>          
        <tr>
-          <th field="chk" width="20" align='center' checkbox='true' ></th>
           <th field="replyname" width="80"  align='left' >回复人姓名</th>
           <th field="replyemail" width="80"  align='left' >回复人邮箱</th>
           <th field="ip" width="80"  align='left' >ip地址</th>
-          <th field="id" width="180"  align='center' formatter='getHandleStr'>操作</th>
+          <th field="id" width="180"  align='center' formatter='getParentHandleStr'>操作</th>
          </tr>
      </thead>
 </table>

@@ -1,19 +1,11 @@
-var urls = "../ticket";
+var urls = "../reply";
 var listurl = urls+"/findlist.htm";
-var listediturl = "../reply";
 
 $(document).ready(function(){
-	 	listGrid.initGrids(gID,listurl,listGridInfo);
-	   //initGrids(gID,listurl);
+	   initGrids(gID,listurl);
 	   initForm(editDialogID,editFormID);
 });
 
-//产生子表格信息
-var listGridInfo = {
-		//TAB的标题
-		listTabTitle:["回复"],
-		listFrameUrls:["../reply/redirect.htm"]
-};
 
 /**
  * 提交后执行的动作

@@ -6,6 +6,7 @@ $(document).ready(function(){
 	 	listGrid.initGrids(gID,listurl,listGridInfo);
 	   //initGrids(gID,listurl);
 	   initForm(editDialogID,editFormID);
+	   initForm(listeditDialogID,listeditFormID);
 });
 
 //产生子表格信息

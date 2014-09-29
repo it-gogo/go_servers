@@ -32,7 +32,7 @@ public class Go_ReplyController extends Go_BaseController {
 	@Autowired
 	private IGo_ReplyService go_replyService;
 	/**
-	 * 公告初始化
+	 * 初始化
 	 * @author chenhb
 	 * @return
 	 */

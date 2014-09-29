@@ -15,6 +15,7 @@
 <!-- 数据编辑层 -->
 <%-- <%@include file="noticeQuery.jsp" %> --%>
 <%@include file="ticketEdit.jsp" %>
+<%@include file="../reply/replyEdit.jsp" %>
 
 </body>
 </html>

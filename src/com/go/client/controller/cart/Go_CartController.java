@@ -198,7 +198,7 @@ public class Go_CartController extends Go_BaseController{
 		Map<String,Object> params=new HashMap<String,Object>();
 		boolean ok=true;//判断是否错误
 		if("old".equals(cust)){
-			if(loginemail==null  || "".equals(loginemail) || loginpw==null || "".equals(loginpw)){
+			if(loginemail==null  || "".equals(loginemail) || loginpw==null || "".equals(loginpw)){ 
 				model.put("error_msg", "#  登录错误，请重试。  # ");
 				model.put("cust", "old");
 				ok=false;//结账失败

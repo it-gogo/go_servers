@@ -5,7 +5,8 @@
  <script language="javascript" src="<%=basePath%>/section/reply/reply.js" ></script>
 <meta http-equiv="cache-control" content="no-cache">
 <body>
-
+<input type="hidden" id="rowIndex"  name="rowIndex" value="${rowIndex}">
+<input type="hidden" id="tabIndex"  name="tabIndex" value="${tabIndex}">
 <div class="easyui-layout"  data-options="fit:'true'">
 		
 		<div data-options="region:'center'">
@@ -14,7 +15,7 @@
 	</div>
 <!-- 数据编辑层 -->
 <%-- <%@include file="noticeQuery.jsp" %> --%>
-<%@include file="replyEdit.jsp" %>
+<%-- <%@include file="replyEdit.jsp" %> --%>
 
 </body>
 </html>
