@@ -253,6 +253,7 @@ public class Go_CartController extends Go_BaseController{
 				}else{
 					portal.setPassword(Go_PasswordUtil.encrypt(password));
 					portal=go_portal_infoService.save(portal);
+					
 				}
 			}
 		}
@@ -276,7 +277,7 @@ public class Go_CartController extends Go_BaseController{
 			return "client/cart/settlement";
 		}
 		
-		
+		request.getSession().setAttribute("loginInfo", portal);
 		
 		Go_Order_Info order=new Go_Order_Info();//订单信息
 		order.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
@@ -287,6 +288,7 @@ public class Go_CartController extends Go_BaseController{
 		order.setStatus("提交支付");
 		order.setPortal(portal.getId());
 		order.setTotalprice("");
+		go_order_infoService.save(order);//保存订购
 		
 		params=new HashMap<String,Object>();
 		params.put("cart", cartid);
@@ -315,7 +317,7 @@ public class Go_CartController extends Go_BaseController{
 //			detail.setConfiguration(product.getConfiguration());
 		}
 		order.setTotalprice(totalprice+"");
-		go_order_infoService.save(order);//保存订购
+		go_order_infoService.update(order);//保存订购
 		
 		go_cart_infoService.delete(cartid);//删除购物车
 		params=new HashMap<String,Object>();

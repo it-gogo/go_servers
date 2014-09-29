@@ -18,11 +18,11 @@ input.inputF{color:#555;}
     	<div class="login">
         	<p class="input_name">
                 <label>用户名：</label>
-                <input name="name" value="${user.name }" type="text" class="inputF" id="name" onkeydown="nexttab()"/>  
+                <input name="username" value="${user.name }" type="text" class="inputF" id="name" onkeydown="nexttab()"/>  
             </p>
             <p class="input_password">
                 <label>登录密码：</label> 
-                <input name="pass" value="${user.pass }" type="password" class="inputF" id="pass" onkeydown="nexttab()"/>  
+                <input name="password" value="${user.pass }" type="password" class="inputF" id="pass" onkeydown="nexttab()"/>  
             </p>
              <%-- <p>
                 <label>&nbsp;</label>
@@ -53,7 +53,7 @@ input.inputF{color:#555;}
   {
        if(event.keyCode==13)
        {
-          login1();
+          login();
        }
   }
   

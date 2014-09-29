@@ -1,4 +1,4 @@
-#Sun Sep 28 15:54:11 CST 2014
+#Mon Sep 29 12:52:40 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/cart/checkout.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/cart/orderServer.jsp=UTF-8
@@ -16,6 +16,7 @@ encoding//WebRoot/WEB-INF/view/client/login/loginout.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/lookTicket.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/myDetail.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/myServer.jsp=UTF-8
+encoding//WebRoot/WEB-INF/view/client/login/myinvoices.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/networkProblems.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/notice.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/login/noticeDetail.jsp=UTF-8

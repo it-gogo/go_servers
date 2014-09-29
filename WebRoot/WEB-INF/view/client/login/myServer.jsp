@@ -32,11 +32,18 @@
 </table>
 <br />
 <table class="data" width="100%" border="0" cellpadding="10" cellspacing="0">
-  <tr>
+  <%-- <tr>
     <th><a href="clientarea.php?action=products&orderby=product">产品/服务</a></th>
     <th><a href="clientarea.php?action=products&orderby=price">价格</a></th>
     <th><a href="clientarea.php?action=products&orderby=billingcycle">订单周期</a></th>
     <th><a href="clientarea.php?action=products&orderby=nextduedate">下次到期日</a> <img src="<%=request.getContextPath() %>/client/loginCss/images/desc.gif" alt="" border="0" /></th>
+    <th width="20">&nbsp;</th>
+  </tr> --%>
+  <tr>
+    <th>产品/服务</th>
+    <th>价格</th>
+    <th>订单周期</th>
+    <th>下次到期日</th>
     <th width="20">&nbsp;</th>
   </tr>
   	<c:if test="${pb.list!=null && pb.list.size()>0 }">

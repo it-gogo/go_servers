@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -15,7 +16,7 @@
 					<tr>
 						<td width="50%">
 							<h1>智易推</h1></td>
-						<td width="50%" align="center"><font class="unpaid">未付款</font><br />
+						<td width="50%" align="center"><font class="unpaid">${order.status }</font><br />
 							<!-- <form method="post" action="/whmcs/viewinvoice.php?id=2798">
 								<input type="hidden" name="token" value="94654432631de90dbd2efb31ef495b031752c28a" />
 								<select name="gateway" size="1" onchange="submit()">
@@ -38,7 +39,10 @@
 								<tr>
 									<td id="invoicecontent" valign="top"
 										style="border:1px solid #cccccc"><strong>发票至</strong><br />
-										1 1<br /> 1, <br /> 1, 1, 1<br /> China</td>
+										${loginInfo.companyname }</br>
+										${loginInfo.surname } ${loginInfo.name }<br /> 
+										${loginInfo.addressone },${loginInfo.addresstwo } <br /> 
+										${loginInfo.city }, ${loginInfo.downtown }, ${loginInfo.zip }</td>
 								</tr>
 							</table></td>
 						<td width="50%" id="invoicecontent"
@@ -49,14 +53,14 @@
 								<tr>
 									<td id="invoicecontent" valign="top"
 										style="border:1px solid #cccccc"><strong>付款至</strong><br />
-										RAKsmart</td>
+										智易推</td>
 								</tr>
 							</table></td>
 					</tr>
 				</table>
 				<p>
-					<strong>Invoice 发票#2798</strong><br /> 发票日期: 2014/09/25<br />
-					到期日: 2014/09/25
+					<strong>Invoice 发票#${order.id }</strong><br /> 发票日期: ${order.createdate }<br />
+					<!-- 到期日: 2014/09/25 -->
 				</p>
 				<table cellspacing="0" id="invoiceitemstable" align="center">
 					<tr>
@@ -67,23 +71,29 @@
 							style="border:1px solid #cccccc;border-left:0px;border-bottom:0px;"><strong>金额</strong>
 						</td>
 					</tr>
-					<tr bgcolor=#ffffff>
-						<td id="invoiceitemsrow"
-							style="border:1px solid #cccccc;border-bottom:0px;">RAK C512
-							- 1 (2014/09/25 - 2015/09/24)</td>
-						<td align="center" id="invoiceitemsrow"
-							style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">$180.00USD</td>
-					</tr>
+					<c:forEach items="${detaillist }" var="detail">
+						<tr bgcolor=#ffffff>
+							<td id="invoiceitemsrow"
+								style="border:1px solid #cccccc;border-bottom:0px;">
+									${detail.servername } - ${detail.hostname } 
+									(${detail.createdate } - ${detail.maturity })<br>
+									<c:forEach items="${detail.configurationarr }" var="configuration" >
+										${configuration.name }:${configuration.value }</br>
+									</c:forEach>
+								</td>
+							<td align="center" id="invoiceitemsrow"
+								style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">￥${detail.price }</td>
+						</tr>
+					</c:forEach>
 					<tr>
-						<td id="invoiceitemsheading"
-							style="border:1px solid #cccccc;border-bottom:0px;"><div
-								align="right">小计:&nbsp;</div>
+						<td id="invoiceitemsheading" style="border:1px solid #cccccc;border-bottom:0px;">
+						<div align="right">小计:&nbsp;</div>
 						</td>
-						<td id="invoiceitemsheading" align="center"
-							style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;"><strong>$180.00USD</strong>
+						<td id="invoiceitemsheading" align="center" style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;">
+							<strong>￥${order.totalprice }</strong>
 						</td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td id="invoiceitemsheading"
 							style="border:1px solid #cccccc;border-bottom:0px;"><div
 								align="right">credit:&nbsp;</div>
@@ -91,17 +101,17 @@
 						<td id="invoiceitemsheading" align="center"
 							style="border:1px solid #cccccc;border-bottom:0px;border-left:0px;"><strong>$0.00USD</strong>
 						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td id="invoiceitemsheading" style="border:1px solid #cccccc;"><div
 								align="right">共计:&nbsp;</div>
 						</td>
 						<td id="invoiceitemsheading" align="center"
-							style="border:1px solid #cccccc;border-left:0px;"><strong>$180.00USD</strong>
+							style="border:1px solid #cccccc;border-left:0px;"><strong>￥${order.totalprice }</strong>
 						</td>
 					</tr>
 				</table>
-				<p>
+				<!-- <p>
 					<strong>交易</strong>
 				</p>
 				<table cellspacing="0" id="invoiceitemstable" align="center">
@@ -140,7 +150,7 @@
 							style="border:1px solid #cccccc;border-left:0px;border-top:0px;"><strong>$50.11USD</strong>
 						</td>
 					</tr>
-				</table> <br />
+				</table> <br /> -->
 			<br />
 			<br />
 			<br />
@@ -150,9 +160,9 @@
 
 
 	<p align="center">
-		<a href="clientarea.php">&laquo; 返回客户区</a> | <a
-			href="dl.php?type=i&amp;id=2798">下载</a> | <a
-			href="javascript:window.close()">关闭窗口</a>
+		<a href="../index/customerArea.htm">&laquo; 返回客户区</a> | 
+		<!-- <a href="dl.php?type=i&amp;id=2798">下载</a> |  -->
+		<a href="javascript:window.close()">关闭窗口</a>
 	</p>
 
 </body>

@@ -14,12 +14,7 @@ var listGridInfo = {
 		listTabTitle:["回复"],
 		listFrameUrls:["../reply/redirect.htm"]
 };
-//初始化明细的页面
-function  initListPage(rowIndex,tabIndex,id,furls,otherParame){
-	$("#rowIndex").val(rowIndex);
-	$("#tabIndex").val(tabIndex);
-	$("#iframe_"+rowIndex+"_"+tabIndex).attr("src",furls[tabIndex]+"?rowIndex="+rowIndex+"&tabIndex="+tabIndex+"&ticketid="+id);
-}
+
 /**
  * 提交后执行的动作
  * @param formID

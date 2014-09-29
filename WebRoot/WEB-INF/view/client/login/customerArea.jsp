@@ -49,7 +49,7 @@
 	  </tr>
   </c:if>
   </table>
-<h2><strong>0</strong> 到期发票</h2>
+<!-- <h2><strong>0</strong> 到期发票</h2>
 <form method="post" action="clientarea.php?action=masspay">
 <input type="hidden" name="token" value="90a10a2f755c23086f6a1c29fd1fe38f5a393240" />
 <table width="100%" border="0" align="center" cellpadding="10" cellspacing="0" class="data">
@@ -65,7 +65,7 @@
     <tr>
     <td colspan="8" align="center">未搜索到记录</td>
   </tr>
-    </table>
+    </table> -->
 </form>
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>

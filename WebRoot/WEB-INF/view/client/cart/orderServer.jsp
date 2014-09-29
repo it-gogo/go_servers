@@ -94,7 +94,7 @@ function save(status){
 			<div id="order-modern">
 				<form id="orderfrm" action="../cart/submitPublic.htm" method="post">
 					<input type="hidden" value="${product.id }" name="id" />
-					<input type="hidden" value="云主机" name="type" />
+					
 					<input type="hidden" value="${server.id }" name="server" />
 					<input type="hidden" value="${server.name }" name="servername" id="servername" />
 					<input type="hidden" value="" name="configuration" id="configuration" />
@@ -203,12 +203,30 @@ function save(status){
 						<h3>订单概述</h3>
 						<div class="ordersummary" id="producttotal">
 							<div class="summaryproduct">
-								<c:if test="${server.serverTypeId==1 }">"云主机" - </c:if>
-								<c:if test="${server.serverTypeId==3 }">"独立服务器" - </c:if>
-								<c:if test="${server.serverTypeId==4 }">"站群服务器" - </c:if>
-								<c:if test="${server.serverTypeId==5 }">"Windows VPS" - </c:if>
-								<c:if test="${server.serverTypeId==6 }">"Linux VPS" - </c:if>
-								<c:if test="${server.serverTypeId==7 }">"HK VPS" - </c:if>
+								<c:if test="${server.serverTypeId==1 }">
+									"云主机" - 
+									<input type="hidden" value="云主机" name="type" />
+								</c:if>
+								<c:if test="${server.serverTypeId==3 }">
+									"独立服务器" - 
+									<input type="hidden" value="独立服务器" name="type" />
+								</c:if>
+								<c:if test="${server.serverTypeId==4 }">
+									"站群服务器" - 
+									<input type="hidden" value="站群服务器" name="type" />
+								</c:if>
+								<c:if test="${server.serverTypeId==5 }">
+									"Windows VPS" - 
+									<input type="hidden" value="Windows VPS" name="type" />
+								</c:if>
+								<c:if test="${server.serverTypeId==6 }">
+									"Linux VPS" - 
+									<input type="hidden" value="Linux VPS" name="type" />
+								</c:if>
+								<c:if test="${server.serverTypeId==7 }">
+									"HK VPS" - 
+									<input type="hidden" value="HK VPS" name="type" />
+								</c:if>
 								<b>${server.name }</b>
 							</div>
 							<table class="ordersummarytbl" >

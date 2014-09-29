@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
+import com.go.common.util.Go_PasswordUtil;
 import com.go.common.util.Go_StringUtil;
 import com.go.controller.base.Go_BaseController;
 import com.go.sys.authority.model.Go_User;
@@ -115,8 +116,23 @@ public class Go_UserController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="login.htm")
-	public String login(ModelMap model,Go_User user){
-		model.addAttribute("show_msg",1);
+	public String login(HttpServletRequest request,ModelMap model,Go_User user){
+		Map<String,Object> params=new HashMap<String,Object>();
+		String username=user.getUsername();
+		String password=user.getPassword();
+		if(username==null || "".equals(username) || password==null || "".equals(password)){
+			model.addAttribute("show_msg",2);
+			return Go_ControllerConstant.RESULT_SHOW_MSG;
+		}
+		params.put("username", username);
+		params.put("password", Go_PasswordUtil.encrypt(password));
+		user=go_userService.get(params);
+		if(user!=null){
+			model.addAttribute("show_msg",1);
+			request.getSession().setAttribute("loginUser", user);
+		}else{
+			model.addAttribute("show_msg",2);
+		}
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	
@@ -154,5 +170,28 @@ public class Go_UserController extends Go_BaseController{
 			e.printStackTrace();
 			return "系统出错！";
 		}
+	}
+	
+	/**
+	 * 修改密码
+	 * @param request
+	 * @param model
+	 * @param oldpw
+	 * @param newpw
+	 * @return
+	 */
+	@RequestMapping(value="updateP.htm")
+	public String updateP(HttpServletRequest request,ModelMap model,String oldpw,String newpw){
+		Go_User loginUser=(Go_User) request.getSession().getAttribute("loginUser");
+		oldpw=Go_PasswordUtil.encrypt(oldpw);
+		if(loginUser.getPassword().equals(oldpw)){
+			loginUser.setPassword(Go_PasswordUtil.encrypt(newpw));
+			go_userService.update(loginUser);
+			request.getSession().setAttribute("loginUser", loginUser);
+			setSuccessMessage(model, "密码修改成功");
+		}else{
+			setSuccessMessage(model, "旧密码输入错误");
+		}
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 }

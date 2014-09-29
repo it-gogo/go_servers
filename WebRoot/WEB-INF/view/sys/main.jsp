@@ -13,7 +13,7 @@
 	<h2 class="logo"><a href="#"></a></h2>
     <div class="header_r">
     	<div class="admin_ico"><img src="<%=request.getContextPath() %>/css/main/images/person.png" /></div>
-    	<a href="#">[帐号:${Tuser.userid}&nbsp;&nbsp;姓名:${Tuser.staffname}]</a>
+    	<a href="#">[帐号:${loginUser.username}&nbsp;&nbsp;姓名:${loginUser.name}]</a>
         <a class="edit" href="javascript:modifypass()">修改密码</a>
         <a class="logout" href="javascript:loginOut()">注销</a>
     </div>
@@ -28,7 +28,7 @@
 <!--右侧开始-->
 <div id="rcontent"  class = 'right'>
    <div id="mainPanel" class="easyui-tabs"    >
-	 
+   
    </div>
 </div>
 
@@ -39,7 +39,7 @@
 </html>
 <script type="text/javascript">
 var  index = 0;
-var urls = "sysmanager/tuserAction.action";
+var urls = "../../authority/user";
 function addPanel(cdbh,titles,action){
       index++;
      // var tab = $('#tt').tabs(titles);
@@ -127,17 +127,17 @@ function  load(){
 		
 		function modifypass(){
 		    openDialog(editDialogID);
-		    submitMethod = "updatePass";
+		    submitMethod = "updateP";
 		    $(".window-mask").css({height:$(window)._outerHeight()})
-		    $('#'+editDialogID).dialog('refresh','sysmanager/tuserAction.action?act=modifypass');
+		    $('#'+editDialogID).dialog('refresh','../../authority/user/modifypass.htm');
 		}
 		
 		
 		function  afterSubmitForm(formID){
 		    //closeDialog1(editDialogID,formID,true);
-		    $("#oldpass").val('');
-		     $("#pass").val('');
-	         $("#pass1").val('');
+		    $("#oldpw").val('');
+		     $("#newpw").val('');
+	         $("#newpw1").val('');
 	          $("#tip").html("");
 		}
 		
@@ -148,8 +148,8 @@ function  load(){
 		       return false;
 		    }else if($("#pass").val()!=$("#pass1").val()){
 		       alertInfo("两次密码输入不一致");
-		       $("#pass").val('');
-	           $("#pass1").val('');  
+		       $("#newpw").val('');
+	           $("#newpw1").val('');  
 		       return false;
 		    }
 		    return true;
@@ -157,8 +157,8 @@ function  load(){
 		
 		
    function checkpass(){
-      var pass = $("#pass").val();
-	  var pass1 = $("#pass1").val();
+      var pass = $("#newpw").val();
+	  var pass1 = $("#newpw1").val();
 	  if(pass!=pass1){
         $("#tip").html("两次密码输入不一致");
       }else{

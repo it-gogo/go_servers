@@ -3,7 +3,7 @@
   <body>
     <div id="listeDialog" class="easyui-dialog" title="查看订购详细" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
-          style="width:750px;height:420px;padding:2px;">
+          style="width:750px;height:500px;padding:2px;">
 	     <form id="listeForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <input  type="text"  style="display:none;" name="orderid" id="orderid" ></input>
@@ -79,6 +79,18 @@
 	    			<td align="right"  class="td_left">价格:</td>
 	    			<td>
 	    			<input class="easyui-validatebox" type="text" name="price" id="price" readonly="readonly" style="width:250px;">
+	    			</input>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td align="right"  class="td_left">季度:</td>
+	    			<td>
+	    			<input class="easyui-validatebox" type="text" name="quarter" id="quarter" readonly="readonly" style="width:250px;">
+	    			</input>
+	    			</td>
+	    			<td align="right"  class="td_left">到期时间:</td>
+	    			<td>
+	    			<input class="easyui-validatebox" type="text" name="maturity" id="maturity" readonly="readonly" style="width:250px;">
 	    			</input>
 	    			</td>
 	    		</tr>
