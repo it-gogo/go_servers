@@ -35,4 +35,21 @@ function  afterSubmitForm(formID){
 }
 
 
+//操作信息
+function  getHandleStr(value,row,index){
+    var  handstr = "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='loadxx(urls,"+value+",editFormID);'>[修 改]</a> "+
+                   "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='deletexx(urls,"+value+",editFormID);'>[删 除]</a>";
+    handstr += "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='addxx(listeditDialogID,listeditFormID,"+value+");'>[回 复]</a>&nbsp;&nbsp;";
+    return  handstr;
+}
+
+
+function beforeaddxx(formID,sns){
+	if(formID=="listeForm"){
+		var ticketid= sns;
+//		alert(sns)
+		$("#ticketid","#"+formID).val(ticketid);
+	}
+	return true;
+}
 

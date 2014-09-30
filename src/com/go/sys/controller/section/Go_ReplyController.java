@@ -1,5 +1,6 @@
 package com.go.sys.controller.section;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.client.login.model.Go_Reply;
-import com.go.client.login.model.Go_Reply;
 import com.go.client.login.service.IGo_ReplyService;
+import com.go.client.login.service.IGo_TicketService;
+import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
+import com.go.sys.authority.model.Go_User;
 
 /**
  * 回复ticket信息控制器
@@ -31,6 +34,8 @@ public class Go_ReplyController extends Go_BaseController {
 
 	@Autowired
 	private IGo_ReplyService go_replyService;
+	@Autowired
+	private IGo_TicketService go_ticketService;
 	/**
 	 * 初始化
 	 * @author chenhb
@@ -83,12 +88,23 @@ public class Go_ReplyController extends Go_BaseController {
 	}
 	
 	/**
-	 * 公告信息保存
+	 * 信息保存
 	 * @author chenhb
 	 * @return
 	 */
 	@RequestMapping(value = "addxx.htm")
-	public String addxx(ModelMap model,Go_Reply reply){
+	public String addxx(HttpServletRequest request,ModelMap model,Go_Reply reply){
+		Go_User loginUser=(Go_User) request.getSession().getAttribute("loginUser");
+		reply.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
+		reply.setIp(request.getLocalAddr());
+		if(loginUser!=null){
+			reply.setCreator(loginUser.getId());
+			reply.setReplyname(loginUser.getName());
+		}
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("update_isdispose", "管理员回复");
+		params.put("where_id", reply.getTicketid());
+		go_ticketService.updateField(params);
 		go_replyService.save(reply);
 		setSuccessMessage(model, "保存成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;

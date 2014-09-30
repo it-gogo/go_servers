@@ -2,9 +2,9 @@
 
 <html>
   <body>
-    <div id="listeDialog" class="easyui-dialog" title="Ticket查看" 
+    <div id="listeDialog" class="easyui-dialog" title="查看Ticket回复" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
-          style="width:610px;height:520px;padding:2px;">
+          style="width:610px;height:420px;padding:2px;">
 	     <form id="listeForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <input  type="text"  style="display:none;" name="createdate" id="created"></input>
@@ -19,7 +19,7 @@
 	    		<tr>
 	    			<td align="right" class="td_left">内容:</td>
 	    			<td>
-	    			<textarea id="content"   name="content"  rows="100" style="height:200px;width:480px;" readonly="readonly">
+	    			<textarea id="replycontent"   name="replycontent"  rows="100" style="height:300px;width:480px;" >
 					</textarea>
 	    			</td>
 	    		</tr>
