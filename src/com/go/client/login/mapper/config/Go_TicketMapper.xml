@@ -27,6 +27,9 @@
 	<delete id="delete" parameterType="string">
 	    delete from Go_Ticket where id= #{id}
 	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Ticket ${where}
+	</delete>
 	<update id="updateField" parameterType="map">
 	    update Go_Ticket
 	    ${set_sql}

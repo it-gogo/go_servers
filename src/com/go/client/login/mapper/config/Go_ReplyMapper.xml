@@ -25,6 +25,9 @@
 	<delete id="delete" parameterType="string">
 	    delete from Go_Reply where id= #{id}
 	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Reply ${where}
+	</delete>
 	<update id="updateField" parameterType="map">
 	    update Go_Reply
 	    ${set_sql}
