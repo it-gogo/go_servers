@@ -3,7 +3,7 @@
 <c:if test="${loginInfo==null}">
 <div id="top_container">
 	<div id="top">
-		<div id="company_title">RakSmart</div>
+		<div id="company_title">智易推</div>
 		<div id="welcome_box">
 			请 <a href="../../login/portal/toLogin.htm" title="登录"><strong>登录</strong>
 			</a> 或 <a href="../../login/portal/registration.htm" title="注册"><strong>注册</strong>
