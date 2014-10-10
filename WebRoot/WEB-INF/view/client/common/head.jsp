@@ -4,5 +4,5 @@
 	request.setAttribute("name", name);
  %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>RAKsmart美国公有云服务器_${name }</title>
+<title>智易推服务器_${name }</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/client/css/style.css" />

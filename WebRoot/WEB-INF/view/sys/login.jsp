@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>孝感市食品药品监督管理局-行政审后台管理系统</title>
+<title>智易推服务器销售后台管理系统</title>
 <link href="<%=request.getContextPath() %>/client/css/login_bs.css" type="text/css" rel="stylesheet" />
 <%@include file="/section/common/includefile.jsp"%>
 <style type="text/css">

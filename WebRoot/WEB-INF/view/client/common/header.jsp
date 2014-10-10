@@ -6,7 +6,7 @@
  %>
 <div class="header">
   <div class="box"> <a class="logo" href="http://cn.raksmart.com/">
-    <h1>RAKsmart美国公有云服务器_${name }</h1>
+    <h1>智易推服务器_${name }</h1>
     </a>
     <ul class="menu">
       <li><a href="public.htm">云服务器</a>
