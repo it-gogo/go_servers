@@ -62,4 +62,8 @@
         </property>
     </bean> -->
 	<!-- end pasperreport 配置 -->
+	
+	<mvc:interceptors>  
+	    <bean class="com.go.interceptor.SystemInterceptor" />  
+	</mvc:interceptors>  
 </beans>  

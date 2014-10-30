@@ -112,6 +112,15 @@ public class Go_UserController extends Go_BaseController{
 		return "/sys/login";
 	}
 	/**
+	 * session错误
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="sessionError.htm")
+	public String sessionError(HttpServletRequest request){
+		return "/sys/error/sessionError";
+	}
+	/**
 	 * 登陆
 	 * @return
 	 */
