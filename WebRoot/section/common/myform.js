@@ -29,6 +29,9 @@ function  initForm(dialogId,formId){
         	   afterLoad(formId,data);
            }
         },
+        onLoadError:function(){
+        	location.href="../../authority/user/sessionError.htm";
+        },
         onBeforeClose:function(){
         	if(typeof(beforeCloseForm)=='function'){
         		beforeCloseForm(formId);
@@ -48,9 +51,9 @@ function  initForm(dialogId,formId){
 //加载信息
 function  loadxx(urls,sn,formID){
 	if(typeof(formID)!='undefined'&&formID!=null){
-		$("#"+formID).form('load',urls+'/loadxx.htm?id='+sn);
+		$("#"+formID).form('load',urls+'/loadxx.htm?id='+sn+'&ajaxFlag=XMLHttpRequest');
 	}else{
-        $("#"+editFormID).form('load',urls+'/loadxx.htm?id='+sn);
+        $("#"+editFormID).form('load',urls+'/loadxx.htm?id='+sn+'&ajaxFlag=XMLHttpRequest');
 	}
 }
 
@@ -130,6 +133,9 @@ function submitForm(action,formID){
             }
             closeDialog(curDialogID);
             $.messager.alert("信息",json.message,"info");
+        }, 
+        error:function(){
+        	location.href="../../authority/user/sessionError.htm";
         }
     });
  }

@@ -31,7 +31,17 @@ public class SystemInterceptor  extends HandlerInterceptorAdapter{
             if (beFilter) {  
                 Object obj = request.getSession().getAttribute("loginUser");  
                 if (null == obj) {  
-                    // 未登录  
+                	// 未登录  
+                	String  requestType = request.getParameter("ajaxFlag");
+                	if(requestType!=null&&requestType.equals("XMLHttpRequest")){
+                		response.setContentType("text/html;charset=UTF-8");
+            			response.setHeader("Pragma", "No-cache");
+            			response.setHeader("Cache-Control", "no-cache");
+            			response.setDateHeader("Expires", 0);
+            			response.getWriter().write("unvalid");
+            			response.getWriter().flush();
+        				return false;
+        			}
                 	request.getRequestDispatcher("/sys/authority/user/sessionError.htm").forward(request, response);
                 	return false;
                 }
