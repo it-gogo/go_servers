@@ -44,7 +44,7 @@ input.inputF{color:#555;}
         </div>
        </form>
     </div>
-    <div class="login_footer">版权所有(C)2013-2014 孝感市食品药品监督管理局</div>
+    <div class="login_footer">版权所有(C)2013-2014 厦门智易推网络科技有限公司</div>
 </body>
 </html>
 
