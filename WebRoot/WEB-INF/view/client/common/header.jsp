@@ -5,7 +5,7 @@
 	request.setAttribute("name", name);
  %>
 <div class="header">
-  <div class="box"> <a class="logo" href="http://cn.raksmart.com/">
+  <div class="box"> <a class="logo" href="/go_servers/client/main/public.htm">
     <h1>智易推服务器_${name }</h1>
     </a>
     <ul class="menu">
