@@ -21,6 +21,7 @@ public class Go_Product_List {
 	private String ns2prefix;//NS2 前缀
 	private String rootpw;//root密码
 	private String configuration;//可配置项
+	private String totalprice;//总价
 	public Integer getId() {
 		return id;
 	}
@@ -89,5 +90,11 @@ public class Go_Product_List {
 	}
 	public void setServername(String servername) {
 		this.servername = servername;
+	}
+	public String getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(String totalprice) {
+		this.totalprice = totalprice;
 	}
 }

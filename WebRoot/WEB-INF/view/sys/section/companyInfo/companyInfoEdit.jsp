@@ -26,6 +26,22 @@
 	    			</input>
 	    			</td>
 	    		</tr>
+	    		<tr>
+	    			<td align="right"  class="td_left">电子邮箱:</td>
+	    			<td>
+	    			<input class="easyui-validatebox" type="text" name="email" id="email" 
+	    			data-options="required:true,validType:'maxLength[40]'" style="width:410px;">
+	    			</input>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td align="right"  class="td_left">公司地址:</td>
+	    			<td>
+	    			<input class="easyui-validatebox" type="text" name="address" id="address" 
+	    			data-options="required:true,validType:'maxLength[200]'" style="width:410px;">
+	    			</input>
+	    			</td>
+	    		</tr>
 	    		
 		     </table>
 		   </form>

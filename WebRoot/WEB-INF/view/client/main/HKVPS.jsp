@@ -20,7 +20,7 @@
     <h2 class="gray" style="clear:both">  <a name="windows" id="windows"></a>VPS (HK)</h2>
     	<c:forEach items="${list }" var="server">
 		<li>
-              <img src="/Public/Uploads/20131218/52b0ba319f677.jpg" width="87" height="65" alt="ATOM Server 美国服务器" /> 
+              <%@include file="/WEB-INF/view/client/common/showServerImg.jsp" %> 
               <div class="title">${server.name }</div>
               <ul>
               		<li>${server.cpu }</li>
@@ -32,10 +32,7 @@
                   <li>Various OS</li>
                    <li>SolusVM 控制面板</li>
               </ul>
-              <div class="price">${server.pricename }</div>
-      <a href="http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7">
-      <input name="" type="button" value="订购" class="orangeBtn" onClick="window.location.href('http://cn.raksmart.com/whmcs/cart.php?a=add&pid=7')"/>
-      </a>
+              <%@include file="/WEB-INF/view/client/login/common/order.jsp" %>
             </li>
 	</c:forEach>
       	<!-- <li>

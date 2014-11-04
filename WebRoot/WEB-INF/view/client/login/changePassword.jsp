@@ -11,7 +11,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
 <%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>客户区</h1>
     <p class="breadcrumb"><a href="../index/index.htm">门户主页</a> > <a href="../index/customerArea.htm">客户区</a> > <a href="../portal/myDetail.htm">我的详细信息</a> > <a href="../portal/changePassword.htm">更改密码</a></p>
@@ -27,6 +29,17 @@
 <c:if test="${show_msg==0 }">
 	<div class="errorbox">当前密码错误</div>
 </c:if>
+<c:if test="${show_msg==2 }">
+	<div class="errorbox">未确认密码</div>
+</c:if>
+<c:if test="${show_msg==3 }">
+	<div class="errorbox">未填写新密码</div>
+</c:if>
+<%-- <c:if test="${show_msg!=null }">
+<div class="errorbox">
+	<li>${show_msg}</li>
+</div>
+</c:if> --%>
 <form method="post" action="../portal/changePassword.htm">
   <table width="100%" cellspacing="0" cellpadding="0" class="frame">
     <tr>
@@ -39,7 +52,6 @@
           <tr>
             <td width="150" class="fieldarea">新密码</td>
             <td><input type="password" name="newpw" id="newpw" size="25" /></td>
-            <td><script language="javascript">showStrengthBar();</script></td>
           </tr>
           <tr>
             <td width="150" class="fieldarea">确认新密码</td>

@@ -12,6 +12,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>域名检查</h1>
     <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="demain.htm">域名检查</a></p><p align="center"><strong>域名搜索</strong> | <a href="domainchecker.php?search=bulkregister">批量域名搜索</a> | <a href="domainchecker.php?search=bulktransfer">批量域名转移</a></p>

@@ -20,21 +20,20 @@
 <p> 服务ticket系统有助于我们尽快回复您的问题和咨询。关于ticket回复，我们会发送邮件通知您。</p>
 <table width="100%" border="0" cellpadding="10" cellspacing="0">
   <tr>
-    <td>打开服务Tickets: <strong>0</strong></td>
+    <td>打开服务Tickets: <strong></strong></td>
     <td align="right"><a href="../ticket/toAdd.htm">提交Ticket</a></td>
   </tr>
 </table>
-<form method="post" action="supporttickets.php">
-<input type="hidden" name="token" value="320f6208e1bd53ef723bc45d03a56ac5051939e8" />
-  <p align="center"><b>搜索:</b>
-    <input type="text" name="searchterm" size="25" value="" />
+<form method="post" action="searchsupporttickets.htm">
+  <p align="center"><b>主题:</b>
+    <input type="text" name="title" size="25" value="${title }" />
     <input type="submit" value="搜索" />
   </p>
 </form>
 <table width="100%" border="0" cellpadding="10" cellspacing="0">
   <tr>
-    <td>0 搜索到的记录,  页面 1 of 1</td>
-    <td align="right">&laquo; 上一页 &nbsp; 下一页 &raquo;</td>
+    <td>${pb.allRow } 搜索到的记录,  页面 ${pb.curentPage } of ${pb.totalPage }</td>
+    <!-- <td align="right">&laquo; 上一页 &nbsp; 下一页 &raquo;</td> -->
   </tr>
 </table>
 <br />
@@ -51,7 +50,7 @@
 		  	<tr>
 		    <td>${ticket.createdate }</td>
 		    <td>销售部</td>
-		    <td><DIV ALIGN="left"><img src="<%=request.getContextPath() %>/client/loginCss/images/article.gif" hspace="5" align="middle"><a href="../ticket/look.htm?id=${ticket.id }">${ticket.content }</a></DIV></td>
+		    <td><DIV ALIGN="left"><img src="<%=request.getContextPath() %>/client/loginCss/images/article.gif" hspace="5" align="middle"><a href="../ticket/look.htm?id=${ticket.id }">${ticket.title }</a></DIV></td>
 		    <td><span style="color:#779500">${ticket.isdispose}</span></td>
 		    <td width=80>${ticket.urgenttype}</td>
 		  </tr>
@@ -64,25 +63,7 @@
 	  </c:if>
   </table>
 <br />
-<table width="100%" border="0" cellpadding="10" cellspacing="0">
-	  <tr>
-	    <td>显示: <a href="../ticket/support.htm?pageSize=10">10</a> <a href="../ticket/support.htm?pageSize=25">25</a> <a href="../ticket/support.htm?pageSize=50">50</a> <a href="../ticket/support.htm?pageSize=100">100</a> <a href="supporttickets.php?itemlimit=all">全部</a></td>
-	    <td align="right">
-	    	<c:if test="${pb.hasPreviousPage }">
-	    	<a href="../ticket/support.htm?page=${pb.curentPage-1 }">&laquo; 上一页 &nbsp; </a>
-	    	</c:if>
-	    	<c:if test="${!pb.hasPreviousPage }">
-	    	&laquo; 上一页 &nbsp; 
-	    	</c:if>
-	    	<c:if test="${pb.hasNextPage }">
-	    	<a href="../ticket/support.htm?page=${pb.curentPage+1 }">下一页 &raquo;</a>
-	    	</c:if>
-	    	<c:if test="${!pb.hasNextPage }">
-	    	下一页 &raquo;
-	    	</c:if>
-	    </td>
-	  </tr>
-</table><br />
+<%@include file="/WEB-INF/view/client/login/common/page.jsp" %>
 
 <%@include file="/WEB-INF/view/client/login/common/foot.jsp" %>
 <%@include file="/WEB-INF/view/client/login/common/quickView.jsp" %>

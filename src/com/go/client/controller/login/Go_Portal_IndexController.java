@@ -18,6 +18,8 @@ import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_Portal_InfoService;
 import com.go.client.login.service.IGo_TicketService;
 import com.go.controller.base.Go_BaseController;
+import com.go.sys.section.model.Go_Notice_News;
+import com.go.sys.section.service.IGo_NoticeService;
 
 /**
  * 门户主页信息 控制类
@@ -32,6 +34,8 @@ public class Go_Portal_IndexController extends Go_BaseController{
 	public IGo_Portal_InfoService go_portal_infoService;
 	@Autowired
 	public IGo_TicketService go_ticketService;
+	@Autowired
+	public IGo_NoticeService go_noticeService;
 	
 	/**
 	 * 主页信息
@@ -40,6 +44,10 @@ public class Go_Portal_IndexController extends Go_BaseController{
 	 */
 	@RequestMapping(value="index.htm")
 	public String index(ModelMap model){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("order_by", "createdate_desc");
+		Go_Notice_News notice=go_noticeService.get(params);
+		model.put("notice", notice);
 		return "client/login/index";
 	}
 	
@@ -56,6 +64,7 @@ public class Go_Portal_IndexController extends Go_BaseController{
 		}
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("isdispose_<>","关闭");
+		params.put("creator",portal_info.getId());
 		Go_PageData pageData=new Go_PageData();
 		List<Go_Ticket> listTicket=go_ticketService.listPageByParams(params, pageData);
 		model.addAttribute("listTicket",listTicket);

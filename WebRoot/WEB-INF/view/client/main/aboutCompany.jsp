@@ -16,7 +16,7 @@
     <div id="nav">
       <ul>
         <li><a href="company.htm">关于公司</a></li>
-        <li><a href="technology.htm">技术伙伴</a></li>
+        <!-- <li><a href="technology.htm">技术伙伴</a></li> -->
 <!--        <li><a href="/About/channel">通道伙伴</a></li>
         <li><a href="/About/careers">职位招聘</a></li>
         <li><a href="/About/startup">启动赞助</a></li>

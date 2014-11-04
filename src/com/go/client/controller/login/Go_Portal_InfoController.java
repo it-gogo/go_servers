@@ -145,11 +145,15 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	@RequestMapping(value="login.htm")
 	public String login(HttpServletRequest request,HttpServletResponse response,Go_Portal_Info portal_info,ModelMap model,String rememberme){
 		String password=portal_info.getPassword();
-		if(password!=null && password.length()>0){
-			portal_info.setPassword(Go_PasswordUtil.encrypt(password));
+		String email=portal_info.getEmail();
+		if(email==null || "".equals(email) || password==null || "".equals(password)){
+			error_msg="登录错误，请重试。";
+			model.put("error_msg",error_msg);
+			return "client/login/login"; 
 		}
+		portal_info.setPassword(Go_PasswordUtil.encrypt(password));
 		Map<String,Object> params= new HashMap<String, Object>();
-		params.put("email", portal_info.getEmail());
+		params.put("email", email);
 		params.put("password", portal_info.getPassword());
 		portal_info=go_portal_infoService.get(params);
 		if(portal_info==null){//门户不存在
@@ -163,7 +167,7 @@ public class Go_Portal_InfoController extends Go_BaseController{
 		//创建cookie保存登陆账号和密码
 		Cookie c=null;
 		if("1".equals(rememberme)){
-			String email=portal_info.getEmail();
+			email=portal_info.getEmail();
 			String str=email+":"+password;
 			try{
 				str=DES.encrypt(str, DES.key);
@@ -199,7 +203,11 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="myDetail.htm")
-	public String myDetail(){
+	public String myDetail(HttpServletRequest request){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		return "client/login/myDetail"; 
 	}
 	
@@ -209,8 +217,11 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="toChangePassword.htm")
-	public String toChangePassword(){
-		
+	public String toChangePassword(HttpServletRequest request){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		return "client/login/changePassword"; 
 	}
 	
@@ -220,10 +231,17 @@ public class Go_Portal_InfoController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="changePassword.htm")
-	public String changePassword(HttpServletRequest request,String oldpw,String newpw,ModelMap model){
+	public String changePassword(HttpServletRequest request,String oldpw,String newpw,String newpw2,ModelMap model){
 		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		if(!portal.getPassword().equals(Go_PasswordUtil.encrypt(oldpw))){//密码有错
 			show_msg="0";//当前密码错误
+		}else if(newpw==null || "".equals(newpw)){
+			show_msg="3";//请填写新密码
+		}else if(!newpw.equals(newpw2)){
+			show_msg="2";//当前密码错误
 		}else{
 			newpw=Go_PasswordUtil.encrypt(newpw);
 			Map<String,Object> params=new HashMap<String,Object>();

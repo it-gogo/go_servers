@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>孝感市食品药品监督管理局-行政审后台管理系统</title>
+<title>智易推服务器销售后台管理系统</title>
 <link href="<%=request.getContextPath() %>/client/css/login_bs.css" type="text/css" rel="stylesheet" />
 <%@include file="/section/common/includefile.jsp"%>
 <style type="text/css">
@@ -18,11 +18,11 @@ input.inputF{color:#555;}
     	<div class="login">
         	<p class="input_name">
                 <label>用户名：</label>
-                <input name="name" value="${user.name }" type="text" class="inputF" id="name" onkeydown="nexttab()"/>  
+                <input name="username" value="${user.name }" type="text" class="inputF" id="name" onkeydown="nexttab()"/>  
             </p>
             <p class="input_password">
                 <label>登录密码：</label> 
-                <input name="pass" value="${user.pass }" type="password" class="inputF" id="pass" onkeydown="nexttab()"/>  
+                <input name="password" value="${user.pass }" type="password" class="inputF" id="pass" onkeydown="nexttab()"/>  
             </p>
              <%-- <p>
                 <label>&nbsp;</label>
@@ -44,7 +44,7 @@ input.inputF{color:#555;}
         </div>
        </form>
     </div>
-    <div class="login_footer">版权所有(C)2013-2014 孝感市食品药品监督管理局</div>
+    <div class="login_footer">版权所有(C)2013-2014 厦门智易推网络科技有限公司</div>
 </body>
 </html>
 
@@ -53,7 +53,7 @@ input.inputF{color:#555;}
   {
        if(event.keyCode==13)
        {
-          login1();
+          login();
        }
   }
   

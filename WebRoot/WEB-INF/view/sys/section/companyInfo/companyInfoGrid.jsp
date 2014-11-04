@@ -19,8 +19,10 @@
      rownumbers="true" fitColumns="true" singleSelect="true">   
     <thead>          
        <tr>
-          <th field="telephone" width="160" align='left'>电话</th>
+          <th field="telephone" width="60" align='left'>电话</th>
           <th field="qq" width="80"  align='left' >QQ</th>
+          <th field="email" width="80"  align='left' >电子邮箱</th>
+          <th field="address" width="140"  align='left' >公司地址</th>
           <th field="id" width="180"  align='center' formatter='getHandleStr'>操作</th>
          </tr>
      </thead>

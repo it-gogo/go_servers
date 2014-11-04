@@ -12,6 +12,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>下载</h1>
     <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="download.htm">下载</a></p><p>下载文库包含所有产品指南、程序和其他网站运行文件。</p>

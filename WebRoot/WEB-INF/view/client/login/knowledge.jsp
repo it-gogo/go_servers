@@ -11,6 +11,9 @@
 
 <%@include file="/WEB-INF/view/client/login/common/topContainer.jsp" %>
 <div id="content_container">
+<c:if test="${loginInfo!=null }">
+<%@include file="/WEB-INF/view/client/login/common/topMenu.jsp" %>
+</c:if>
   <div id="content_left">
     <h1>知识库</h1>
     <p class="breadcrumb"><a href="index.htm">门户主页</a> > <a href="knowledge.htm">知识库</a></p><p>知识库组织成不同分类。查找问题时，您可以选择下方分类或搜索知识库。</p>

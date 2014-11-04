@@ -7,8 +7,8 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Product_List(cart,server,price,type,servername,hostname,ns1prefix,ns2prefix,rootpw,configuration)
-	    values(#{cart},#{server},#{price},#{type},#{servername},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{configuration})
+	    insert into Go_Product_List(cart,server,price,type,servername,hostname,ns1prefix,ns2prefix,rootpw,configuration,totalprice)
+	    values(#{cart},#{server},#{price},#{type},#{servername},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{configuration},#{totalprice})
 	</insert>
 	<update id="update">
 	    update Go_Product_List 
@@ -21,7 +21,8 @@
 		    ns1prefix = #{ns1prefix},
 		    ns2prefix = #{ns2prefix},
 		    rootpw = #{rootpw},
-		    configuration = #{configuration}
+		    configuration = #{configuration},
+		    totalprice = #{totalprice}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">

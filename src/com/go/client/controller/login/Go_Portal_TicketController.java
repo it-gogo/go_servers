@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
 import com.go.client.core.PageBean;
+import com.go.client.login.model.Go_Portal_Info;
 import com.go.client.login.model.Go_Reply;
 import com.go.client.login.model.Go_Ticket;
 import com.go.client.login.service.IGo_ReplyService;
@@ -97,10 +98,15 @@ public class Go_Portal_TicketController extends Go_BaseController{
 	 * @return
 	 */
 	@RequestMapping(value="support.htm")
-	public String support(Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+	public String support(HttpServletRequest request,Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+		request.getSession().removeAttribute("searchdata");
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("isdispose_<>","关闭");
-//		pageData.setPageSize(2);
+		params.put("creator",portal.getId());
 		List<Go_Ticket> list=go_ticketService.listPageByParams(params, pageData);
 		int allRow=go_ticketService.count(params);
 		
@@ -112,7 +118,51 @@ public class Go_Portal_TicketController extends Go_BaseController{
 		pb.setList(list);
 		list.size();
 		model.put("pb", pb);
+		model.put("pageurl", "support.htm");
+		return "client/login/supportticket";
+	}
+	
+	/**
+	 * 查询ticket
+	 * @param pageData
+	 * @param ticket
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="searchsupporttickets.htm")
+	public String searchsupporttickets(HttpServletRequest request,Go_PageData pageData,Go_Ticket ticket,ModelMap model){
+		Go_Portal_Info portal=(Go_Portal_Info) request.getSession().getAttribute("loginInfo");
+		if(portal==null){
+			return "redirect:/client/login/portal/toLogin.htm";
+		}
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("isdispose_<>","关闭");
+		String title=ticket.getTitle();
+		if(title!=null){
+			title=title.trim();
+			params.put("title_like",title);
+			model.put("title", title);
+			request.getSession().setAttribute("searchdata", title);
+		}else{
+			title=(String) request.getSession().getAttribute("searchdata");
+			if(title!=null && !"".equals(title)){
+				params.put("title_like",title);
+				model.put("title", title);
+			}
+		}
+		params.put("creator",portal.getId());
+		List<Go_Ticket> list=go_ticketService.listPageByParams(params, pageData);
+		int allRow=go_ticketService.count(params);
 		
+		PageBean<Go_Ticket> pb=new PageBean<Go_Ticket>();
+		pb.setPageSize(pageData.getPageSize());
+		pb.setCurentPage(pageData.getCurrentPage());
+		pb.setAllRow(allRow);
+		pb.setTotalPage(pb.countTotalPage());
+		pb.setList(list);
+		list.size();
+		model.put("pb", pb);
+		model.put("pageurl", "searchsupporttickets.htm");
 		return "client/login/supportticket";
 	}
 	

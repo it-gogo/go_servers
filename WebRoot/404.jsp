@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
   </head>
   
-  <body onload="floatAD()">
+  <body >
   <div style="height: 300px; width: 300px;" >
    <div id="fly" style="position: absolute;left: 16px; top: 200px;">
    <img  src="<%=path%>/images/404.png">系统出现了未知错误，请联系相关技术人员！

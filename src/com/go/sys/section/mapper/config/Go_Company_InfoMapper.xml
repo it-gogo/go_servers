@@ -7,8 +7,8 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Company_Info(history,corecompetitiveness,briefintroduction,telephone,qq)
-	    values(#{history},#{corecompetitiveness},#{briefintroduction},#{telephone},#{qq})
+	    insert into Go_Company_Info(history,corecompetitiveness,briefintroduction,telephone,qq,email,address)
+	    values(#{history},#{corecompetitiveness},#{briefintroduction},#{telephone},#{qq},#{email},#{address})
 	</insert>
 	<update id="update">
 	    update Go_Company_Info 
@@ -16,7 +16,9 @@
 		    corecompetitiveness = #{corecompetitiveness},
 		    briefintroduction = #{briefintroduction},
 		    telephone = #{telephone},
-		    qq = #{qq}
+		    qq = #{qq},
+		    email = #{email},
+		    address = #{address}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">
