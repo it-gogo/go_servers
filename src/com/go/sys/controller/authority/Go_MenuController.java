@@ -48,7 +48,6 @@ public class Go_MenuController extends Go_BaseController {
 	@RequestMapping("findlist.htm")
 	public String findlist(ModelMap model,Go_PageData pageData,String gt_json){
 		
-		Map<String,Object> p=new HashMap<String,Object>();
 		Map<String,Object> params= new HashMap<String, Object>();
 		JSONArray arr=JSONArray.fromObject(gt_json);
 		for(int i=0;i<arr.size();i++){
@@ -101,7 +100,6 @@ public class Go_MenuController extends Go_BaseController {
 	 */
 	@RequestMapping(value = "addxx.htm")
 	public String addxx(ModelMap model,Go_Menu menu){
-		int res = 0;
 		//创建排序信息
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("column", "max(seq)");

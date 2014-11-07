@@ -2,7 +2,6 @@ package com.go.sys.authority.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,6 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.go.base.module.Go_PageData;
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.authority.dao.impl.Go_MenuDao;
 import com.go.sys.authority.model.Go_Menu;
@@ -77,8 +75,6 @@ public class Go_MenuService extends Go_BaseService<Go_Menu, Integer> implements 
 	 * @return
 	 */
 	public  String  getMenuStr(){
-		Go_PageData pageData=new Go_PageData();
-		Map<String,Object> params=new HashMap<String,Object>(); 
 		List<Go_Menu> obj = this.list();
 		List<MenuPo> list = new ArrayList<MenuPo>();
 		MenuPo  po = new MenuPo();

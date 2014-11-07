@@ -19,7 +19,6 @@ import com.go.base.module.Go_PageData;
 import com.go.client.cart.model.Go_Order_Detail;
 import com.go.client.cart.service.IGo_Order_DetailService;
 import com.go.controller.base.Go_BaseController;
-import com.go.sys.server.model.Go_Server_Info;
 
 /**
  * 服务器订购详细信息控制器

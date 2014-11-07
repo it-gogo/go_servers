@@ -23,11 +23,8 @@ import com.go.sys.authority.model.Constant;
 import com.go.sys.common.model.Go_Code_Data;
 import com.go.sys.common.service.IGo_Code_DataService;
 import com.go.sys.server.model.Go_Server_Configuration;
-import com.go.sys.server.model.Go_Server_Configuration_Type;
 import com.go.sys.server.model.Go_Server_Info;
-import com.go.sys.server.service.IGo_Configuration_DataService;
 import com.go.sys.server.service.IGo_Server_ConfigurationService;
-import com.go.sys.server.service.IGo_Server_Configuration_TypeService;
 import com.go.sys.server.service.IGo_Server_InfoService;
 
 /**
@@ -41,10 +38,6 @@ public class Go_Server_InfoController extends Go_BaseController {
 
 	@Autowired
 	private IGo_Server_InfoService go_server_infoService;
-	@Autowired
-	private IGo_Configuration_DataService go_configuration_dataService;
-	@Autowired
-	private IGo_Server_Configuration_TypeService go_server_configuration_typeService;//关联表
 	@Autowired
 	private IGo_Server_ConfigurationService go_server_configurationService;//关联表
 	@Autowired

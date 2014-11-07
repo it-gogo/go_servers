@@ -23,11 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" language="javascript" src="js/jquery.uploadify.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			/**
-			*数据显示
-			**/
 			$('#dg').datagrid({  
-			    url:'sys/authority/user/ajax_list.htm', 
+			    url:'sys/server/server_room/ajax_list.htm', 
 			    striped:true,
 			    loadMsg:'亲，正在加载ing...',
 			    idField:'id',
@@ -41,46 +38,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	text:'增加',
 					iconCls: 'icon-add',
 					handler: function(){
-						go.window.edit('增加新用户','sys/authority/user/add.htm',550,200);
+						go.window.edit('增加机房','sys/server/server_room/add.htm',550,200);
 					}
 				},'-',{
 			    	text:'修改',
 					iconCls: 'icon-edit',
 					handler: function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							go.window.edit('修改用户信息','sys/authority/user/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
+						if($('#dg').datagrid('getSelected') ){
+							go.window.edit('修改机房信息','sys/server/server_room/edit.htm?id=' + $('#dg').datagrid('getSelected').id,600,330);
 						}else{
 							$.messager.alert('提示','请选择一项进行修改');
 						}
 					}
 				},'-',{
-					text:'帮助',
-					iconCls: 'icon-help',
-					handler: function(){alert('尚未添加帮助说明...');}
+					text:'详细',
+					iconCls:'icon-tip',
+					handler:function(){
+						if($('#dg').datagrid('getSelected') ){
+							go.window.detail('机房详情','sys/server/server_room/detail.htm?id=' + $('#dg').datagrid('getSelected').id,550,200);
+						}else{
+							$.messager.alert('提示','请选择一项进行查看详情');
+						}
+					}
 				}],
 				selectOnCheck:true,
 			    columns:[[  
 			        {field:'id',title:'编号',width:50,checkbox:true},  
-			        {field:'username',title:'账号',width:80},
-			        {field:'status',title:'状态',width:80},
-			        {field:'name',title:'名字',width:50},
-			        {field:'telephone',title:'电话',width:80},
+			        {field:'name',title:'名字',width:80},
+			        {field:'descript',title:'描述',width:80},
+			        {field:'address',title:'地址',width:80},
 			    ]],
-			    onLoadSuccess:function(data){
-			    	// 取消当前表格选中的所有行
-					$('#dg').datagrid("clearSelections");
-			    }  
+			    
 			}); 
 			
-			$("#div_receive_tel").window({
-				width:250,
-				height:100,
-				modal:true,
-				collapsible:false,
-				minimizable:false,
-				maximizable:false,
-				closed:true
-			});
 		});
 		
 		
@@ -100,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   	<div id="cc" class="easyui-layout" style="width:100%;height:100%; padding: 0;margin: 0;" fit="true">  
 	  	 <div data-options="region:'north',title:'搜索',split:true,collapsible:false" style="height:80px;padding: 10px;">
-	  	 	用户名称：<input type="text" value="" id="name" />
+	  	 	机房名：<input type="text" value="" id="name" />
 	  	 	<a id="btn" href="javascript:void(0);" onclick="search_data()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>
 	  	 </div>
 	  	 <div data-options="region:'center'">
