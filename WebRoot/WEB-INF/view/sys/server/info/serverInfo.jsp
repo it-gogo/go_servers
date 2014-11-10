@@ -3,6 +3,9 @@
 <html>
 <%@include file="/section/common/includefile.jsp"%>
  <script language="javascript" src="<%=basePath%>/section/serverInfo/serverInfo.js" ></script>
+ <script>
+ 	
+ </script>
 <meta http-equiv="cache-control" content="no-cache">
 <body>
 <input  id="snumber"  type="hidden"  name="snumber"  value="">

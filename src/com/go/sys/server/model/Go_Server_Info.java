@@ -46,6 +46,8 @@ public class Go_Server_Info {
 	private String description;
 	//状态
 	private String isactives;
+	//机房id
+	private Integer roomId;
 	
 	private List<Go_Server_Price> pricelist;
 	
@@ -171,24 +173,25 @@ public class Go_Server_Info {
 	public Integer getControlPanelId() {
 		return controlPanelId;
 	}
-
 	public void setControlPanelId(Integer controlPanelId) {
 		this.controlPanelId = controlPanelId;
 	}
-
 	public String getImgUrl() {
 		return imgUrl;
 	}
-
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
 	public List<Go_Server_Price> getPricelist() {
 		return pricelist;
 	}
-
 	public void setPricelist(List<Go_Server_Price> pricelist) {
 		this.pricelist = pricelist;
+	}
+	public Integer getRoomId() {
+		return roomId;
+	}
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
 	}
 }

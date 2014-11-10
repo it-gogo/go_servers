@@ -30,10 +30,10 @@
     <!--  ③：对模型视图名称的解析，即在模型视图名称添加前后缀 -->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
         p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>  
-       <!--  <bean id="multipartResolver" class="com.hczd.download.common.fileupload.HZ_PJCommonsMultipartResolver">    -->
+        <bean id="multipartResolver" class="com.go.common.fileupload.Go_PJCommonsMultipartResolver">   
 	<!-- 该属性用来配置可上传文件的最大 byte 数 1G -->   
-	  		<!-- <property name="maxUploadSize"><value>10737418240</value></property> 
-		</bean>  -->
+	  		<property name="maxUploadSize"><value>10737418240</value></property> 
+		</bean>  
 	 <!-- MVC转换 -->  
     <mvc:annotation-driven  />
     <!-- <mvc:interceptors>
