@@ -22,7 +22,7 @@
 	    			<td align="right"  class="td_left">每月价格:</td>
 	    			<td>
 	    			<input class="easyui-numberbox" type="text" name="monthlyPrice" id="monthlyPrice" 
-	    			data-options="required:true,min:0,max:99999999999,validType:'maxLength[20]'" style="width:410px;">
+	    			data-options="required:true,min:0,max:99999999999,precision:2,validType:'maxLength[20]'" style="width:410px;">
 	    			</input>
 	    			</td>
 	    		</tr>
