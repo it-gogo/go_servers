@@ -7,6 +7,6 @@
     <title>Go_Servers-主页</title>
   </head>
 <script type="text/javascript">
-	document.location.href = "client/main/public.htm";
+	document.location.href = "client/main/stations.htm";
 </script>
 </html>
