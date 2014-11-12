@@ -21,16 +21,16 @@
 	    		<tr>
 	    			<td align="right"  class="td_left">每月价格:</td>
 	    			<td>
-	    			<input class="easyui-validatebox" type="text" name="monthlyPrice" id="monthlyPrice" 
-	    			data-options="required:true,validType:'maxLength[20]'" style="width:410px;">
+	    			<input class="easyui-numberbox" type="text" name="monthlyPrice" id="monthlyPrice" 
+	    			data-options="required:true,min:0,max:99999999999,validType:'maxLength[20]'" style="width:410px;">
 	    			</input>
 	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td align="right"  class="td_left">总共几个月:</td>
 	    			<td>
-	    			<input class="easyui-validatebox" type="text" name="numMonth" id="numMonth" 
-	    			data-options="required:true,validType:'maxLength[10]'" style="width:410px;">
+	    			<input class="easyui-numberbox" type="text" name="numMonth" id="numMonth" 
+	    			data-options="required:true,min:0,max:99999999999,validType:'maxLength[10]'" style="width:410px;">
 	    			</input>
 	    			</td>
 	    		</tr>
