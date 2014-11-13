@@ -1,6 +1,5 @@
-package com.go.sys.common.model;
+package com.go.sys.server.model;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
 /**

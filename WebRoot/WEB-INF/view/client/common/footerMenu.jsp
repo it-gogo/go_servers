@@ -7,7 +7,7 @@
       <h4>独立服务器</h4>
       <a href="independence.htm">» 独立服务器</a><a href="stations.htm">» 站群服务器</a><a href="windows.htm">» Windows VPS</a><a href="linux.htm">» Linux VPS</a><!-- <a href="specialOffer.htm">» 每周特价</a> --><a href="HK.htm">» HK VPS</a>    </li><li>
       <h4>站群服务器</h4>
-      <a href="stations.htm">» 站群服务器</a><a href="stations.htm">» RAK站群优势</a><!-- <a href="specialOffer.htm">» 每周特价</a> -->    </li><li>
+      <a href="stations.htm">» 站群服务器</a><!-- <a href="stations.htm">» RAK站群优势</a> --><!-- <a href="specialOffer.htm">» 每周特价</a> -->    </li><li>
       <h4>解决方案</h4>
       <a href="cloudSolutions.htm">» 云站点</a><a href="cloudHosting.htm">» 云托管</a><a href="serverHosting.htm">» 服务器托管</a><a href="managedServices.htm">» 服务托管</a>    </li><li>
      <!--  <h4>技术支持</h4>
