@@ -8,7 +8,7 @@
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
 	    insert into Go_Server_Type(code,pid,name,isactives)
-	    values(#{code},#{pid},#{order},#{name},#{isactives})
+	    values(#{code},#{pid},#{name},#{isactives})
 	</insert>
 	<update id="update">
 	    update Go_Server_Type 
@@ -16,9 +16,13 @@
 		    pid = #{pid},
 		    name=#{name},
 		    isactives=#{isactives}
+		     where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">
 	    delete from Go_Server_Type where id= #{id}
+	</delete>
+	<delete id="deleteList" parameterType="map">
+	    delete from Go_Server_Type  ${where}
 	</delete>
 	<update id="updateField" parameterType="map">
 	    update Go_Server_Type

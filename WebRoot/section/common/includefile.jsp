@@ -76,7 +76,7 @@
          cache: false //关闭AJAX相应的缓存
       });
       
-	 $('#roomId_id').combobox({
+	<%--  $('#roomId_id').combobox({
 	    url:'<%=basePath%>/sys/server/server_room/combox_ajax_list.htm',
 	    valueField:'id',
 	    textField:'name',
@@ -85,10 +85,10 @@
 	    }
      });
 	var imgUrl = $('#imgUrl').val();
-	alert("imgUrl:"+imgUrl);
+	//alert("imgUrl:"+imgUrl);
 	if(imgUrl != null || imgUrl != ""){
 		$("#show_img").html("<a href='<%=basePath%>"+imgUrl+"' target='_blank'><img src='<%=basePath%>"+imgUrl+"' style='width:50px;height:50px;'/></a>");
-	}
+	} --%>
 
     //文件上传
 	$("#server_file_upload_img").uploadify({

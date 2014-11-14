@@ -9,11 +9,11 @@
 	    </selectKey>
 	    insert into Go_Server_Info(AREAID,SERVERTYPEID,NAME,CPU,MEMORY,DISK,
 	    BACKUPS,FLOW,NETFAST,IPNUM,PORT,OPERATIONSYSTEMID,CONTROLPANELID,IMGURL,
-	    DESCRIPTION,ISACTIVES,ROOMID)
+	    DESCRIPTION,ISACTIVES)
 	    values
 	    (
 	    #{areaId},#{serverTypeId},#{name},#{cpu},#{memory},#{disk},#{backups},#{flow},#{netFast},#{ipNum},#{port},#{operationSystemId},
-	    #{controlPanelId},#{imgUrl},#{description},#{isactives},#{roomId}
+	    #{controlPanelId},#{imgUrl},#{description},#{isactives},
 	    )
 	</insert>
 	<update id="update">
@@ -34,8 +34,7 @@
 	    	CONTROLPANELID=#{controlPanelId},
 	    	IMGURL=#{imgUrl},
 	   		DESCRIPTION=#{description},
-	   		ISACTIVES=#{isactives},
-	   		ROOMID=#{roomId}
+	   		ISACTIVES=#{isactives}
 		    where id = #{id}
 	</update>
 	<delete id="delete" parameterType="string">

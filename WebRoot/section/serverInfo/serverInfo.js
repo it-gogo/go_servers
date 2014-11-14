@@ -143,3 +143,14 @@ function beforeaddxx(){
 	}
 	return true;
 }
+
+function showImg(url){
+	var imgUrl = $('#imgUrl').val();
+	if(imgUrl != null && imgUrl != ""){
+		$("#show_img").html("<a href='"+url+imgUrl+"' target='_blank'><img src='"+url+imgUrl+"' style='width:50px;height:50px;'/></a>");
+	} 
+}
+
+function hiddenImg(){
+	$("#show_img").html("");
+}

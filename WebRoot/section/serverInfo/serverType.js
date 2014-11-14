@@ -29,8 +29,9 @@ function beforeaddxx(formID){
 		return false;
 	}else{
 		$("#pid","#"+editFormID).val(node.id);
-		/*$("#serverTypeId","#"+editFormID).val('select', node.id);*/
 	}
 	return true;
 }
+
+
 

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>审批系统</title>
+<title>智易推</title>
 <link href="<%=request.getContextPath() %>/css/main/style1.css" type="text/css" rel="stylesheet" />
 <link href="<%=request.getContextPath() %>/css/main/style.css" rel="stylesheet" />
 <%@include file="/section/common/includefile.jsp"%>

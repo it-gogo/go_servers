@@ -21,8 +21,7 @@
        <tr>
           <th field="chk" width="20" align='center' checkbox='true' ></th>
           <th field="name" width="160" align='left'>名称</th>
-          <th field="typename" width="80"  align='center' >类型名称</th>
-          <th field="price" width="160" align='left'>价格</th>
+          <th field="code" width="80"  align='center' >编码</th>
           <th field="id" width="180"  align='center' formatter='getHandleStr'>操作</th>
          </tr>
      </thead>

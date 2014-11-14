@@ -105,6 +105,7 @@ public class Go_Server_TypeController extends Go_BaseController {
 	 */
 	@RequestMapping(value = "addxx.htm")
 	public String addxx(ModelMap model,Go_Server_Type type){
+		System.out.println(type.getPid());
 		go_server_typeService.save(type);
 		setSuccessMessage(model, "保存成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;

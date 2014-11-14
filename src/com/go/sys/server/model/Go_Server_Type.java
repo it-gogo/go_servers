@@ -19,6 +19,7 @@ public class Go_Server_Type {
 	private Integer pid;
 	//是否使用
 	private String isactives;
+	
 	public Integer getId() {
 		return id;
 	}

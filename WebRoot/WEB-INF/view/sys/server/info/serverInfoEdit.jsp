@@ -8,19 +8,19 @@
 <html>
   <body>
     <div id="eDialog" class="easyui-dialog" title="服务器信息编辑" 
-          data-options="modal:true,closed:true"  toolbar="#editTool"
+          data-options="modal:true,closed:true,onClose:function(){hiddenImg();},onOpen:function(){showImg('<%=basePath%>');}"  toolbar="#editTool"
           style="width:610px;height:520px;padding:2px;">
           
 	     <form id="eForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <!--  <input type="hidden" id="serverTypeId"  name="serverTypeId"   > -->
 	    	<table width="96%" class="t2">
-	    		<tr>
+	    		<!-- <tr>
 	    			<td align="right" class="td_left">所在机房:</td>
 	    			<td>
     					<input id="roomId_id" name="roomId" >
 	    			</td>
-	    		</tr>
+	    		</tr> -->
 	    		<tr>
 	    			<td align="right" class="td_left">服务器类型:</td>
 	    			<td>
