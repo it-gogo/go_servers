@@ -1,16 +1,9 @@
 package com.go.sys.server.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.sf.json.JSONArray;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.go.base.service.impl.Go_BaseService;
-import com.go.sys.authority.model.Constant;
-import com.go.sys.authority.model.TreePo;
 import com.go.sys.server.dao.impl.Go_Configuration_DataDao;
 import com.go.sys.server.model.Go_Configuration_Data;
 import com.go.sys.server.service.IGo_Configuration_DataService;

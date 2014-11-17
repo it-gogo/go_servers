@@ -54,69 +54,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 					}
 				},'-',{
-					text:'启用',
-					iconCls:'icon-ok',
-					handler:function(){
-						var obj = $('#dg').datagrid('getSelected');
-						if(obj){
-							if(obj.status=="禁用"){
-								$.messager.confirm("提示","确定要启用该用户？",function(b){
-									if(b){
-										$.ajax({
-											url:"sys/authority/user/ok_status.htm",
-											type:POST,
-											data:"id="+obj.id,
-											success:function(msg){
-												$.messager.alert("提示",msg);
-											}
-										});
-									}
-								});
-							}else{
-								$.messager.alert("提示","该状态已经是正常状态","error");
-							}
-							
-						}else{
-							$.messager.alert('提示','请选择一项');
-						}
-					}
-				},'-',{
-					text:'禁用',
-					iconCls:'icon-no',
-					handler:function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							if($('#dg').datagrid('getSelected').status=='0'){
-								$.messager.alert("提示","该状态已经是禁用状态","error");
-								return false;
-							}
-							
-							$.messager.confirm("提示","您确定要禁用选择的加油卡吗？",function(b){
-								if(b){
-									$.post("card/gas_card/update_status.htm?status=0&id=" + $('#dg').datagrid('getSelected').id,"",function(data){
-										if(isNaN(data)){
-											$.messager.alert("提示",data,"error");
-										}else{
-											$.messager.alert("提示","操作成功","info");
-											$('#dg').datagrid("load");
-										}
-									});
-								}
-							});
-						}else{
-							$.messager.alert('提示','请选择一项');
-						}
-					}
-				},'-',{
-					text:'详细',
-					iconCls:'icon-tip',
-					handler:function(){
-						if($('#dg').datagrid('getSelected') && $('#dg').datagrid('getSelections').length<2){
-							go.window.detail('加油卡详情','card/gas_card/detail.htm?id=' + $('#dg').datagrid('getSelected').id,600,420);
-						}else{
-							$.messager.alert('提示','请选择一项进行查看详情');
-						}
-					}
-				},'-',{
 					text:'帮助',
 					iconCls: 'icon-help',
 					handler: function(){alert('尚未添加帮助说明...');}

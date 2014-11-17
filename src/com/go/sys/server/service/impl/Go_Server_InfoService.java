@@ -11,6 +11,7 @@ import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.go.base.service.impl.Go_BaseService;
 import com.go.sys.authority.model.Constant;
 import com.go.sys.authority.model.TreePo;
@@ -82,7 +83,7 @@ public class Go_Server_InfoService extends
 
 	@Override
 	public JSONArray findServerTypeTree() {
-		List<TreePo>  list = new ArrayList();
+		List<TreePo>  list = new ArrayList<TreePo>();
 		TreePo  tpo = new TreePo();
 		tpo.setId(0);
 		tpo.setPid(-1);

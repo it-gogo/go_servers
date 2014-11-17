@@ -2,7 +2,6 @@ package com.go.sys.server.model;
 
 import net.sf.json.JSONObject;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.type.Alias;
 
 /**

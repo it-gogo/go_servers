@@ -5,21 +5,26 @@
 .btn{ background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;} 
 .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:260px } 
 </style>
-
 <html>
   <body>
     <div id="eDialog" class="easyui-dialog" title="服务器信息编辑" 
-          data-options="modal:true,closed:true"  toolbar="#editTool"
+          data-options="modal:true,closed:true,onClose:function(){hiddenImg();},onOpen:function(){showImg('<%=basePath%>');}"  toolbar="#editTool"
           style="width:610px;height:520px;padding:2px;">
           
 	     <form id="eForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <!--  <input type="hidden" id="serverTypeId"  name="serverTypeId"   > -->
 	    	<table width="96%" class="t2">
+	    		<!-- <tr>
+	    			<td align="right" class="td_left">所在机房:</td>
+	    			<td>
+    					<input id="roomId_id" name="roomId" >
+	    			</td>
+	    		</tr> -->
 	    		<tr>
 	    			<td align="right" class="td_left">服务器类型:</td>
 	    			<td>
-	    			    <select  name="serverTypeId" id="serverTypeId" style="width:410px;">
+	    			    <!-- <select  name="serverTypeId" id="serverTypeId" style="width:410px;">
 	    		           <option value="1">公有云服务器 </option>
 	    			       <option value="2">私有云服务器</option>
 	    			       <option value="3">独立服务器</option>
@@ -27,6 +32,9 @@
 	    			       <option value="5">Windows VPS</option>
 	    			       <option value="6">Linux VPS</option>
 	    			       <option value="7">HK VPS</option>
+	    			    </select> -->
+	    			    <select class="easyui-combobox"  id="serverTypeId"  name="serverTypeId"
+	    			    data-options="required:'true',valueField:'code',textField:'name',url:'../server_type/getTypeList.htm',editable:false" style="width: 410px;">
 	    			    </select>
 	    			   <!--  <input class="easyui-validatebox" type="text"  id="name"  style="width:410px;"> -->
 	    			</input>
@@ -91,8 +99,22 @@
 	    		</tr>
 	    		<tr>
 	    			<td align="right" class="td_left">描述:</td>
-	    			<td><textarea name="description" id="description" style="width:410px;height:60px;"
-	    			class="easyui-validatebox" data-options="validType:'maxLength[200]'" ></textarea></td>
+	    			<td>
+		    			<textarea name="description" id="description" style="width:410px;height:60px;" class="easyui-validatebox" data-options="validType:'maxLength[200]'">
+		    		    </textarea>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td align="right" class="td_left">上传:</td>
+	    			<td>
+	    				<input type="text" id="server_file_upload_img"  alt="服务器图片"  /> 
+	    			</td>
+	    		</tr>
+	    		<tr>	
+	    			<input type="hidden" id="imgUrl" name="imgUrl"/>
+    				<td align="right" class="td_left">图片:</td>
+    				<td id="show_img"><br><br></td>
+    				
 	    		</tr>
 		     </table>
 		   </form>
@@ -101,7 +123,5 @@
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="closeForm(editDialogID,editFormID)">关闭</a>
 	    </div>
 	</div>
-	
-	
   </body>
 </html>

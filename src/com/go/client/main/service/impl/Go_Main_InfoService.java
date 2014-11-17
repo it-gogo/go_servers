@@ -31,7 +31,7 @@ public class Go_Main_InfoService extends Go_BaseService<Go_Department_Info, Inte
 	@Override
 	public List<Map<String, Object>> getMapByType(String type) {
 		Map<String,Object> params=new HashMap<String,Object>();
-		params.put("column", "id as id,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select monthlyPrice from Go_Server_Price  b where b.serverId=a.id order by  b.numMonth asc  limit 1 offset 0) as pricename ");
+		params.put("column", "id as id,imgUrl as imgUrl,name as name,cpu as cpu,memory as memory,disk as disk,backups as backups,flow as flow,ipNum as ipNum,(select monthlyPrice from Go_Server_Price  b where b.serverId=a.id order by  b.numMonth asc  limit 1 offset 0) as pricename ");
 		params.put("serverTypeId", type);//公有云服务器
 		List<Map<String,Object>> list=go_server_infoService.getScaleList(params);
 		return list;

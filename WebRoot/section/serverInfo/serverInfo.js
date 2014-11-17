@@ -138,8 +138,21 @@ function beforeaddxx(){
 		alertWarn("请选择一个服务器类型");
 		return false;
 	}else{
-		$("#serverTypeId","#"+editFormID).val(node.id);
-		/*$("#serverTypeId","#"+editFormID).val('select', node.id);*/
+		/*$("#serverTypeId","#"+editFormID).val(node.id);*/
+		$("#serverTypeId",'#'+editFormID).combobox('setValue', node.id);
+//		$("#roomId_id_hidden").val($("#roomId_id").combobox('getValue'));
 	}
 	return true;
+}
+
+function showImg(url){
+	var imgUrl = $('#imgUrl').val();
+	if(imgUrl != null && imgUrl != ""){
+		$("#show_img").html("<a href='"+url+imgUrl+"' target='_blank'><img src='"+url+imgUrl+"' style='width:50px;height:50px;'/></a>");
+	} 
+}
+
+function hiddenImg(){
+	$("#show_img",'#'+editFormID).html("");
+	$('#imgUrl').val("");
 }

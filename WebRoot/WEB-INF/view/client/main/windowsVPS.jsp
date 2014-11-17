@@ -23,6 +23,7 @@
               <%@include file="/WEB-INF/view/client/common/showServerImg.jsp" %> 
               <div class="title">${server.name }</div>
               <ul>
+                  <li>${server.cpu }</li>
                   <li>${server.memory }</li>
                   <li>${server.disk }</li>
                   <li>${server.flow }</li>
