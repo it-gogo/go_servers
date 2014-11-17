@@ -138,8 +138,9 @@ function beforeaddxx(){
 		alertWarn("请选择一个服务器类型");
 		return false;
 	}else{
-		$("#serverTypeId","#"+editFormID).val(node.id);
-		/*$("#serverTypeId","#"+editFormID).val('select', node.id);*/
+		/*$("#serverTypeId","#"+editFormID).val(node.id);*/
+		$("#serverTypeId",'#'+editFormID).combobox('setValue', node.id);
+//		$("#roomId_id_hidden").val($("#roomId_id").combobox('getValue'));
 	}
 	return true;
 }
@@ -152,5 +153,6 @@ function showImg(url){
 }
 
 function hiddenImg(){
-	$("#show_img").html("");
+	$("#show_img",'#'+editFormID).html("");
+	$('#imgUrl').val("");
 }

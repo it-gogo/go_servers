@@ -6,8 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.controller.base.Go_BaseController;
-import com.go.sys.server.model.Go_Configuration_Data;
 import com.go.sys.server.model.Go_Server_Type;
 import com.go.sys.server.service.IGo_Server_TypeService;
 
@@ -41,6 +42,21 @@ public class Go_Server_TypeController extends Go_BaseController {
 	public  String  getTypeTree(ModelMap model){
 		JSONArray  res = go_server_typeService.getTypeTree();
 		model.addAttribute("show_msg",res.toString());
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
+	@RequestMapping(value = "getTypeList.htm")
+	public  String  getTypeList(ModelMap model){
+		try {
+			
+			Map<String,Object> params=new HashMap<String,Object>();
+			params.put("isactives", "1");
+			List<Go_Server_Type> list=go_server_typeService.list(params);
+			String json=JSONArray.fromObject(list).toString();
+			model.addAttribute("show_msg",json);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	 

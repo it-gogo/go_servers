@@ -24,7 +24,7 @@
 	    		<tr>
 	    			<td align="right" class="td_left">服务器类型:</td>
 	    			<td>
-	    			    <select  name="serverTypeId" id="serverTypeId" style="width:410px;">
+	    			    <!-- <select  name="serverTypeId" id="serverTypeId" style="width:410px;">
 	    		           <option value="1">公有云服务器 </option>
 	    			       <option value="2">私有云服务器</option>
 	    			       <option value="3">独立服务器</option>
@@ -32,6 +32,9 @@
 	    			       <option value="5">Windows VPS</option>
 	    			       <option value="6">Linux VPS</option>
 	    			       <option value="7">HK VPS</option>
+	    			    </select> -->
+	    			    <select class="easyui-combobox"  id="serverTypeId"  name="serverTypeId"
+	    			    data-options="required:'true',valueField:'code',textField:'name',url:'../server_type/getTypeList.htm',editable:false" style="width: 410px;">
 	    			    </select>
 	    			   <!--  <input class="easyui-validatebox" type="text"  id="name"  style="width:410px;"> -->
 	    			</input>

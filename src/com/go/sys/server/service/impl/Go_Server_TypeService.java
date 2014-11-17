@@ -51,4 +51,27 @@ public class Go_Server_TypeService extends
 		return array;
 	}
 
+	@Override
+	public JSONArray findServerTypeTree() {
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("isactives", "1");
+		List<Go_Server_Type> l=this.list(params);
+		List<TreePo>  list = new ArrayList<TreePo>();
+		TreePo  tpo = new TreePo();
+		tpo.setId(0);
+		tpo.setPid(-1);
+		tpo.setText("服务器类型");
+		list.add(tpo);
+		for(Go_Server_Type type:l){
+			tpo = new TreePo();
+			tpo.setId(type.getCode());
+			tpo.setPid(0);
+			tpo.setText(type.getName());
+			list.add(tpo);
+		}
+		JSONArray  array = this.tranArrayToJson1(list);
+		return array;
+	}
+
+
 }

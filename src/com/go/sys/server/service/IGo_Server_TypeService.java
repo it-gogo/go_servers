@@ -13,4 +13,5 @@ public interface IGo_Server_TypeService extends
 		IGo_BaseService<Go_Server_Type, Integer> {
 
 	public JSONArray getTypeTree();
+	public JSONArray findServerTypeTree();
 }

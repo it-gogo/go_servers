@@ -13,7 +13,7 @@
 	    values
 	    (
 	    #{areaId},#{serverTypeId},#{name},#{cpu},#{memory},#{disk},#{backups},#{flow},#{netFast},#{ipNum},#{port},#{operationSystemId},
-	    #{controlPanelId},#{imgUrl},#{description},#{isactives},
+	    #{controlPanelId},#{imgUrl},#{description},#{isactives}
 	    )
 	</insert>
 	<update id="update">

@@ -26,6 +26,7 @@ import com.go.sys.server.model.Go_Server_Configuration;
 import com.go.sys.server.model.Go_Server_Info;
 import com.go.sys.server.service.IGo_Server_ConfigurationService;
 import com.go.sys.server.service.IGo_Server_InfoService;
+import com.go.sys.server.service.IGo_Server_TypeService;
 
 /**
  * 套餐服务信息控制器
@@ -42,7 +43,8 @@ public class Go_Server_InfoController extends Go_BaseController {
 	private IGo_Server_ConfigurationService go_server_configurationService;//关联表
 	@Autowired
 	private IGo_Code_DataService go_code_dataService;//数据字典
-	
+	@Autowired
+	private IGo_Server_TypeService go_server_typeService;//服务器类型
 	
 	/**
 	 * 服务器类型树
@@ -51,7 +53,8 @@ public class Go_Server_InfoController extends Go_BaseController {
 	 */
 	@RequestMapping(value = "findServerTypeTree.htm")
 	public  String  findServerTypeTree(ModelMap model){
-		JSONArray  res = go_server_infoService.findServerTypeTree();
+//		JSONArray  res = go_server_infoService.findServerTypeTree();
+		JSONArray  res = go_server_typeService.findServerTypeTree();
 		model.addAttribute("show_msg",res.toString());
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
