@@ -1,6 +1,7 @@
 package com.go.listener;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContextEvent;
@@ -9,8 +10,8 @@ import javax.servlet.ServletContextListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.go.sys.section.model.Go_Company_Info;
-import com.go.sys.section.service.IGo_Company_InfoService;
+import com.go.sys.common.model.Go_Advertising;
+import com.go.sys.common.service.IGo_AdvertisingService;
 
 public class Company  implements ServletContextListener {
 
@@ -22,10 +23,14 @@ public class Company  implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-//		WebApplicationContext rwp = WebApplicationContextUtils.getRequiredWebApplicationContext(arg0.getServletContext());
-//		IGo_Company_InfoService go_company_infoService= (IGo_Company_InfoService)rwp.getBean("Go_Company_InfoService");
-//		Map<String,Object> params=new HashMap<String,Object>();
-//		Go_Company_Info companyInfo=go_company_infoService.get(params);
+		WebApplicationContext rwp = WebApplicationContextUtils.getRequiredWebApplicationContext(arg0.getServletContext());
+		IGo_AdvertisingService go_advertisingService= (IGo_AdvertisingService)rwp.getBean("Go_AdvertisingService");
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("isactives", "1");
+		List<Go_Advertising> list=go_advertisingService.list(params);
+		if(list!=null && list.size()>0){
+			arg0.getServletContext().setAttribute("advertising", list.get(0));
+		}
 //		System.out.println("companyInfo:"+companyInfo);
 	    // 然后进行自己的处理, 想做什么都可以.
 	}

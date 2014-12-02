@@ -4,9 +4,10 @@
 	String name=request.getParameter("name");
 	request.setAttribute("name", name);
  %>
+ <%@include file="/WEB-INF/view/client/common/advertising.jsp" %>
 <div class="header">
   <div class="box"> <a class="logo" href="/go_servers/client/main/public.htm">
-    <h1>智易推服务器_${name }</h1>
+    <h1>智易推海外服务器托管_美国RAK服务器_美国KT服务器_站群服务器_香港服务器_${name }</h1>
     </a>
     <ul class="menu">
       <li><a href="public.htm">云服务器</a>

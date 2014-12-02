@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<jsp:include page="/WEB-INF/view/client/common/head.jsp" >
-    	<jsp:param value="群站服务器" name="name"/>
+    	<jsp:param value="站群服务器" name="name"/>
 	 </jsp:include>
 </head>
 
