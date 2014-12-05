@@ -15,5 +15,6 @@
 <!-- 数据编辑层 -->
 <%@include file="serverOrderEdit.jsp" %>
 <%@include file="../detail/orderDetailEdit.jsp" %>
+<%@include file="../detail/orderDetailLook.jsp" %>
 </body>
 </html>

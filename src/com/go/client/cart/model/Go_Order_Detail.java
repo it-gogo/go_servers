@@ -29,6 +29,7 @@ public class Go_Order_Detail {
 	private String quarter;//季度
 	private String maturity;//到期时间
 	private String createdate;//创建时间
+	private String result;//结果
 	public Integer getId() {
 		return id;
 	}
@@ -154,5 +155,11 @@ public class Go_Order_Detail {
 	}
 	public void setPriceid(Integer priceid) {
 		this.priceid = priceid;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 }

@@ -64,7 +64,9 @@ public class Go_Server_DetailController extends Go_BaseController {
 			}
 		}
 		JSONObject  res = new JSONObject();
-		List<Go_Order_Detail> list=go_order_detailService.listPageByParams(params, pageData);
+//		List<Go_Order_Detail> list=go_order_detailService.listPageByParams(params, pageData);
+		params.put("column","id id,orderid orderid,server server,priceid priceid,servername servername,servertype servertype,cpu cpu,memory memory,disk disk,flow flow,ipNum ipNum,hostname hostname,ns1prefix ns1prefix,ns2prefix ns2prefix,rootpw rootpw,configuration configuration,price price,time time,quarter quarter,maturity maturity,createdate createdate,(select seq from Go_Order_Info where id=orderid) seq");
+		List<Map<String,Object>> list=go_order_detailService.getScaleList(params);
 		res.put("total", pageData.getTotalSize());
 		res.put("rows", JSONArray.fromObject(list));
 		model.addAttribute("show_msg",res.toString());

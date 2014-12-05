@@ -16,7 +16,8 @@
 					<tr>
 						<td width="50%">
 							<h1>智易推</h1></td>
-						<td width="50%" align="center"><font class="unpaid">${order.status }</font><br />
+							
+							<td width="50%" align="center"><font class="unpaid">${order.status }</font><br />
 							<!-- <form method="post" action="/whmcs/viewinvoice.php?id=2798">
 								<input type="hidden" name="token" value="94654432631de90dbd2efb31ef495b031752c28a" />
 								<select name="gateway" size="1" onchange="submit()">
@@ -24,9 +25,12 @@
 									<option value="paypal">PayPal</option>
 								</select>
 							</form>  -->
-							<a href='https://mapi.alipay.com/gateway.do?_input_charset=utf-8&body=RakSmart+-+Invoice+%E5%8F%91%E7%A5%A8%232798&notify_url=http%3A%2F%2Fcn.raksmart.com%2Fwhmcs%2Fmodules%2Fgateways%2Fcallback%2Falipay_callback.php&out_trade_no=2798&partner=2088012653400252&payment_type=1&return_url=http%3A%2F%2Fcn.raksmart.com%2Fwhmcs%2Fmodules%2Fgateways%2Fcallback%2Falipay_return.htm&seller_email=raksmartchina%40gmail.com&service=create_direct_pay_by_user&show_url=http%3A%2F%2Fcn.raksmart.com%2Fwhmcs&subject=RakSmart+%E8%AE%A2%E5%8D%95&total_fee=312.23&sign=e7957b606f19b9698b37a5787fc43246&sign_type=MD5' target=_blank>
-								<img src='http://cn.raksmart.com/whmcs/modules/gateways/callback/alipay.gif' alt='点击使用支付宝支付'>
-							</a>
+							<c:if test="${order.seq==1 }">
+								${form }
+								<a href="javascript:document.forms['alipaysubmit'].submit();" target=_blank>
+									<img src='http://cn.raksmart.com/whmcs/modules/gateways/callback/alipay.gif' alt='点击使用支付宝支付'>
+								</a>
+							</c:if>
 						</td>
 					</tr>
 				</table> <br />

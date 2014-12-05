@@ -8,11 +8,11 @@
 
 <html>
   <body>
-    <div id="eDialog" class="easyui-dialog" title="查看订购信息" 
+    <div id="sDialog" class="easyui-dialog" title="审核订购信息" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
           style="width:610px;height:520px;padding:2px;">
           
-	     <form id="eForm" method="post" >
+	     <form id="sForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <input type="hidden" id="portal"  name="portal"   >
 	    	<table width="96%" class="t2">
@@ -66,7 +66,7 @@
 		     </table>
 		   </form>
 		 <div id="editTool" >
-	    	<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitForm(urls,editFormID)">保存</a> -->
+	    	<!-- <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitForm(urls,editFormID)">保存</a> --> -->
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="closeForm(editDialogID,editFormID)">关闭</a>
 	    </div>
 	</div>

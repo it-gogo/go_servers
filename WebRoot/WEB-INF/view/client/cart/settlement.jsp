@@ -297,18 +297,20 @@ function selectCust(cust){
 									onBlur="if (this.value==''){this.value='您可以在此处输入其他备注或订单信息……';}">您可以在此处输入其他备注或订单信息……</textarea>
 							</div>
 						</div>
-						<!-- <div class="checkoutcol2">
+						<div class="checkoutcol2">
 	
 							<div class="signupfields padded">
 								<h2>支付方式</h2>
-								<label><input type="radio" name="paymentmethod"
-									value="alipay" id="pgbtnalipay" onclick="hideCCForm()" checked />
-									支付宝</label> <label><input type="radio" name="paymentmethod"
-									value="paypal" id="pgbtnpaypal" onclick="hideCCForm()" />
-									PayPal</label> <br />
+								<label>
+									<input type="radio" name="paymentmethod" value="alipay" id="pgbtnalipay"   checked />支付宝
+								</label> 
+								<!-- <label>
+									<input type="radio" name="paymentmethod" value="paypal" id="pgbtnpaypal"  /> PayPal
+								</label>  -->
+								<br />
 								<br />
 							</div>
-						</div> -->
+						</div>
 						<div class="clear"></div>
 						<div align="center">
 							<input type="submit" value="完成订单" onclick="this.value='请等待……'" class="ordernow" />

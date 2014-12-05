@@ -37,6 +37,10 @@ function  getParentHandleStr(value,row,index){
 	//alert(tabIndex);
 	var  rowIndex = $("#rowIndex").val();
     var  handstr = "<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='parentloadxx(urls,"+value+",listeditFormID,"+rowIndex+","+tabIndex+");'>[查 看]</a> ";
+   /* if(row.seq==1){//支付成功
+    	var s="sForm";
+    	handstr+="<a href='javascript:void(0)' class='easyui-linkbutton' iconCls='icon-edit' plain='true' onclick='parentloadxx(urls,"+value+",\""+s+"\","+rowIndex+","+tabIndex+");'>[审 核]</a> ";
+    }*/
     return  handstr;
 }
 
