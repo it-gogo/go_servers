@@ -61,6 +61,7 @@ public class Go_Server_OrderController extends Go_BaseController {
 			}
 		}
 		JSONObject  res = new JSONObject();
+		params.put("order_by", "seq_asc");
 		List<Go_Order_Info> list=go_order_infoService.listPageByParams(params, pageData);
 		res.put("total", pageData.getTotalSize());
 		res.put("rows", JSONArray.fromObject(list));

@@ -44,7 +44,7 @@ public class Go_Portal_ServerController extends Go_BaseController{
 		}
 		Map<String,Object> params=new HashMap<String,Object>();
 		params.put("id", detail.getId());
-		params.put("column", "id id,createdate createdate,servertype servertype,servername servername,hostname hostname,price price,maturity maturity,quarter quarter,(select status from Go_Order_Info where id=orderid)  status,(select payment from Go_Order_Info where id=orderid) payment");
+		params.put("column", "isfinish isfinish,result result,id id,createdate createdate,servertype servertype,servername servername,hostname hostname,price price,maturity maturity,quarter quarter,(select status from Go_Order_Info where id=orderid)  status,(select payment from Go_Order_Info where id=orderid) payment");
 		
 		List<Map<String,Object>> list=go_order_detailService.getScaleList(params);
 //		Map<String,Object> map=(Map<String, Object>) go_order_detailService.getScale(params);
@@ -68,6 +68,7 @@ public class Go_Portal_ServerController extends Go_BaseController{
 		}
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("orderid_in","(select id from Go_Order_Info where portal="+portal.getId()+" )");
+		params.put("order_by", "isfinish_desc");
  		List<Go_Order_Detail> list=go_order_detailService.listPageByParams(params, pageData);
 		int allRow=go_order_detailService.count(params);
 		

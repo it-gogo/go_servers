@@ -7,8 +7,8 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Order_Detail(orderid,server,priceid,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw,maturity,quarter,time,createdate,result)
-	    values(#{orderid},#{server},#{priceid},#{servername},#{servertype} ,#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{maturity},#{quarter},#{time},#{createdate},#{result})
+	    insert into Go_Order_Detail(orderid,server,priceid,servername,servertype,cpu,memory,disk,flow,ipNum,configuration,price,hostname,ns1prefix,ns2prefix,rootpw,maturity,quarter,time,createdate,result,isfinish)
+	    values(#{orderid},#{server},#{priceid},#{servername},#{servertype} ,#{cpu},#{memory},#{disk},#{flow},#{ipNum},#{configuration},#{price},#{hostname},#{ns1prefix},#{ns2prefix},#{rootpw},#{maturity},#{quarter},#{time},#{createdate},#{result},#{isfinish})
 	</insert>
 	<update id="update">
 	    update Go_Order_Detail 
@@ -32,6 +32,7 @@
 		    maturity = #{maturity},
 		    createdate = #{createdate},
 		     result = #{result},
+		      isfinish = #{isfinish},
 		    rootpw = #{rootpw}
 		    where id = #{id}
 	</update>

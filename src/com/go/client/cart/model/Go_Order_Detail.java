@@ -30,6 +30,7 @@ public class Go_Order_Detail {
 	private String maturity;//到期时间
 	private String createdate;//创建时间
 	private String result;//结果
+	private String isfinish;//完成
 	public Integer getId() {
 		return id;
 	}
@@ -161,5 +162,11 @@ public class Go_Order_Detail {
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	public String getIsfinish() {
+		return isfinish;
+	}
+	public void setIsfinish(String isfinish) {
+		this.isfinish = isfinish;
 	}
 }

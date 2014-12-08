@@ -3,7 +3,7 @@
   <body>
     <div id="listeDialog" class="easyui-dialog" title="查看订购详细" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
-          style="width:750px;height:500px;padding:2px;">
+          style="width:750px;height:550px;padding:2px;">
 	     <form id="listeForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <input  type="text"  style="display:none;" name="orderid" id="orderid" ></input>
@@ -97,6 +97,10 @@
 	    		<tr>
 	    			<td align="right" class="td_left">可配置项:</td>
 	    			<td colspan="3"><textarea name="configuration" id="configuration" style="width:620px;height:100px;" readonly="readonly" ></textarea></td>
+	    		</tr>
+	    		<tr>
+	    			<td align="right" class="td_left">审核结果:</td>
+	    			<td colspan="3"><textarea name="result" id="result" style="width:620px;height:100px;"  readonly="readonly"   ></textarea></td>
 	    		</tr>
 		     </table>
 		   </form>

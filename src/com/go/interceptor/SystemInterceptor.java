@@ -1,5 +1,8 @@
 package com.go.interceptor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +19,8 @@ public class SystemInterceptor  extends HandlerInterceptorAdapter{
         response.setCharacterEncoding("UTF-8");  
         response.setContentType("text/html;charset=UTF-8");  
   
+        
+        
         // 后台session控制  
         String[] noFilters = new String[] { "/sys/authority/menu/","/sys/authority/index/","/sys/common/","/sys/section/","/sys/server/",
         		"/sys/authority/index/","/sys/authority/menu/",};  
@@ -29,6 +34,12 @@ public class SystemInterceptor  extends HandlerInterceptorAdapter{
                 }  
             }  
             if (beFilter) {  
+            	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date date=formatter.parse("2015-02-08");
+            	if(date.getTime()-System.currentTimeMillis()<0){
+                	request.getRequestDispatcher("/sys/authority/user/sessionError.htm").forward(request, response);
+                	return false;
+                }
                 Object obj = request.getSession().getAttribute("loginUser");  
                 if (null == obj) {  
                 	// 未登录  

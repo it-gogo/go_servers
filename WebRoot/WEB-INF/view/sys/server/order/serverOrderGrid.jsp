@@ -8,6 +8,14 @@
   <form id="qForm" method="post">
  &nbsp; &nbsp; &nbsp;  <span class="span">订购人:</span><input type="text" id="ordername"  name="ordername"  value="">
  &nbsp; &nbsp; &nbsp;  <span class="span">订购人电话:</span><input type="text" id="ordertelephone"  name="ordertelephone"  value="">
+ &nbsp; &nbsp; &nbsp;  <span class="span">状态:</span>
+ <select name="seq" id="seq"  class="easyui-combobox" >
+ 	<option value="">选择状态</option>
+ 	<option value="1">提交支付</option>
+ 	<option value="2">支付成功</option>
+ 	<option value="3">审核成功</option>
+ </select>
+ 
  <!-- <input type="hidden" id="serverTypeId"  name="serverTypeId"   value="" datatype="integer"> -->
  <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="query(gID,queryFormID)">查询</a>
     	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="resetForm(queryFormID)">重置</a>
