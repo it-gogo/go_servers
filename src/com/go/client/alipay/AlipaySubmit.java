@@ -43,12 +43,22 @@ public class AlipaySubmit {
      */
 	public static String buildRequestMysign(Map<String, String> sPara) {
     	String prestr = AlipayCore.createLinkString(sPara); //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
+    	System.out.println("prestr:"+prestr);
+    	System.out.println("key:"+AlipayProperties.getValue("key"));
+    	System.out.println("pid:"+AlipayProperties.getValue("pid"));
         String mysign = "";
         if(AlipayProperties.getValue("sign_type").equals("MD5") ) {
         	mysign = MD5.sign(prestr, AlipayProperties.getValue("key"), AlipayProperties.getValue("input_charset"));
         }
+        System.out.println("mysign:"+mysign);
         return mysign;
     }
+	
+	public static void main(String[] args) {
+		String prestr="_input_charset=utf-8&body=智易推33,金额:0.1&defaultbank=ICBC-DEBIT&exter_invoke_ip=172.241.157.249&out_trade_no=33&partner=2088901462175412&payment_type=1&paymethod=bankPay&return_url=http://www.zhiyitui.com/go_servers/client/cart/order/alipayReturn.htm?id=33&seller_email=zhiyitui@163.com&service=create_direct_pay_by_user&subject=智易推33&total_fee=0.1";
+		String mysign = MD5.sign(prestr, AlipayProperties.getValue("key"), AlipayProperties.getValue("input_charset"));
+		System.out.println("mysign:"+mysign);
+	}
 	
     /**
      * 生成要请求给支付宝的参数数组

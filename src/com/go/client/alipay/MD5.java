@@ -25,9 +25,17 @@ public class MD5 {
      */
     public static String sign(String text, String key, String input_charset) {
     	text = text + key;
+    	System.out.println("text:"+text);
+    	System.out.println("Hex:"+DigestUtils.md5Hex(getContentBytes(text, input_charset)));
         return DigestUtils.md5Hex(getContentBytes(text, input_charset));
     }
     
+    public static void main(String[] args) {
+		String text="_input_charset=utf-8&body=智易推33,金额:0.1&defaultbank=ICBC-DEBIT&exter_invoke_ip=172.241.157.249&out_trade_no=33&partner=2088901462175412&payment_type=1&paymethod=bankPay&return_url=http://www.zhiyitui.com/go_servers/client/cart/order/alipayReturn.htm?id=33&seller_email=zhiyitui@163.com&service=create_direct_pay_by_user&subject=智易推33&total_fee=0.1null";
+		System.out.println(DigestUtils.md5Hex(getContentBytes(text, "UTF-8")));
+	}
+//_input_charset=utf-8&body=智易推33,金额:0.1&defaultbank=ICBC-DEBIT&exter_invoke_ip=172.241.157.249&out_trade_no=33&partner=2088901462175412&payment_type=1&paymethod=bankPay&return_url=http://www.zhiyitui.com/go_servers/client/cart/order/alipayReturn.htm?id=33&seller_email=zhiyitui@163.com&service=create_direct_pay_by_user&subject=智易推33&total_fee=0.1null
+//_input_charset=utf-8&body=智易推33,金额:0.1&defaultbank=ICBC-DEBIT&exter_invoke_ip=172.241.157.249&out_trade_no=33&partner=2088901462175412&payment_type=1&paymethod=bankPay&return_url=http://www.zhiyitui.com/go_servers/client/cart/order/alipayReturn.htm?id=33&seller_email=zhiyitui@163.com&service=create_direct_pay_by_user&subject=智易推33&total_fee=0.1lz75ralbenzme3frltkf2dzbx1wnzmgx
     /**
      * 签名字符串
      * @param text 需要签名的字符串

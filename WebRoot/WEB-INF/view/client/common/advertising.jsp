@@ -3,9 +3,10 @@
 <style>
 <!--
 #advertising{
-    position:absolute;
+    /* position:absolute; */
+position:fixed; 
     left:0px;
-    top:300px;
+    top:235px;
     width:97px;
     height:222px;
     padding-top:12px;
@@ -16,19 +17,19 @@
 <script language="JavaScript" src="<%=request.getContextPath() %>/client/js/jquery-1.8.3.min.js" type="text/javascript"  ></script>
 <script type="text/javascript">
 <!--
-$(document).ready(function(){
+/*$(document).ready(function(){
     $(window).scroll(function(){
-        var scrollTop=$(window).scrollTop()+300+"px";
+        var scrollTop=$(window).scrollTop()+235+"px";
         $("#advertising").animate({"top":scrollTop},100);
     });
-});
+});*/
 
 //-->
 </script>
 <c:if test="${advertising!=null }">
-	<div id="advertising" style="width: 110px;height: 200px;"> 
+	<div id="advertising" style="width: 200px;height: 200px;"> 
 		<a href="${advertising.url }">
-			<img width="110px;" height="200px;" src="<%=request.getContextPath() %>/${advertising.imgUrl }" />
+			<img width="200px;" height="200px;" src="<%=request.getContextPath() %>/${advertising.imgUrl }" />
 		</a>
 	</div>
 </c:if>

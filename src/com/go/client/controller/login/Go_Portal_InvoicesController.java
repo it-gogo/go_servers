@@ -87,9 +87,11 @@ public class Go_Portal_InvoicesController extends Go_BaseController{
 		alipay.put("defaultbank", AlipayProperties.getValue("defaultbank"));//默认网银
 //		alipay.put("show_url", AlipayProperties.getValue("url")+"");//商品展示地址
 		alipay.put("anti_phishing_key", "");//防钓鱼时间戳
-		alipay.put("exter_invoke_ip", request.getLocalAddr());//客户端的IP地址
+//		alipay.put("exter_invoke_ip", request.getLocalAddr());//客户端的IP地址
+		alipay.put("exter_invoke_ip", "172.241.157.249");//客户端的IP地址
 		
 		String sHtmlText = AlipaySubmit.buildRequest(alipay,"get","确认");
+		System.out.println(sHtmlText);
 		sHtmlText=sHtmlText.replace("<script>document.forms['alipaysubmit'].submit();</script>", "");
 		
 //		String prestr = AlipayCore.createLinkString(alipay); //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
