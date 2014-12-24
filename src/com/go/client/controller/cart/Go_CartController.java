@@ -17,6 +17,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.constant.Go_ControllerConstant;
+import com.go.client.alipay.AlipayProperties;
+import com.go.client.alipay.AlipaySubmit;
 import com.go.client.cart.model.Go_Cart_Info;
 import com.go.client.cart.model.Go_Order_Detail;
 import com.go.client.cart.model.Go_Order_Info;
@@ -284,8 +286,9 @@ public class Go_CartController extends Go_BaseController{
 		order.setNotes(notes);
 		order.setOrdername(portal.getSurname()+portal.getName());
 		order.setOrdertelephone(portal.getTelephone());
-		order.setPayment("现金支付");
+		order.setPayment("支付宝支付");
 		order.setStatus("提交支付");
+		order.setSeq("1");
 		order.setPortal(portal.getId());
 		order.setTotalprice("");
 		go_order_infoService.save(order);//保存订购
@@ -323,7 +326,46 @@ public class Go_CartController extends Go_BaseController{
 		params=new HashMap<String,Object>();
 		params.put("cart", cartid);
 		go_product_listService.deleteList(params);//删除商品列表
+		
+		Map<String,String> alipay=new HashMap<String,String>();
+		alipay.put("service", "create_direct_pay_by_user");
+        alipay.put("partner", AlipayProperties.getValue("pid"));// 合作身份者ID，以2088开头由16位纯数字组成的字符串
+        alipay.put("_input_charset", "utf-8");//字符编码格式 目前支持 gbk 或 utf-8
+		alipay.put("payment_type", "1");//支付类型
+//		alipay.put("notify_url", AlipayProperties.getValue("url")+"");//服务器异步通知页面路径
+		alipay.put("return_url", AlipayProperties.getValue("url")+"/client/cart/order/alipayReturn.htm?id="+order.getId());//页面跳转同步通知页面路径
+		alipay.put("seller_email", AlipayProperties.getValue("seller_email"));
+		alipay.put("out_trade_no", order.getId()+"");//商户订单号
+		alipay.put("subject", "智易推"+order.getId());//订单名称
+		alipay.put("total_fee", order.getTotalprice());//付款金额
+		alipay.put("body", "智易推"+order.getId()+",金额:"+order.getTotalprice());//订单描述
+		alipay.put("paymethod", "bankPay");//默认支付方式
+		alipay.put("defaultbank", AlipayProperties.getValue("defaultbank"));//默认网银
+//		alipay.put("show_url", AlipayProperties.getValue("url")+"");//商品展示地址
+		alipay.put("anti_phishing_key", "");//防钓鱼时间戳
+		alipay.put("exter_invoke_ip", request.getLocalAddr());//客户端的IP地址
+		
+//		model.put("alipay", alipay);
+		String sHtmlText = AlipaySubmit.buildRequest(alipay,"get","确认");
+		model.put("form", sHtmlText);
+		System.out.println(sHtmlText);
 		return "client/cart/checkout";
+	}
+	
+	/**
+	 * 支付成功返回方法
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="alipayReturn.htm")
+	public String alipayReturn(ModelMap model,Integer id){
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("update_status", "支付成功");
+		params.put("update_seq", "2");
+		params.put("where_id", id);
+		go_order_infoService.updateField(params);
+		return "client/cart/alipayReturn";
 	}
 	
 	/**

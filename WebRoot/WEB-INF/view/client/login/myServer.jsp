@@ -49,7 +49,7 @@
   	<c:if test="${pb.list!=null && pb.list.size()>0 }">
   		<c:forEach items="${pb.list }" var="detail">
 		    <tr class="clientareatablepending">
-			    <td>${detail.servertype } - ${detail.servername }<br /><a href="http://1" target="_blank">${detail.hostname }</a></td>
+			    <td>${detail.servertype } - ${detail.servername }<br /><a href="#" target="_blank">${detail.hostname }</a></td>
 			    <td>￥${detail.price }</td>
 			    <td>${detail.quarter }</td>
 			    <td>${detail.maturity }</td>

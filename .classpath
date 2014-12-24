@@ -86,5 +86,9 @@
 	<classpathentry kind="lib" path="lib/spring/spring-web-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-3.2.0.M1.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-portlet-3.2.0.M1.jar"/>
+	<classpathentry kind="lib" path="lib/alipay/commons-httpclient-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/alipay/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/alipay/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/alipay/jaxen-1.1-beta-6.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -1,3 +1,4 @@
+#Thu Dec 04 11:46:11 CST 2014
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/view/client/cart/checkout.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/cart/orderServer.jsp=UTF-8
@@ -40,5 +41,6 @@ encoding//WebRoot/WEB-INF/view/client/main/supportCenter.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/technologyPartners.jsp=UTF-8
 encoding//WebRoot/WEB-INF/view/client/main/windowsVPS.jsp=UTF-8
 encoding//WebRoot/client/css/style.css=UTF-8
+encoding//src/config/alipay.properties=UTF-8
 encoding/<project>=UTF-8
 encoding/\u52A0\u76DF\u6211\u4EEC.jsp=UTF-8

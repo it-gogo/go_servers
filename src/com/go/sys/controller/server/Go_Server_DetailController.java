@@ -1,5 +1,8 @@
 package com.go.sys.controller.server;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,8 @@ import com.go.base.constant.Go_ControllerConstant;
 import com.go.base.module.Go_PageData;
 import com.go.client.cart.model.Go_Order_Detail;
 import com.go.client.cart.service.IGo_Order_DetailService;
+import com.go.client.cart.service.IGo_Order_InfoService;
+import com.go.client.util.ExtendDate;
 import com.go.controller.base.Go_BaseController;
 
 /**
@@ -31,6 +36,8 @@ public class Go_Server_DetailController extends Go_BaseController {
 
 	@Autowired
 	private IGo_Order_DetailService go_order_detailService;//订单详情信息service
+	@Autowired
+	private IGo_Order_InfoService go_order_infoService;//订单信息service
 	
 	
 	/**
@@ -64,7 +71,9 @@ public class Go_Server_DetailController extends Go_BaseController {
 			}
 		}
 		JSONObject  res = new JSONObject();
-		List<Go_Order_Detail> list=go_order_detailService.listPageByParams(params, pageData);
+//		List<Go_Order_Detail> list=go_order_detailService.listPageByParams(params, pageData);
+		params.put("column","isfinish isfinish,id id,orderid orderid,server server,priceid priceid,servername servername,servertype servertype,cpu cpu,memory memory,disk disk,flow flow,ipNum ipNum,hostname hostname,ns1prefix ns1prefix,ns2prefix ns2prefix,rootpw rootpw,configuration configuration,price price,time time,quarter quarter,maturity maturity,createdate createdate,(select seq from Go_Order_Info where id=orderid) seq");
+		List<Map<String,Object>> list=go_order_detailService.getScaleList(params);
 		res.put("total", pageData.getTotalSize());
 		res.put("rows", JSONArray.fromObject(list));
 		model.addAttribute("show_msg",res.toString());
@@ -95,6 +104,46 @@ public class Go_Server_DetailController extends Go_BaseController {
 //		serverInfo.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
 		go_order_detailService.save(detail);
 		setSuccessMessage(model, "保存成功");
+		return Go_ControllerConstant.RESULT_SHOW_MSG;
+	}
+	
+	/**
+	 * 服务器信息审核
+	 * @author chenhb
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "checkxx.htm")
+	public String checkxx(ModelMap model,Go_Order_Detail detail) throws Exception{
+//		serverInfo.setType("公告");
+//		serverInfo.setCreatedate(ExtendDate.getYMD_h_m_s(new Date()));
+//		go_order_detailService.save(detail);
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("where_id", detail.getId());
+		params.put("update_result", detail.getResult());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date d=formatter.parse(detail.getCreatedate());
+		int num=Integer.parseInt(detail.getTime());
+		Calendar c=Calendar.getInstance();
+		c.setTime(d);
+		c.add(Calendar.MONTH, num);
+		params.put("update_maturity", ExtendDate.getYMD_h_m_s(c));
+		params.put("update_isfinish", "1");//完成
+		go_order_detailService.updateField(params);
+		
+		params=new HashMap<String,Object>();
+		params.put("id_<>", detail.getId());
+		params.put("isfinish_<>", "1");
+		int count=go_order_detailService.count(params);
+		if(count==0){
+			params=new HashMap<String,Object>();
+			params.put("where_id", detail.getOrderid());
+			params.put("update_status", "审核成功");
+			params.put("update_seq", "3");
+			go_order_infoService.updateField(params);
+		}
+		
+		setSuccessMessage(model, "审核成功");
 		return Go_ControllerConstant.RESULT_SHOW_MSG;
 	}
 	/**

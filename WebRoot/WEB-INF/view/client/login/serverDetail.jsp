@@ -61,6 +61,14 @@
           <td class="fieldarea">状态:</td>
           <td>${detail.status }</td>
         </tr>
+        <c:if test="${detail.isfinish==1 }">
+        	<tr>
+          <td class="fieldarea">结果:</td>
+          <td>
+          	<pre>${detail.result }</pre>
+          </td>
+        </tr>
+        </c:if>
             </tbody></table></td>
   </tr>
 </tbody></table>

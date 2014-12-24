@@ -17,6 +17,7 @@ public class Go_Order_Info {
 	private String createdate;//创建时间
 	private String totalprice;//总价
 	private String notes;//注意事项
+	private String seq;//排序
 	public Integer getId() {
 		return id;
 	}
@@ -70,5 +71,11 @@ public class Go_Order_Info {
 	}
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 }

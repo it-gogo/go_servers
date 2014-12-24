@@ -1,14 +1,12 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
   <body>
-    <div id="eeDialog" class="easyui-dialog" title="审核订购详细" 
+    <div id="listeDialog" class="easyui-dialog" title="查看订购详细" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
           style="width:750px;height:550px;padding:2px;">
-	     <form id="eeForm" method="post" >
+	     <form id="listeForm" method="post" >
 	        <input  type="text"  style="display:none;" name="id" id="id"></input>
 	        <input  type="text"  style="display:none;" name="orderid" id="orderid" ></input>
-	        <input  type="text"  style="display:none;" name="createdate" id="createdate" ></input>
-	        <input  type="text"  style="display:none;" name="time" id="time" ></input>
 	        <input type="hidden" id="rowIndex"  name="rowIndex" >
 			<input type="hidden" id="tabIndex"  name="tabIndex" >
 	    	<table width="96%" class="t2">
@@ -102,13 +100,13 @@
 	    		</tr>
 	    		<tr>
 	    			<td align="right" class="td_left">审核结果:</td>
-	    			<td colspan="3"><textarea name="result" id="result" style="width:620px;height:100px;"   ></textarea></td>
+	    			<td colspan="3"><textarea name="result" id="result" style="width:620px;height:100px;"  readonly="readonly"   ></textarea></td>
 	    		</tr>
 		     </table>
 		   </form>
 		 <div id="editTool" >
-	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitForm(listediturl,'eeForm')">保存</a>
-	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="closeForm('eeDialog','eeForm')">关闭</a>
+	    	<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="submitForm(listediturl,listeditFormID)">保存</a> -->
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="closeForm(listeditDialogID,listeditFormID)">关闭</a>
 	    </div>
 	</div>
 	

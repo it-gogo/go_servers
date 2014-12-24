@@ -7,8 +7,8 @@
     	<selectKey keyProperty="id" resultType="int" order="AFTER">
 	        SELECT LAST_INSERT_ID() AS id
 	    </selectKey>
-	    insert into Go_Order_Info(portal,ordername,ordertelephone,payment,status,createdate,totalprice,notes)
-	    values(#{portal},#{ordername},#{ordertelephone},#{payment},#{status},#{createdate},#{totalprice},#{notes})
+	    insert into Go_Order_Info(portal,ordername,ordertelephone,payment,status,createdate,totalprice,notes,seq)
+	    values(#{portal},#{ordername},#{ordertelephone},#{payment},#{status},#{createdate},#{totalprice},#{notes},#{seq})
 	</insert>
 	<update id="update">
 	    update Go_Order_Info 
@@ -19,6 +19,7 @@
 		     status = #{status},
 		    createdate = #{createdate},
 		    totalprice = #{totalprice},
+		    seq = #{seq},
 		    notes = #{notes}
 		    where id = #{id}
 	</update>

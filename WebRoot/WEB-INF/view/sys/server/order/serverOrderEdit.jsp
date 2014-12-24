@@ -8,7 +8,7 @@
 
 <html>
   <body>
-    <div id="eDialog" class="easyui-dialog" title="查看订购信息" 
+    <div id="eDialog" class="easyui-dialog" title="审核订购信息" 
           data-options="modal:true,closed:true"  toolbar="#editTool"
           style="width:610px;height:520px;padding:2px;">
           

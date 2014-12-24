@@ -37,7 +37,7 @@
   </p>
 </form> -->
 </c:if>
-<c:if test="${loginInfo!=null }">
+<%-- <c:if test="${loginInfo!=null }">
 <p class="header">账户信息</p>
 <p><strong>${loginInfo.surname } ${loginInfo.name }</strong><br />
 ${loginInfo.companyname } <br />
@@ -50,5 +50,5 @@ ${loginInfo.email }<br /><br />
 推荐注册数量: <strong>0</strong><br />
 账户信用卡余额: <strong>$0.00USD</strong><br />
 相应发票余额: <strong>$0.00USD</strong></p>
-</c:if>
+</c:if> --%>
   </div>

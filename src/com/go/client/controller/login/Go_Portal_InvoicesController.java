@@ -2,6 +2,7 @@ package com.go.client.controller.login;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.go.base.module.Go_PageData;
-import com.go.client.cart.model.Go_Order_Detail;
+import com.go.client.alipay.AlipayCore;
+import com.go.client.alipay.AlipayProperties;
+import com.go.client.alipay.AlipaySubmit;
+import com.go.client.alipay.MD5;
 import com.go.client.cart.model.Go_Order_Info;
 import com.go.client.cart.service.IGo_Order_DetailService;
 import com.go.client.cart.service.IGo_Order_InfoService;
@@ -62,6 +66,55 @@ public class Go_Portal_InvoicesController extends Go_BaseController{
 			}
 		}
 		model.put("detaillist", list);
+		
+		
+		
+		
+		
+		Map<String,String> alipay=new HashMap<String,String>();
+		alipay.put("service", "create_direct_pay_by_user");
+        alipay.put("partner", AlipayProperties.getValue("pid"));// 合作身份者ID，以2088开头由16位纯数字组成的字符串
+        alipay.put("_input_charset", "utf-8");//字符编码格式 目前支持 gbk 或 utf-8
+		alipay.put("payment_type", "1");//支付类型
+//		alipay.put("notify_url", AlipayProperties.getValue("url")+"");//服务器异步通知页面路径
+		alipay.put("return_url", AlipayProperties.getValue("url")+"/client/cart/order/alipayReturn.htm?id="+order.getId());//页面跳转同步通知页面路径
+		alipay.put("seller_email", AlipayProperties.getValue("seller_email"));
+		alipay.put("out_trade_no", order.getId()+"");//商户订单号
+		alipay.put("subject", "智易推"+order.getId());//订单名称
+		alipay.put("total_fee", order.getTotalprice());//付款金额
+		alipay.put("body", "智易推"+order.getId()+",金额:"+order.getTotalprice());//订单描述
+		alipay.put("paymethod", "bankPay");//默认支付方式
+		alipay.put("defaultbank", AlipayProperties.getValue("defaultbank"));//默认网银
+//		alipay.put("show_url", AlipayProperties.getValue("url")+"");//商品展示地址
+		alipay.put("anti_phishing_key", "");//防钓鱼时间戳
+//		alipay.put("exter_invoke_ip", request.getLocalAddr());//客户端的IP地址
+		alipay.put("exter_invoke_ip", "172.241.157.249");//客户端的IP地址
+		
+		String sHtmlText = AlipaySubmit.buildRequest(alipay,"get","确认");
+		System.out.println(sHtmlText);
+		sHtmlText=sHtmlText.replace("<script>document.forms['alipaysubmit'].submit();</script>", "");
+		
+//		String prestr = AlipayCore.createLinkString(alipay); //把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
+//        String mysign = "";
+//        if(AlipayProperties.getValue("sign_type").equals("MD5") ) {
+//        	mysign = MD5.sign(prestr, AlipayProperties.getValue("key"), AlipayProperties.getValue("input_charset"));
+//        }
+//		alipay.put("sign", mysign);
+//		alipay.put("sign_type", AlipayProperties.getValue("sign_type"));
+//		Iterator<String> it= alipay.keySet().iterator();
+//		String url="https://mapi.alipay.com/gateway.do";
+//		int i=0;
+//		while(it.hasNext()){
+//			String key=it.next();
+//			String value=alipay.get(key);
+//			if(i==0){
+//				url+="?"+key+"="+value;
+//			}else{
+//				url+="&"+key+"="+value;
+//			}
+//			i++;
+//		}
+		model.put("form",sHtmlText);
 		return "client/login/invoices";
 	}
 	

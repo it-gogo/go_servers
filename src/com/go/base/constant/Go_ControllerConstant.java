@@ -5,7 +5,7 @@ package com.go.base.constant;
  * 基础控制层常量
  * @author it_gogo 
  */
-public class Go_ControllerConstant {
+public class Go_ControllerConstant { 
 	/**
 	 * 通用公共显示信息页面
 	 */

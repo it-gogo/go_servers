@@ -28,6 +28,7 @@
             <th field="ns2prefix" width="80"  align='left' >NS2 前缀</th>
              <th field="rootpw" width="80"  align='left' >root密码</th>
              <th field="price" width="80"  align='left' >价格</th>
+             <th field="isfinish" width="180"  align='center' formatter='displayIsfinish'>操作</th>
           <th field="id" width="180"  align='center' formatter='getParentHandleStr'>操作</th>
          </tr>
      </thead>
